@@ -4,7 +4,7 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-Heyo! i'm Lumine, known on other platforms as Rylie, or j1nxie. Feel free to refer to me as any of those nicknames!
+Heyo! I'm Lumine, known on other platforms as Rylie, or j1nxie. Feel free to refer to me as any of those nicknames!
 This little blog here is where i write thoughts on various things, be it my personal life, anime, manga, or games that I've
 been playing. Some posts will be written in my native language - Vietnamese, as i felt like they are oriented towards
 said audience.
