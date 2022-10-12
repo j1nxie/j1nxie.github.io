@@ -47,13 +47,15 @@ ratings. These ratings only accomodate for the best records on that account, and
 will not change if you achieve a downscore on the same chart.
 
 **New Charts**
-    New Charts are charts that are added in the latest title version (i.e.
-    Universe, Universe Plus, etc.)
-    The top 15 ratings are listed here.
+
+- New Charts are charts that are added in the latest title version (i.e.
+Universe, Universe Plus, etc.)
+- The top 15 ratings are listed here.
 
 **Old Charts**
-    Old Charts are charts that are added in previous title versions.
-    The top 35 ratings are listed here.
+
+- Old Charts are charts that are added in previous title versions.
+- The top 35 ratings are listed here.
 
 The formula for total rating is given below:
 
