@@ -1,7 +1,9 @@
 <script type="text/javascript">
     window.MathJax = {
         tex: {
-            packages: ['base', 'ams']
+            packages: ['base', 'ams'],
+            inlineMath: [['$', '$'], ["\\(", "\\)"]],
+            processEscapes: true,
         },
         loader: {
             load: ['output/svg', '[tex]/ams']
