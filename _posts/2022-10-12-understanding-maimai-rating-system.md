@@ -67,7 +67,7 @@ $$\text{Total Rating} = S_N + S_B$$
 With that out of the way, we can now get into how each chart's rating is
 calculated. *Chart ratings* are calculated with the formula given below:
 
-$$\text{Chart Rating} = \text{Chart Constant} \times \text{Score} \times \text{Rank Multiplier}$$
+$$\text{Chart Rating} = \lfloor\text{Chart Constant} \times \text{Score} \times \text{Rank Multiplier}\rfloor$$
 
 This formula shows that there are three relevant quantities when it comes to
 calculating the Chart Rating. Each of the sections below will proceed to explain
