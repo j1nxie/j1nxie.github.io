@@ -6,6 +6,10 @@ categories: [blogs, english]
 tags: [rhythm games]
 ---
 
+*(Update 01/12/2022: As pointed out by [Amasugi](https://twitter.com/meyyosu),
+maimaiでらっくす's ranking doesn't have the E-F ranks anymore, instead replaced
+by BB and BBB. I've updated the table below to reflect that!)*
+
 I have been playing maimaiでらっくす for a couple of months now, and personally,
 I am very intrigued by the internal workings of the game. Sadly, I am not very
 knowledgeable in terms of arcade hardware, software and networking myself. But,
@@ -125,11 +129,11 @@ S    | 20
 AAA  | 16.8
 AA   | 15.2
 A    | 13.6
-B    | 12
-C    | 11.2
-D    | 9.6
-E    | 8
-F    | 5
+BBB  | 12
+BB   | 11.2
+B    | 9.6
+C    | 8
+D    | 5
 
 ## Conclusions
 
