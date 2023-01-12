@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="/assets/css/styles.css">
+		<title>Advent of Code 2022, Day 02 in Rust | lumi's trashcan
+		</title>
+		
+
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/favicons/site.webmanifest">
+<link rel="shortcut icon" href="/assets/img/favicons/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="lumi's trashcan">
+<meta name="application-name" content="lumi's trashcan">
+<meta name="msapplication-TileColor" content="#aec6cf">
+<meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml">
+<meta name="theme-color" content="#000">
+
+	</head>
+
+	<body>
+		<div id="main-wrapper">
+			<div id="wrapper">
+				<div id="sidebar">
+					<header>
+						<p>
+							<a href="/">home</a> |
+							<a href="/archives">archives</a> |
+							<a href="/categories">categories</a> |
+							<a href="/tags">tags</a>
+							</br>
+							<a href="/projects">projects</a> |
+							<a href="/socials">socials</a>
+						</p>
+
+						<p>
+							<big>lumi's trashcan</big>
+						</p>
+					</header>
+
+					<footer>
+						<p>
+							art by <a href="https://twitter.com/felutiahime/">@felutiahime</a>
+							</br>
+							© 2022-2023 j1nxie
+						</p>
+					</footer>
+				</div>
+
+				<section id="main">
+					<div class="content">
+						<div class="title">
+	<h1>Advent of Code 2022, Day 02 in Rust</h1>
+	<p>December 02, 2022</p>
+	<hr>
+</div>
+
+<p>Time for the second day of <a href="https://adventofcode.com">Advent of Code</a>!</p>
+
+<h2 id="solving-the-first-part">Solving the first part</h2>
+
+<blockquote>
+  <p>Appreciative of your help yesterday, one Elf gives you an encrypted <strong>strategy
+guide</strong> (your puzzle input) that they say will be sure to help you win. "The
+first column is what your opponent is going to play: A for Rock, B for Paper,
+and C for Scissors. The second column–" Suddenly, the Elf is called away to
+help with someone's tent.</p>
+
+  <p>The second column, you reason, must be what you should play in response: X for
+Rock, Y for Paper, and Z for Scissors. Winning every time would be suspicious,
+so the responses must have been carefully chosen.</p>
+
+  <p>The winner of the whole tournament is the player with the highest score. Your
+<strong>total score</strong> is the sum of your scores for each round. The score for a
+single round is the score for the <strong>shape you selected</strong> (1 for Rock, 2 for
+Paper, and 3 for Scissors) plus the score for the <strong>outcome of the round</strong> (0
+if you lost, 3 if the round was a draw, and 6 if you won).</p>
+
+  <p>Since you can't be sure if the Elf is trying to help you or trick you, you
+should calculate the score you would get if you were to follow the strategy
+guide.</p>
+
+  <p>For example, suppose you were given the following strategy guide:</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>A Y
+B X
+C Z
+</pre></td></tr></tbody></table></code></pre></div>  </div>
+
+  <p>This strategy guide predicts and recommends the following:</p>
+
+  <ul>
+    <li>In the first round, your opponent will choose Rock (<code class="language-plaintext highlighter-rouge">A</code>), and you should
+choose Paper (<code class="language-plaintext highlighter-rouge">Y</code>). This ends in a win for you with a score of <strong>8</strong> (2
+because you chose Paper + 6 because you won).</li>
+    <li>In the second round, your opponent will choose Paper (<code class="language-plaintext highlighter-rouge">B</code>), and you should
+choose Rock (<code class="language-plaintext highlighter-rouge">X</code>). This ends in a loss for you with a score of <strong>1</strong> (1 +
+0).</li>
+    <li>The third round is a draw with both players choosing Scissors, giving you a
+score of 3 + 3 = <code class="language-plaintext highlighter-rouge">6</code>.</li>
+  </ul>
+
+  <p>In this example, if you were to follow the strategy guide, you would get a
+total score of <code class="language-plaintext highlighter-rouge">15</code> (8 + 1 + 6).</p>
+
+  <p><strong>What would your total score be if everything goes exactly according to your
+strategy guide?</strong></p>
+</blockquote>
+
+<p>Once again, I feel like this is another parsing question. My main idea is to go
+through each line, splitting the line into two parts: the <code class="language-plaintext highlighter-rouge">opponent</code>'s move, and
+our <code class="language-plaintext highlighter-rouge">response</code> to it, and do things with these two parts.</p>
+
+<p>First things first, I'll be editing the test case to return the value of <code class="language-plaintext highlighter-rouge">15</code>.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nd">#[test]</span>
+<span class="k">fn</span> <span class="nf">test_part_one</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">let</span> <span class="n">input</span> <span class="o">=</span> <span class="nn">advent_of_code</span><span class="p">::</span><span class="nf">read_file</span><span class="p">(</span><span class="s">"examples"</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+	<span class="nd">assert_eq!</span><span class="p">(</span><span class="nf">part_one</span><span class="p">(</span><span class="o">&amp;</span><span class="n">input</span><span class="p">),</span> <span class="nf">Some</span><span class="p">(</span><span class="mi">15</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Looking at the question statement, we have Rock, Paper and Scissors having 1, 2
+and 3, respectively, as their score. So, similarly, I will be parsing both
+<code class="language-plaintext highlighter-rouge">opponent</code> and <code class="language-plaintext highlighter-rouge">response</code> to their numeric values, and assigning it to a tuple
+<code class="language-plaintext highlighter-rouge">(left, right)</code>.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="rouge-code"><pre><span class="k">let</span> <span class="k">mut</span> <span class="n">score</span><span class="p">:</span> <span class="nb">u32</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">line</span> <span class="k">in</span> <span class="n">input</span><span class="nf">.lines</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">let</span> <span class="p">(</span><span class="n">opponent</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span> <span class="o">=</span> <span class="n">line</span><span class="nf">.split_once</span><span class="p">(</span><span class="sc">' '</span><span class="p">)</span><span class="nf">.unwrap</span><span class="p">();</span>
+	<span class="k">let</span> <span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span> <span class="p">(</span><span class="nb">i32</span><span class="p">,</span> <span class="nb">i32</span><span class="p">);</span>
+
+	<span class="k">match</span> <span class="n">opponent</span> <span class="p">{</span>
+		<span class="s">"A"</span> <span class="k">=&gt;</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+		<span class="s">"B"</span> <span class="k">=&gt;</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+		<span class="s">"C"</span> <span class="k">=&gt;</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+		<span class="n">_</span> <span class="k">=&gt;</span> <span class="nd">unreachable!</span><span class="p">(),</span>
+	<span class="p">}</span>
+
+	<span class="k">match</span> <span class="n">response</span> <span class="p">{</span>
+		<span class="s">"X"</span> <span class="k">=&gt;</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+		<span class="s">"Y"</span> <span class="k">=&gt;</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+		<span class="s">"Z"</span> <span class="k">=&gt;</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+		<span class="n">_</span> <span class="k">=&gt;</span> <span class="nd">unreachable!</span><span class="p">(),</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Because we get a score according to our <code class="language-plaintext highlighter-rouge">response</code>'s numeric values, I'll add
+what we choose immediately to the <code class="language-plaintext highlighter-rouge">score</code> counter. I'll be editing the <code class="language-plaintext highlighter-rouge">match</code>
+arms for <code class="language-plaintext highlighter-rouge">response</code> to the one below:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="rouge-code"><pre>	<span class="k">match</span> <span class="n">response</span> <span class="p">{</span>
+		<span class="s">"X"</span> <span class="k">=&gt;</span> <span class="p">{</span>
+			<span class="n">right</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+			<span class="n">score</span> <span class="o">+=</span> <span class="n">right</span> <span class="k">as</span> <span class="nb">u32</span><span class="p">;</span>
+		<span class="p">}</span>
+
+		<span class="s">"Y"</span> <span class="k">=&gt;</span> <span class="p">{</span>
+			<span class="n">right</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+			<span class="n">score</span> <span class="o">+=</span> <span class="n">right</span> <span class="k">as</span> <span class="nb">u32</span><span class="p">;</span>
+		<span class="p">}</span>
+
+		<span class="s">"Z"</span> <span class="k">=&gt;</span> <span class="p">{</span>
+			<span class="n">right</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+			<span class="n">score</span> <span class="o">+=</span> <span class="n">right</span> <span class="k">as</span> <span class="nb">u32</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="n">_</span> <span class="k">=&gt;</span> <span class="nd">unreachable!</span><span class="p">(),</span>
+	<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">unreachable!()</code> macro is for matching against all other theoretically
+possible values of <code class="language-plaintext highlighter-rouge">opponent</code> and <code class="language-plaintext highlighter-rouge">response</code>, which are both of the <code class="language-plaintext highlighter-rouge">&amp;str</code> type.
+This shouldn't be possible with our inputs, but since Rust is rather pedantic
+about careful checks, this is what we will have to do.</p>
+
+<p>Let's take care of the case where we draw first, since it's the simpler one. If
+we convert both <code class="language-plaintext highlighter-rouge">opponent</code> and <code class="language-plaintext highlighter-rouge">response</code> to their numeric values (assigned to
+<code class="language-plaintext highlighter-rouge">left</code> and <code class="language-plaintext highlighter-rouge">right</code> respectively, as above), it's clear that <code class="language-plaintext highlighter-rouge">right - left == 0</code>.
+After that, our <code class="language-plaintext highlighter-rouge">score</code> will increase by 3, as stated by the question. We will
+have our first check:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>	<span class="k">if</span> <span class="n">right</span> <span class="o">-</span> <span class="n">left</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+		<span class="n">score</span> <span class="o">+=</span> <span class="mi">3</span><span class="p">;</span>
+	<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>For the case where we win, it's a bit more complicated. Again, Rock, Paper and
+Scissors have the values of 1, 2 and 3 respectively. For example, if the
+opponent used Rock, and we were Paper, we would have <code class="language-plaintext highlighter-rouge">right - left == 1</code>. It
+would be the same with the opponent using Paper and us using Scissors. But, what
+about the case of us using Rock, and the opponent used Scissors? <code class="language-plaintext highlighter-rouge">right - left</code>
+would equate to <code class="language-plaintext highlighter-rouge">-2</code>, and this is the edge case that we would have to check for
+as well. Our <code class="language-plaintext highlighter-rouge">score</code> will increase by 6 in that case. So, at the end, our code
+to check for the winning case would be:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>	<span class="k">if</span> <span class="p">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">||</span> <span class="p">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">score</span> <span class="o">+=</span> <span class="mi">6</span><span class="p">;</span>
+	<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>We will be returning the value of <code class="language-plaintext highlighter-rouge">score</code> for the function:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nf">Some</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>And that's basically the first part finished! We don't have to do anything in
+the case we lost, since our score doesn't increase from it, according to the
+question statement.</p>
+
+<h2 id="solving-the-second-part">Solving the second part</h2>
+
+<blockquote>
+  <p>The Elf finishes helping with the tent and sneaks back over to you. "Anyway,
+the second column says how the round needs to end: <code class="language-plaintext highlighter-rouge">X</code> means you need to lose,
+<code class="language-plaintext highlighter-rouge">Y</code> means you need to end the round in a draw, and <code class="language-plaintext highlighter-rouge">Z</code> means you need to win.
+Good luck!"</p>
+
+  <p>The total score is still calculated in the same way, but now you need to
+figure out what shape to choose so the round ends as indicated. The example
+above now goes like this:</p>
+
+  <ul>
+    <li>In the first round, your opponent will choose Rock (<code class="language-plaintext highlighter-rouge">A</code>), and you need the
+round to end in a draw (<code class="language-plaintext highlighter-rouge">Y</code>), so you also choose Rock. This gives you a
+score of 1 + 3 = <strong>4</strong>.</li>
+    <li>In the second round, your opponent will choose Paper (<code class="language-plaintext highlighter-rouge">B</code>), and you choose
+Rock so you lose (<code class="language-plaintext highlighter-rouge">X</code>) with a score of 1 + 0 = <strong>1</strong>.</li>
+    <li>In the third round, you will defeat your opponent's Scissors with Rock for a
+score of 1 + 6 = <strong>7</strong>.</li>
+  </ul>
+
+  <p>Now that you're correctly decrypting the ultra top secret strategy guide, you
+would get a total score of <code class="language-plaintext highlighter-rouge">12</code>.</p>
+
+  <p>Following the Elf's instructions for the second column, <strong>what would your
+total score be if everything goes exactly according to your strategy guide?</strong></p>
+</blockquote>
+
+<p>This is where it gets a <em>little bit</em> more complicated. I can't just parse the
+values as is anymore, because we only have what the <code class="language-plaintext highlighter-rouge">opponent</code> chose and the
+<strong>result</strong> of the match-up instead. I'll solve this using the same method I used
+to solve a previous AoC question. I'll create an enumerator with values for
+winning, losing and drawing to some value, like such below:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="nd">#[derive(PartialEq)]</span>
+<span class="k">enum</span> <span class="n">MatchVal</span> <span class="p">{</span>
+	<span class="nf">Win</span><span class="p">(</span><span class="nb">i32</span><span class="p">),</span>
+	<span class="nf">Draw</span><span class="p">(</span><span class="nb">i32</span><span class="p">),</span>
+	<span class="nf">Lose</span><span class="p">(</span><span class="nb">i32</span><span class="p">),</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>I will have a <code class="language-plaintext highlighter-rouge">.matches()</code> method implemented for this enumerator, which gives
+us a value that will win, lose or draw against the value stored in the
+enumerator. For example, <code class="language-plaintext highlighter-rouge">MatchVal::Win(1)</code> will return us <code class="language-plaintext highlighter-rouge">2</code>, as Paper (<code class="language-plaintext highlighter-rouge">2</code>)
+wins against Rock (<code class="language-plaintext highlighter-rouge">1</code>). I will have to guard this against overflow and
+underflow, similar to the above case when Paper and Scissors were chosen.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre></td><td class="rouge-code"><pre><span class="k">impl</span> <span class="n">MatchVal</span> <span class="p">{</span>
+	<span class="k">fn</span> <span class="nf">matches</span><span class="p">(</span><span class="o">&amp;</span><span class="k">self</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nb">i32</span> <span class="p">{</span>
+		<span class="k">match</span> <span class="k">self</span> <span class="p">{</span>
+			<span class="nn">MatchVal</span><span class="p">::</span><span class="nf">Win</span><span class="p">(</span><span class="n">left</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">3</span> <span class="p">{</span>
+					<span class="n">left</span> <span class="o">-</span> <span class="mi">2</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+					<span class="n">left</span> <span class="o">+</span> <span class="mi">1</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+			<span class="nn">MatchVal</span><span class="p">::</span><span class="nf">Draw</span><span class="p">(</span><span class="n">left</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="o">*</span><span class="n">left</span><span class="p">,</span>
+			<span class="nn">MatchVal</span><span class="p">::</span><span class="nf">Lose</span><span class="p">(</span><span class="n">left</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="n">left</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+					<span class="n">left</span> <span class="o">+</span> <span class="mi">2</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+					<span class="n">left</span> <span class="o">-</span> <span class="mi">1</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>And that's basically it! The only thing left is to write the function body for
+the actual second part of the program:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+</pre></td><td class="rouge-code"><pre><span class="k">pub</span> <span class="k">fn</span> <span class="nf">part_two</span><span class="p">(</span><span class="n">input</span><span class="p">:</span> <span class="o">&amp;</span><span class="nb">str</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nb">Option</span><span class="o">&lt;</span><span class="nb">u32</span><span class="o">&gt;</span> <span class="p">{</span>
+	<span class="k">let</span> <span class="k">mut</span> <span class="n">score</span><span class="p">:</span> <span class="nb">u32</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">for</span> <span class="n">line</span> <span class="k">in</span> <span class="n">input</span><span class="nf">.lines</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">let</span> <span class="p">(</span><span class="n">opponent</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span> <span class="o">=</span> <span class="n">line</span><span class="nf">.split_once</span><span class="p">(</span><span class="sc">' '</span><span class="p">)</span><span class="nf">.unwrap</span><span class="p">();</span>
+
+		<span class="k">let</span> <span class="n">left</span> <span class="o">=</span> <span class="k">match</span> <span class="n">opponent</span> <span class="p">{</span>
+			<span class="s">"A"</span> <span class="k">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+			<span class="s">"B"</span> <span class="k">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+			<span class="s">"C"</span> <span class="k">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
+			<span class="n">_</span> <span class="k">=&gt;</span> <span class="nd">unreachable!</span><span class="p">(),</span>
+		<span class="p">};</span>
+
+		<span class="k">let</span> <span class="n">right</span> <span class="o">=</span> <span class="k">match</span> <span class="n">response</span> <span class="p">{</span>
+			<span class="s">"X"</span> <span class="k">=&gt;</span> <span class="nn">MatchVal</span><span class="p">::</span><span class="nf">Lose</span><span class="p">(</span><span class="n">left</span><span class="p">)</span>
+
+			<span class="s">"Y"</span> <span class="k">=&gt;</span> <span class="p">{</span>
+				<span class="n">score</span> <span class="o">+=</span> <span class="mi">3</span><span class="p">;</span>
+				<span class="nn">MatchVal</span><span class="p">::</span><span class="nf">Draw</span><span class="p">(</span><span class="n">left</span><span class="p">)</span>
+			<span class="p">}</span>
+
+			<span class="s">"Z"</span> <span class="k">=&gt;</span> <span class="p">{</span>
+				<span class="n">score</span> <span class="o">+=</span> <span class="mi">6</span><span class="p">;</span>
+				<span class="nn">MatchVal</span><span class="p">::</span><span class="nf">Win</span><span class="p">(</span><span class="n">left</span><span class="p">)</span>
+			<span class="p">}</span>
+
+			<span class="n">_</span> <span class="k">=&gt;</span> <span class="nd">unreachable!</span><span class="p">(),</span>
+		<span class="p">}</span>
+		
+		<span class="n">score</span> <span class="o">+=</span> <span class="n">right</span><span class="nf">.matches</span><span class="p">()</span> <span class="k">as</span> <span class="nb">u32</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="nf">Some</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Once again, I'll be going through each line, splitting it into <code class="language-plaintext highlighter-rouge">opponent</code> and
+<code class="language-plaintext highlighter-rouge">response</code>, then parsing these two parts. <code class="language-plaintext highlighter-rouge">left</code> will once again be the
+opponent's move, in numbers, and right will be our response according to the
+strategy guide. I'll be adding the scores right when we assign the value to
+<code class="language-plaintext highlighter-rouge">right</code> for convenience's sake, then it's just adding the value of our response
+into the score.</p>
+
+<h2 id="afterword">Afterword</h2>
+
+<p>This is a pretty tough one to implement, if I had to be honest. I cycled through
+a few ideas, including just brute-forcing through all the cases, but the idea
+from that 2015 AoC problem helped me get through it. I also made a really dumb
+mistake of assigning <code class="language-plaintext highlighter-rouge">X</code> as winning and <code class="language-plaintext highlighter-rouge">Z</code> as losing and it took me so long to
+realize T_T.</p>
+
+<p>My code, once again, can be found on my
+<a href="https://github.com/j1nxie/aoc-rs-2022/blob/main/src/bin/02.rs">GitHub</a>.</p>
+
+
+					</div>
+				</section>
+			</div>
+		</div>
+	</body>
+</html>

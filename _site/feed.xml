@@ -1,0 +1,1245 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-01-13T02:23:35+07:00</updated><id>/feed.xml</id><title type="html">lumi&apos;s trashcan</title><subtitle>a personal trashcan for ideas and thoughts.</subtitle><entry><title type="html">Advent of Code 2022, Day 04 in Rust</title><link href="/posts/aoc-2022-day-04" rel="alternate" type="text/html" title="Advent of Code 2022, Day 04 in Rust" /><published>2022-12-04T17:00:00+07:00</published><updated>2022-12-04T17:00:00+07:00</updated><id>/posts/aoc-2022-day-04</id><content type="html" xml:base="/posts/aoc-2022-day-04"><![CDATA[]]></content><author><name></name></author><category term="blogs" /><category term="english" /><category term="advent of code" /><category term="coding" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Advent of Code 2022, Day 03 in Rust</title><link href="/posts/aoc-2022-day-03" rel="alternate" type="text/html" title="Advent of Code 2022, Day 03 in Rust" /><published>2022-12-03T17:00:00+07:00</published><updated>2022-12-03T17:00:00+07:00</updated><id>/posts/aoc-2022-day-03</id><content type="html" xml:base="/posts/aoc-2022-day-03"><![CDATA[<p>Getting to the third day, things are a <em>slight</em> bit more complicated this time.</p>
+
+<h2 id="solving-the-first-part">Solving the first part</h2>
+
+<blockquote>
+  <p>Each rucksack has two large <strong>compartments</strong>. All items of a given type are
+meant to go into exactly one of the two compartments. The Elf that did the
+packing failed to follow this rule for exactly one item type per rucksack.</p>
+
+  <p>The Elves have made a list of all of the items currently in each rucksack
+(your puzzle input), but they need your help finding the errors. Every item
+type is identified by a single lowercase or uppercase letter (that is, <code class="language-plaintext highlighter-rouge">a</code> and
+<code class="language-plaintext highlighter-rouge">A</code> refer to different types of items).</p>
+
+  <p>The list of items for each rucksack is given as characters all on a single
+line. A given rucksack always has the same number of items in each of its two
+compartments, so the first half of the characters represent items in the first
+compartment, while the second half of the characters represent items in the
+second compartment.</p>
+
+  <p>For example, suppose you have the following list of contents from six
+rucksacks:</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>vJrwpWtwJgWrhcsFMMfFFhFp
+jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
+PmmdzqPrVvPwwTWBwg
+wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
+ttgJtRGJQctTZtZT
+CrZsJsPPZsGzwwsLwLmpwMDw
+</pre></td></tr></tbody></table></code></pre></div>  </div>
+
+  <ul>
+    <li>The first rucksack contains the items <code class="language-plaintext highlighter-rouge">vJrwpWtwJgWrhcsFMMfFFhFp</code>, which
+means its first compartment contains the items <code class="language-plaintext highlighter-rouge">vJrwpWtwJgWr</code>, while the
+second compartment contains the items <code class="language-plaintext highlighter-rouge">hcsFMMfFFhFp</code>. The only item type
+that appears in both compartments is lowercase <code class="language-plaintext highlighter-rouge">p</code>.</li>
+    <li>The second rucksack's compartments contain <code class="language-plaintext highlighter-rouge">jqHRNqRjqzjGDLGL</code> and
+<code class="language-plaintext highlighter-rouge">rsFMfFZSrLrFZsSL</code>. The only item type that appears in both compartments is
+uppercase <code class="language-plaintext highlighter-rouge">L</code>.</li>
+    <li>The third rucksack's compartments contain <code class="language-plaintext highlighter-rouge">PmmdzqPrV</code> and <code class="language-plaintext highlighter-rouge">vPwwTWBwg</code>; the
+only common item type is uppercase <code class="language-plaintext highlighter-rouge">P</code>.</li>
+    <li>The fourth rucksack's compartments only share item type <code class="language-plaintext highlighter-rouge">v</code>.</li>
+    <li>The fifth rucksack's compartments only share item type <code class="language-plaintext highlighter-rouge">t</code>.</li>
+    <li>The sixth rucksack's compartments only share item type <code class="language-plaintext highlighter-rouge">s</code>.</li>
+  </ul>
+
+  <p>To help prioritize item rearrangement, every item type can be converted to a
+priority:</p>
+
+  <ul>
+    <li>Lowercase item types <code class="language-plaintext highlighter-rouge">a</code> through <code class="language-plaintext highlighter-rouge">z</code> have priorities 1 through 26.</li>
+    <li>Uppercase item types <code class="language-plaintext highlighter-rouge">A</code> through <code class="language-plaintext highlighter-rouge">Z</code> have priorities 27 through 52.</li>
+  </ul>
+
+  <p>In the above example, the priority of the item type that appears in both
+compartments of each rucksack is 16 (<code class="language-plaintext highlighter-rouge">p</code>), 38 (<code class="language-plaintext highlighter-rouge">L</code>), 42 (<code class="language-plaintext highlighter-rouge">P</code>), 22 (<code class="language-plaintext highlighter-rouge">v</code>), 20
+(<code class="language-plaintext highlighter-rouge">t</code>), and 19 (<code class="language-plaintext highlighter-rouge">s</code>); the sum of these is <code class="language-plaintext highlighter-rouge">157</code>.</p>
+
+  <p>Find the item type that appears in both compartments of each rucksack. <strong>What
+is the sum of the priorities of those item types?</strong></p>
+</blockquote>
+
+<p>The first part isn't too much outside of some parsing each line of the text
+content. Let's get to work, shall we?</p>
+
+<p>The above example gave us a result of <code class="language-plaintext highlighter-rouge">157</code>, so let's start with modifying the
+test result to 157.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nd">#[test]</span>
+<span class="k">fn</span> <span class="nf">test_part_one</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">let</span> <span class="n">input</span> <span class="o">=</span> <span class="nn">advent_of_code</span><span class="p">::</span><span class="nf">read_file</span><span class="p">(</span><span class="s">"examples"</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+	<span class="nd">assert_eq!</span><span class="p">(</span><span class="nf">part_one</span><span class="p">(</span><span class="o">&amp;</span><span class="n">input</span><span class="p">),</span> <span class="nf">Some</span><span class="p">(</span><span class="mi">157</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Since we are finding the <em>single letter</em> that is shared between two strings, my
+idea is to convert them into <code class="language-plaintext highlighter-rouge">HashSet</code>s, then finding the intersection between
+those two sets (basic set theory is powerful here!). Afterwards, I'll simply be
+converting the found character to its priority, then summing them up. I think
+the code below is rather self explanatory.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+</pre></td><td class="rouge-code"><pre><span class="k">let</span> <span class="k">mut</span> <span class="n">answer</span><span class="p">:</span> <span class="nb">u32</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">line</span> <span class="k">in</span> <span class="n">input</span><span class="nf">.lines</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">let</span> <span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">)</span> <span class="o">=</span> <span class="n">line</span><span class="nf">.split_at</span><span class="p">(</span><span class="n">line</span><span class="nf">.len</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+	<span class="k">let</span> <span class="k">mut</span> <span class="n">a</span> <span class="o">=</span> <span class="nn">HashSet</span><span class="p">::</span><span class="nf">new</span><span class="p">();</span>
+	<span class="k">let</span> <span class="k">mut</span> <span class="n">b</span> <span class="o">=</span> <span class="nn">HashSet</span><span class="p">::</span><span class="nf">new</span><span class="p">();</span>
+
+	<span class="k">for</span> <span class="n">c</span> <span class="k">in</span> <span class="n">first</span><span class="nf">.chars</span><span class="p">()</span> <span class="p">{</span>
+		<span class="n">a</span><span class="nf">.insert</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="k">for</span> <span class="n">c</span> <span class="k">in</span> <span class="n">second</span><span class="nf">.chars</span><span class="p">()</span> <span class="p">{</span>
+		<span class="n">b</span><span class="nf">.insert</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="k">let</span> <span class="n">intersect</span> <span class="o">=</span> <span class="n">a</span><span class="nf">.intersection</span><span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">)</span><span class="nf">.next</span><span class="p">()</span><span class="nf">.unwrap</span><span class="p">();</span>
+
+	<span class="k">match</span> <span class="n">intersect</span> <span class="p">{</span>
+		<span class="sc">'a'</span><span class="o">..=</span><span class="sc">'z'</span> <span class="k">=&gt;</span> <span class="n">answer</span> <span class="o">+=</span> <span class="o">*</span><span class="n">intersect</span> <span class="k">as</span> <span class="nb">u32</span> <span class="o">-</span> <span class="mi">96</span><span class="p">,</span>
+		<span class="n">_</span> <span class="k">=&gt;</span> <span class="n">answer</span> <span class="o">+=</span> <span class="o">*</span><span class="n">intersect</span> <span class="k">as</span> <span class="nb">u32</span> <span class="o">-</span> <span class="mi">64</span> <span class="o">+</span> <span class="mi">26</span><span class="p">,</span>
+		<span class="p">}</span>
+<span class="p">}</span>
+<span class="nf">Some</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>I splitted the input line into half (at the position <code class="language-plaintext highlighter-rouge">length / 2</code>), then
+inserting each character of those two halves into two different <code class="language-plaintext highlighter-rouge">HashSet</code>s.
+Then, I used the <code class="language-plaintext highlighter-rouge">.intersection()</code> method onto the two, and processed that.</p>
+
+<p>Why <code class="language-plaintext highlighter-rouge">- 96</code> and <code class="language-plaintext highlighter-rouge">- 64 + 26</code>? The characters <code class="language-plaintext highlighter-rouge">a</code> to <code class="language-plaintext highlighter-rouge">z</code> has the ASCII values of
+<code class="language-plaintext highlighter-rouge">97</code> to <code class="language-plaintext highlighter-rouge">122</code>, so to convert them back into the priority numbers the question
+wanted, I subtracted them by 96 to get the priority. Similarly, the ASCII values
+of <code class="language-plaintext highlighter-rouge">A</code> to <code class="language-plaintext highlighter-rouge">Z</code> are <code class="language-plaintext highlighter-rouge">65</code> to <code class="language-plaintext highlighter-rouge">90</code>, so I'll subtract them by 64, and then adding 26
+to make them match the priorities given by the question.</p>
+
+<h2 id="solving-the-second-part">Solving the second part</h2>
+
+<blockquote>
+  <p>For safety, the Elves are divided into groups of three. Every Elf carries a
+badge that identifies their group. For efficiency, within each group of three
+Elves, the badge is the <strong>only item type carried by all three Elves</strong>. That
+is, if a group's badge is item type <code class="language-plaintext highlighter-rouge">B</code>, then all three Elves will have item
+type B somewhere in their rucksack, and at most two of the Elves will be
+carrying any other item type.</p>
+
+  <p>The problem is that someone forgot to put this year's updated authenticity
+sticker on the badges. All of the badges need to be pulled out of the
+rucksacks so the new authenticity stickers can be attached.</p>
+
+  <p>Additionally, nobody wrote down which item type corresponds to each group's
+badges. The only way to tell which item type is the right one is by finding
+the one item type that is <strong>common between all three Elves</strong> in each group.</p>
+
+  <p>Every set of three lines in your list corresponds to a single group, but each
+group can have a different badge item type. So, in the above example, the
+first group's rucksacks are the first three lines:</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>vJrwpWtwJgWrhcsFMMfFFhFp
+jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
+PmmdzqPrVvPwwTWBwg
+</pre></td></tr></tbody></table></code></pre></div>  </div>
+
+  <p>And the second group's rucksacks are the next three lines:</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
+ttgJtRGJQctTZtZT
+CrZsJsPPZsGzwwsLwLmpwMDw
+</pre></td></tr></tbody></table></code></pre></div>  </div>
+
+  <p>In the first group, the only item type that appears in all three rucksacks is
+lowercase <code class="language-plaintext highlighter-rouge">r</code>; this must be their badges. In the second group, their badge
+item type must be <code class="language-plaintext highlighter-rouge">Z</code>.</p>
+
+  <p>Priorities for these items must still be found to organize the sticker
+attachment efforts: here, they are 18 (<code class="language-plaintext highlighter-rouge">r</code>) for the first group and 52 (<code class="language-plaintext highlighter-rouge">Z</code>)
+for the second group. The sum of these is <code class="language-plaintext highlighter-rouge">70</code>.</p>
+
+  <p>Find the item type that corresponds to the badges of each three-Elf group.
+<strong>What is the sum of the priorities of those item types?</strong></p>
+</blockquote>
+
+<p>Well, this isn't much more than the first question, but to consider every 3
+lines as a group, instead of two halves of one line.</p>
+
+<p>Let's edit our test case to 70 first:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nd">#[test]</span>
+<span class="k">fn</span> <span class="nf">test_part_two</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">let</span> <span class="n">input</span> <span class="o">=</span> <span class="nn">advent_of_code</span><span class="p">::</span><span class="nf">read_file</span><span class="p">(</span><span class="s">"examples"</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+	<span class="nd">assert_eq!</span><span class="p">(</span><span class="nf">part_two</span><span class="p">(</span><span class="o">&amp;</span><span class="n">input</span><span class="p">),</span> <span class="nf">Some</span><span class="p">(</span><span class="mi">70</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Because this part of the question isn't much more than parsing every 3 lines, I
+opted for a bunch of Rust iterator magic. I think explaining each line as
+comments would be easier, so below would be my code, with comments!</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+</pre></td><td class="rouge-code"><pre><span class="k">pub</span> <span class="k">fn</span> <span class="nf">part_two</span><span class="p">(</span><span class="n">input</span><span class="p">:</span> <span class="o">&amp;</span><span class="nb">str</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nb">Option</span><span class="o">&lt;</span><span class="nb">u32</span><span class="o">&gt;</span> <span class="p">{</span>
+	<span class="k">let</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">input</span>
+	<span class="c1">// grab the lines of the input as an iterator</span>
+		<span class="nf">.lines</span><span class="p">()</span>
+		<span class="c1">// iterate every 3 lines</span>
+		<span class="nf">.step_by</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+		<span class="c1">// "zip" the iterator with another iterator</span>
+		<span class="nf">.zip</span><span class="p">(</span>
+			<span class="n">input</span>
+				<span class="nf">.lines</span><span class="p">()</span>
+				<span class="c1">// skip through the first line (so we are taking the second line</span>
+				<span class="c1">// here)</span>
+				<span class="nf">.skip</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+				<span class="c1">// iterate another 3 lines</span>
+				<span class="nf">.step_by</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+				<span class="c1">// "zip" with another iterator</span>
+				<span class="c1">// I get the third line from the input text in the similar way</span>
+				<span class="nf">.zip</span><span class="p">(</span><span class="n">input</span><span class="nf">.lines</span><span class="p">()</span><span class="nf">.skip</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="nf">.step_by</span><span class="p">(</span><span class="mi">3</span><span class="p">)),</span>
+		<span class="p">)</span>
+		<span class="c1">// map and flattens down the iterators</span>
+		<span class="nf">.flat_map</span><span class="p">(|(</span><span class="n">first</span><span class="p">,</span> <span class="p">(</span><span class="n">second</span><span class="p">,</span> <span class="n">third</span><span class="p">))|</span> <span class="p">{</span>
+			<span class="n">first</span>
+			<span class="c1">// get the characters of the first line</span>
+			<span class="nf">.chars</span><span class="p">()</span>
+			<span class="c1">// then finding the character that is contained in both the</span>
+			<span class="c1">// second and the third line</span>
+			<span class="nf">.find</span><span class="p">(|</span><span class="n">c</span><span class="p">|</span> <span class="n">second</span><span class="nf">.contains</span><span class="p">(</span><span class="o">*</span><span class="n">c</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">third</span><span class="nf">.contains</span><span class="p">(</span><span class="o">*</span><span class="n">c</span><span class="p">))</span>
+		<span class="p">})</span>
+		<span class="c1">// collect the character into a String</span>
+		<span class="py">.collect</span><span class="p">::</span><span class="o">&lt;</span><span class="nb">String</span><span class="o">&gt;</span><span class="p">()</span>
+		<span class="c1">// grab its characters again</span>
+		<span class="nf">.chars</span><span class="p">()</span>
+		<span class="c1">// folding it with an accumulator - that is our answer</span>
+		<span class="nf">.fold</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">|</span><span class="n">acc</span><span class="p">,</span> <span class="n">c</span><span class="p">|</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="n">c</span><span class="nf">.is_ascii_lowercase</span><span class="p">()</span> <span class="p">{</span>
+				<span class="n">acc</span> <span class="o">+</span> <span class="p">(</span><span class="n">c</span> <span class="k">as</span> <span class="nb">u32</span><span class="p">)</span> <span class="o">-</span> <span class="mi">96</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+				<span class="n">acc</span> <span class="o">+</span> <span class="p">(</span><span class="n">c</span> <span class="k">as</span> <span class="nb">u32</span><span class="p">)</span> <span class="o">-</span> <span class="mi">38</span>
+			<span class="p">}</span>
+		<span class="p">});</span>
+	<span class="nf">Some</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="afterword">Afterword</h2>
+
+<p>Once again, a parsing problem that takes more effort to think about the parsing
+method than actually solving the problem! Not too hard, just really annoying to
+think about how to code in an idiomatic way.</p>
+
+<p>My code can be found on my
+<a href="https://github.com/j1nxie/aoc-rs-2022/blob/main/src/bin/03.rs">GitHub</a>.</p>]]></content><author><name></name></author><category term="blogs" /><category term="english" /><category term="advent of code" /><category term="coding" /><summary type="html"><![CDATA[Getting to the third day, things are a slight bit more complicated this time.]]></summary></entry><entry><title type="html">Advent of Code 2022, Day 02 in Rust</title><link href="/posts/aoc-2022-day-02" rel="alternate" type="text/html" title="Advent of Code 2022, Day 02 in Rust" /><published>2022-12-02T17:00:00+07:00</published><updated>2022-12-02T17:00:00+07:00</updated><id>/posts/aoc-2022-day-02</id><content type="html" xml:base="/posts/aoc-2022-day-02"><![CDATA[<p>Time for the second day of <a href="https://adventofcode.com">Advent of Code</a>!</p>
+
+<h2 id="solving-the-first-part">Solving the first part</h2>
+
+<blockquote>
+  <p>Appreciative of your help yesterday, one Elf gives you an encrypted <strong>strategy
+guide</strong> (your puzzle input) that they say will be sure to help you win. "The
+first column is what your opponent is going to play: A for Rock, B for Paper,
+and C for Scissors. The second column–" Suddenly, the Elf is called away to
+help with someone's tent.</p>
+
+  <p>The second column, you reason, must be what you should play in response: X for
+Rock, Y for Paper, and Z for Scissors. Winning every time would be suspicious,
+so the responses must have been carefully chosen.</p>
+
+  <p>The winner of the whole tournament is the player with the highest score. Your
+<strong>total score</strong> is the sum of your scores for each round. The score for a
+single round is the score for the <strong>shape you selected</strong> (1 for Rock, 2 for
+Paper, and 3 for Scissors) plus the score for the <strong>outcome of the round</strong> (0
+if you lost, 3 if the round was a draw, and 6 if you won).</p>
+
+  <p>Since you can't be sure if the Elf is trying to help you or trick you, you
+should calculate the score you would get if you were to follow the strategy
+guide.</p>
+
+  <p>For example, suppose you were given the following strategy guide:</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>A Y
+B X
+C Z
+</pre></td></tr></tbody></table></code></pre></div>  </div>
+
+  <p>This strategy guide predicts and recommends the following:</p>
+
+  <ul>
+    <li>In the first round, your opponent will choose Rock (<code class="language-plaintext highlighter-rouge">A</code>), and you should
+choose Paper (<code class="language-plaintext highlighter-rouge">Y</code>). This ends in a win for you with a score of <strong>8</strong> (2
+because you chose Paper + 6 because you won).</li>
+    <li>In the second round, your opponent will choose Paper (<code class="language-plaintext highlighter-rouge">B</code>), and you should
+choose Rock (<code class="language-plaintext highlighter-rouge">X</code>). This ends in a loss for you with a score of <strong>1</strong> (1 +
+0).</li>
+    <li>The third round is a draw with both players choosing Scissors, giving you a
+score of 3 + 3 = <code class="language-plaintext highlighter-rouge">6</code>.</li>
+  </ul>
+
+  <p>In this example, if you were to follow the strategy guide, you would get a
+total score of <code class="language-plaintext highlighter-rouge">15</code> (8 + 1 + 6).</p>
+
+  <p><strong>What would your total score be if everything goes exactly according to your
+strategy guide?</strong></p>
+</blockquote>
+
+<p>Once again, I feel like this is another parsing question. My main idea is to go
+through each line, splitting the line into two parts: the <code class="language-plaintext highlighter-rouge">opponent</code>'s move, and
+our <code class="language-plaintext highlighter-rouge">response</code> to it, and do things with these two parts.</p>
+
+<p>First things first, I'll be editing the test case to return the value of <code class="language-plaintext highlighter-rouge">15</code>.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nd">#[test]</span>
+<span class="k">fn</span> <span class="nf">test_part_one</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">let</span> <span class="n">input</span> <span class="o">=</span> <span class="nn">advent_of_code</span><span class="p">::</span><span class="nf">read_file</span><span class="p">(</span><span class="s">"examples"</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+	<span class="nd">assert_eq!</span><span class="p">(</span><span class="nf">part_one</span><span class="p">(</span><span class="o">&amp;</span><span class="n">input</span><span class="p">),</span> <span class="nf">Some</span><span class="p">(</span><span class="mi">15</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Looking at the question statement, we have Rock, Paper and Scissors having 1, 2
+and 3, respectively, as their score. So, similarly, I will be parsing both
+<code class="language-plaintext highlighter-rouge">opponent</code> and <code class="language-plaintext highlighter-rouge">response</code> to their numeric values, and assigning it to a tuple
+<code class="language-plaintext highlighter-rouge">(left, right)</code>.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="rouge-code"><pre><span class="k">let</span> <span class="k">mut</span> <span class="n">score</span><span class="p">:</span> <span class="nb">u32</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">line</span> <span class="k">in</span> <span class="n">input</span><span class="nf">.lines</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">let</span> <span class="p">(</span><span class="n">opponent</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span> <span class="o">=</span> <span class="n">line</span><span class="nf">.split_once</span><span class="p">(</span><span class="sc">' '</span><span class="p">)</span><span class="nf">.unwrap</span><span class="p">();</span>
+	<span class="k">let</span> <span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span> <span class="p">(</span><span class="nb">i32</span><span class="p">,</span> <span class="nb">i32</span><span class="p">);</span>
+
+	<span class="k">match</span> <span class="n">opponent</span> <span class="p">{</span>
+		<span class="s">"A"</span> <span class="k">=&gt;</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+		<span class="s">"B"</span> <span class="k">=&gt;</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+		<span class="s">"C"</span> <span class="k">=&gt;</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+		<span class="n">_</span> <span class="k">=&gt;</span> <span class="nd">unreachable!</span><span class="p">(),</span>
+	<span class="p">}</span>
+
+	<span class="k">match</span> <span class="n">response</span> <span class="p">{</span>
+		<span class="s">"X"</span> <span class="k">=&gt;</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+		<span class="s">"Y"</span> <span class="k">=&gt;</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+		<span class="s">"Z"</span> <span class="k">=&gt;</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+		<span class="n">_</span> <span class="k">=&gt;</span> <span class="nd">unreachable!</span><span class="p">(),</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Because we get a score according to our <code class="language-plaintext highlighter-rouge">response</code>'s numeric values, I'll add
+what we choose immediately to the <code class="language-plaintext highlighter-rouge">score</code> counter. I'll be editing the <code class="language-plaintext highlighter-rouge">match</code>
+arms for <code class="language-plaintext highlighter-rouge">response</code> to the one below:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="rouge-code"><pre>	<span class="k">match</span> <span class="n">response</span> <span class="p">{</span>
+		<span class="s">"X"</span> <span class="k">=&gt;</span> <span class="p">{</span>
+			<span class="n">right</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+			<span class="n">score</span> <span class="o">+=</span> <span class="n">right</span> <span class="k">as</span> <span class="nb">u32</span><span class="p">;</span>
+		<span class="p">}</span>
+
+		<span class="s">"Y"</span> <span class="k">=&gt;</span> <span class="p">{</span>
+			<span class="n">right</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+			<span class="n">score</span> <span class="o">+=</span> <span class="n">right</span> <span class="k">as</span> <span class="nb">u32</span><span class="p">;</span>
+		<span class="p">}</span>
+
+		<span class="s">"Z"</span> <span class="k">=&gt;</span> <span class="p">{</span>
+			<span class="n">right</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+			<span class="n">score</span> <span class="o">+=</span> <span class="n">right</span> <span class="k">as</span> <span class="nb">u32</span><span class="p">;</span>
+		<span class="p">}</span>
+		<span class="n">_</span> <span class="k">=&gt;</span> <span class="nd">unreachable!</span><span class="p">(),</span>
+	<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">unreachable!()</code> macro is for matching against all other theoretically
+possible values of <code class="language-plaintext highlighter-rouge">opponent</code> and <code class="language-plaintext highlighter-rouge">response</code>, which are both of the <code class="language-plaintext highlighter-rouge">&amp;str</code> type.
+This shouldn't be possible with our inputs, but since Rust is rather pedantic
+about careful checks, this is what we will have to do.</p>
+
+<p>Let's take care of the case where we draw first, since it's the simpler one. If
+we convert both <code class="language-plaintext highlighter-rouge">opponent</code> and <code class="language-plaintext highlighter-rouge">response</code> to their numeric values (assigned to
+<code class="language-plaintext highlighter-rouge">left</code> and <code class="language-plaintext highlighter-rouge">right</code> respectively, as above), it's clear that <code class="language-plaintext highlighter-rouge">right - left == 0</code>.
+After that, our <code class="language-plaintext highlighter-rouge">score</code> will increase by 3, as stated by the question. We will
+have our first check:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>	<span class="k">if</span> <span class="n">right</span> <span class="o">-</span> <span class="n">left</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+		<span class="n">score</span> <span class="o">+=</span> <span class="mi">3</span><span class="p">;</span>
+	<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>For the case where we win, it's a bit more complicated. Again, Rock, Paper and
+Scissors have the values of 1, 2 and 3 respectively. For example, if the
+opponent used Rock, and we were Paper, we would have <code class="language-plaintext highlighter-rouge">right - left == 1</code>. It
+would be the same with the opponent using Paper and us using Scissors. But, what
+about the case of us using Rock, and the opponent used Scissors? <code class="language-plaintext highlighter-rouge">right - left</code>
+would equate to <code class="language-plaintext highlighter-rouge">-2</code>, and this is the edge case that we would have to check for
+as well. Our <code class="language-plaintext highlighter-rouge">score</code> will increase by 6 in that case. So, at the end, our code
+to check for the winning case would be:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>	<span class="k">if</span> <span class="p">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">||</span> <span class="p">(</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">score</span> <span class="o">+=</span> <span class="mi">6</span><span class="p">;</span>
+	<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>We will be returning the value of <code class="language-plaintext highlighter-rouge">score</code> for the function:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nf">Some</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>And that's basically the first part finished! We don't have to do anything in
+the case we lost, since our score doesn't increase from it, according to the
+question statement.</p>
+
+<h2 id="solving-the-second-part">Solving the second part</h2>
+
+<blockquote>
+  <p>The Elf finishes helping with the tent and sneaks back over to you. "Anyway,
+the second column says how the round needs to end: <code class="language-plaintext highlighter-rouge">X</code> means you need to lose,
+<code class="language-plaintext highlighter-rouge">Y</code> means you need to end the round in a draw, and <code class="language-plaintext highlighter-rouge">Z</code> means you need to win.
+Good luck!"</p>
+
+  <p>The total score is still calculated in the same way, but now you need to
+figure out what shape to choose so the round ends as indicated. The example
+above now goes like this:</p>
+
+  <ul>
+    <li>In the first round, your opponent will choose Rock (<code class="language-plaintext highlighter-rouge">A</code>), and you need the
+round to end in a draw (<code class="language-plaintext highlighter-rouge">Y</code>), so you also choose Rock. This gives you a
+score of 1 + 3 = <strong>4</strong>.</li>
+    <li>In the second round, your opponent will choose Paper (<code class="language-plaintext highlighter-rouge">B</code>), and you choose
+Rock so you lose (<code class="language-plaintext highlighter-rouge">X</code>) with a score of 1 + 0 = <strong>1</strong>.</li>
+    <li>In the third round, you will defeat your opponent's Scissors with Rock for a
+score of 1 + 6 = <strong>7</strong>.</li>
+  </ul>
+
+  <p>Now that you're correctly decrypting the ultra top secret strategy guide, you
+would get a total score of <code class="language-plaintext highlighter-rouge">12</code>.</p>
+
+  <p>Following the Elf's instructions for the second column, <strong>what would your
+total score be if everything goes exactly according to your strategy guide?</strong></p>
+</blockquote>
+
+<p>This is where it gets a <em>little bit</em> more complicated. I can't just parse the
+values as is anymore, because we only have what the <code class="language-plaintext highlighter-rouge">opponent</code> chose and the
+<strong>result</strong> of the match-up instead. I'll solve this using the same method I used
+to solve a previous AoC question. I'll create an enumerator with values for
+winning, losing and drawing to some value, like such below:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="nd">#[derive(PartialEq)]</span>
+<span class="k">enum</span> <span class="n">MatchVal</span> <span class="p">{</span>
+	<span class="nf">Win</span><span class="p">(</span><span class="nb">i32</span><span class="p">),</span>
+	<span class="nf">Draw</span><span class="p">(</span><span class="nb">i32</span><span class="p">),</span>
+	<span class="nf">Lose</span><span class="p">(</span><span class="nb">i32</span><span class="p">),</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>I will have a <code class="language-plaintext highlighter-rouge">.matches()</code> method implemented for this enumerator, which gives
+us a value that will win, lose or draw against the value stored in the
+enumerator. For example, <code class="language-plaintext highlighter-rouge">MatchVal::Win(1)</code> will return us <code class="language-plaintext highlighter-rouge">2</code>, as Paper (<code class="language-plaintext highlighter-rouge">2</code>)
+wins against Rock (<code class="language-plaintext highlighter-rouge">1</code>). I will have to guard this against overflow and
+underflow, similar to the above case when Paper and Scissors were chosen.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre></td><td class="rouge-code"><pre><span class="k">impl</span> <span class="n">MatchVal</span> <span class="p">{</span>
+	<span class="k">fn</span> <span class="nf">matches</span><span class="p">(</span><span class="o">&amp;</span><span class="k">self</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nb">i32</span> <span class="p">{</span>
+		<span class="k">match</span> <span class="k">self</span> <span class="p">{</span>
+			<span class="nn">MatchVal</span><span class="p">::</span><span class="nf">Win</span><span class="p">(</span><span class="n">left</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">3</span> <span class="p">{</span>
+					<span class="n">left</span> <span class="o">-</span> <span class="mi">2</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+					<span class="n">left</span> <span class="o">+</span> <span class="mi">1</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+			<span class="nn">MatchVal</span><span class="p">::</span><span class="nf">Draw</span><span class="p">(</span><span class="n">left</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="o">*</span><span class="n">left</span><span class="p">,</span>
+			<span class="nn">MatchVal</span><span class="p">::</span><span class="nf">Lose</span><span class="p">(</span><span class="n">left</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="n">left</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+					<span class="n">left</span> <span class="o">+</span> <span class="mi">2</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+					<span class="n">left</span> <span class="o">-</span> <span class="mi">1</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>And that's basically it! The only thing left is to write the function body for
+the actual second part of the program:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+</pre></td><td class="rouge-code"><pre><span class="k">pub</span> <span class="k">fn</span> <span class="nf">part_two</span><span class="p">(</span><span class="n">input</span><span class="p">:</span> <span class="o">&amp;</span><span class="nb">str</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nb">Option</span><span class="o">&lt;</span><span class="nb">u32</span><span class="o">&gt;</span> <span class="p">{</span>
+	<span class="k">let</span> <span class="k">mut</span> <span class="n">score</span><span class="p">:</span> <span class="nb">u32</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="k">for</span> <span class="n">line</span> <span class="k">in</span> <span class="n">input</span><span class="nf">.lines</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">let</span> <span class="p">(</span><span class="n">opponent</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span> <span class="o">=</span> <span class="n">line</span><span class="nf">.split_once</span><span class="p">(</span><span class="sc">' '</span><span class="p">)</span><span class="nf">.unwrap</span><span class="p">();</span>
+
+		<span class="k">let</span> <span class="n">left</span> <span class="o">=</span> <span class="k">match</span> <span class="n">opponent</span> <span class="p">{</span>
+			<span class="s">"A"</span> <span class="k">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
+			<span class="s">"B"</span> <span class="k">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+			<span class="s">"C"</span> <span class="k">=&gt;</span> <span class="mi">3</span><span class="p">,</span>
+			<span class="n">_</span> <span class="k">=&gt;</span> <span class="nd">unreachable!</span><span class="p">(),</span>
+		<span class="p">};</span>
+
+		<span class="k">let</span> <span class="n">right</span> <span class="o">=</span> <span class="k">match</span> <span class="n">response</span> <span class="p">{</span>
+			<span class="s">"X"</span> <span class="k">=&gt;</span> <span class="nn">MatchVal</span><span class="p">::</span><span class="nf">Lose</span><span class="p">(</span><span class="n">left</span><span class="p">)</span>
+
+			<span class="s">"Y"</span> <span class="k">=&gt;</span> <span class="p">{</span>
+				<span class="n">score</span> <span class="o">+=</span> <span class="mi">3</span><span class="p">;</span>
+				<span class="nn">MatchVal</span><span class="p">::</span><span class="nf">Draw</span><span class="p">(</span><span class="n">left</span><span class="p">)</span>
+			<span class="p">}</span>
+
+			<span class="s">"Z"</span> <span class="k">=&gt;</span> <span class="p">{</span>
+				<span class="n">score</span> <span class="o">+=</span> <span class="mi">6</span><span class="p">;</span>
+				<span class="nn">MatchVal</span><span class="p">::</span><span class="nf">Win</span><span class="p">(</span><span class="n">left</span><span class="p">)</span>
+			<span class="p">}</span>
+
+			<span class="n">_</span> <span class="k">=&gt;</span> <span class="nd">unreachable!</span><span class="p">(),</span>
+		<span class="p">}</span>
+		
+		<span class="n">score</span> <span class="o">+=</span> <span class="n">right</span><span class="nf">.matches</span><span class="p">()</span> <span class="k">as</span> <span class="nb">u32</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="nf">Some</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Once again, I'll be going through each line, splitting it into <code class="language-plaintext highlighter-rouge">opponent</code> and
+<code class="language-plaintext highlighter-rouge">response</code>, then parsing these two parts. <code class="language-plaintext highlighter-rouge">left</code> will once again be the
+opponent's move, in numbers, and right will be our response according to the
+strategy guide. I'll be adding the scores right when we assign the value to
+<code class="language-plaintext highlighter-rouge">right</code> for convenience's sake, then it's just adding the value of our response
+into the score.</p>
+
+<h2 id="afterword">Afterword</h2>
+
+<p>This is a pretty tough one to implement, if I had to be honest. I cycled through
+a few ideas, including just brute-forcing through all the cases, but the idea
+from that 2015 AoC problem helped me get through it. I also made a really dumb
+mistake of assigning <code class="language-plaintext highlighter-rouge">X</code> as winning and <code class="language-plaintext highlighter-rouge">Z</code> as losing and it took me so long to
+realize T_T.</p>
+
+<p>My code, once again, can be found on my
+<a href="https://github.com/j1nxie/aoc-rs-2022/blob/main/src/bin/02.rs">GitHub</a>.</p>]]></content><author><name></name></author><category term="blogs" /><category term="english" /><category term="advent of code" /><category term="coding" /><summary type="html"><![CDATA[Time for the second day of Advent of Code!]]></summary></entry><entry><title type="html">Advent of Code 2022, Day 01 in Rust</title><link href="/posts/aoc-2022-day-01" rel="alternate" type="text/html" title="Advent of Code 2022, Day 01 in Rust" /><published>2022-12-01T17:00:00+07:00</published><updated>2022-12-01T17:00:00+07:00</updated><id>/posts/aoc-2022-day-01</id><content type="html" xml:base="/posts/aoc-2022-day-01"><![CDATA[<p>It's that time of the year again! December has started, and once again, another
+<a href="https://adventofcode.com">Advent of Code</a> starts! For this year, I'll attempt
+to solve the puzzles on the days they are released, with solutions written
+mainly in Rust. For some puzzles, I shall try to up the ante by writing a
+solution in Game Boy-flavored C.</p>
+
+<h2 id="setting-up-my-setup-environment">Setting up my setup environment</h2>
+
+<p>I will be generating my code repository using
+<a href="https://github.com/fspoettel">fspoettel</a>'s
+<a href="https://github.com/fspoettel/advent-of-code-rust">advent-of-code-rust</a>. This is
+a very neat repository template that has all the features you will need for
+Advent of Code: day scaffolding, built-in unit tests, input downloading, etc.
+It is very easy to setup and helps you with organizing your AoC codebase.</p>
+
+<p>After generating my repository from the template, my personal preferences are to
+enable Clippy and the automated <code class="language-plaintext highlighter-rouge">README.md</code> progress tracker. Then, I will clone
+the repository, and <code class="language-plaintext highlighter-rouge">cargo scaffold 01</code> to prepare the files for the first day.
+With all that set up, time to proceed with the actual solving!</p>
+
+<h2 id="solving-the-first-part">Solving the first part</h2>
+
+<p>I will be quoting each day's question statement, minus the flavor text. The
+first part is given as below:</p>
+
+<blockquote>
+  <p>The jungle must be too overgrown and difficult to navigate in vehicles or
+access from the air; the Elves' expedition traditionally goes on foot. As your
+boats approach land, the Elves begin taking inventory of their supplies. One
+important consideration is food - in particular, the number of <strong>Calories</strong> each
+Elf is carrying (your puzzle input).</p>
+
+  <p>The Elves take turns writing down the number of Calories contained by the
+various meals, snacks, rations, etc. that they've brought with them, one item
+per line. Each Elf separates their own inventory from the previous Elf's
+inventory (if any) by a blank line.</p>
+
+  <p>For example, suppose the Elves finish writing their items' Calories and end up
+with the following list:</p>
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="rouge-code"><pre>1000
+2000
+3000
+
+4000
+
+5000
+6000
+
+7000
+8000
+9000
+
+10000
+</pre></td></tr></tbody></table></code></pre></div>  </div>
+  <p>This list represents the Calories of the food carried by five Elves:</p>
+
+  <p>The first Elf is carrying food with <code class="language-plaintext highlighter-rouge">1000</code>, <code class="language-plaintext highlighter-rouge">2000</code>, and <code class="language-plaintext highlighter-rouge">3000</code> Calories, a
+total of <code class="language-plaintext highlighter-rouge">6000</code> Calories.</p>
+
+  <p>The second Elf is carrying one food item with <code class="language-plaintext highlighter-rouge">4000</code> Calories.</p>
+
+  <p>The third Elf is carrying food with <code class="language-plaintext highlighter-rouge">5000</code> and <code class="language-plaintext highlighter-rouge">6000</code> Calories, a total of
+<code class="language-plaintext highlighter-rouge">11000</code> Calories.</p>
+
+  <p>The fourth Elf is carrying food with <code class="language-plaintext highlighter-rouge">7000</code>, <code class="language-plaintext highlighter-rouge">8000</code>, and <code class="language-plaintext highlighter-rouge">9000</code> Calories, a
+total of <code class="language-plaintext highlighter-rouge">24000</code> Calories.</p>
+
+  <p>The fifth Elf is carrying one food item with <code class="language-plaintext highlighter-rouge">10000</code> Calories.</p>
+
+  <p>In case the Elves get hungry and need extra snacks, they need to know which
+Elf to ask: they'd like to know how many Calories are being carried by the Elf
+carrying the most Calories. In the example above, this is <code class="language-plaintext highlighter-rouge">24000</code> (carried by
+the fourth Elf). Find the Elf carrying the most Calories. <strong>How many total
+Calories is that Elf carrying?</strong></p>
+</blockquote>
+
+<p>This question is a rather simple one. As each chunk, seperated by an empty line,
+represents a single Elf, I will split the input text into each chunk, and push
+each chunk into a <code class="language-plaintext highlighter-rouge">Vec</code>. An empty <code class="language-plaintext highlighter-rouge">Vec</code> will also be created to hold the Calories
+count of each Elf (this will be empty because we will take care of this part
+later!)</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="k">let</span> <span class="n">elves</span><span class="p">:</span> <span class="nb">Vec</span><span class="o">&lt;&amp;</span><span class="nb">str</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">input</span><span class="nf">.split</span><span class="p">(</span><span class="s">"</span><span class="se">\n\n</span><span class="s">"</span><span class="p">)</span><span class="nf">.collect</span><span class="p">();</span>
+<span class="k">let</span> <span class="k">mut</span> <span class="n">foods</span><span class="p">:</span> <span class="nb">Vec</span><span class="o">&lt;</span><span class="nb">u32</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nd">vec!</span><span class="p">[];</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Afterwards, I will iterate through each Elf inside the <code class="language-plaintext highlighter-rouge">elves</code> vector, parse
+each of the <code class="language-plaintext highlighter-rouge">&amp;str</code> line to obtain its value, and sum all those values up to get
+the total Calories count of an Elf. I will then push this value into the <code class="language-plaintext highlighter-rouge">foods</code>
+vector created above.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="k">for</span> <span class="n">elf</span> <span class="k">in</span> <span class="n">elves</span> <span class="p">{</span>
+	<span class="k">let</span> <span class="n">food</span><span class="p">:</span> <span class="nb">u32</span> <span class="o">=</span> <span class="n">elf</span><span class="nf">.lines</span><span class="p">()</span><span class="nf">.map</span><span class="p">(|</span><span class="n">x</span><span class="p">|</span> <span class="n">x</span><span class="py">.parse</span><span class="p">::</span><span class="o">&lt;</span><span class="nb">u32</span><span class="o">&gt;</span><span class="p">()</span><span class="nf">.unwrap</span><span class="p">())</span><span class="nf">.sum</span><span class="p">();</span>
+	<span class="n">foods</span><span class="nf">.push</span><span class="p">(</span><span class="n">food</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>After dealing with this, it's just a matter of using a few Rust methods, namely
+<code class="language-plaintext highlighter-rouge">.into_iter()</code> and <code class="language-plaintext highlighter-rouge">.max()</code> to obtain the maximum amount of Calories carried.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nf">Some</span><span class="p">(</span><span class="n">foods</span><span class="nf">.into_iter</span><span class="p">()</span><span class="nf">.max</span><span class="p">()</span><span class="nf">.unwrap</span><span class="p">()</span> <span class="k">as</span> <span class="nb">u32</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">Some</code> and the <code class="language-plaintext highlighter-rouge">u32</code> cast was used here as the return type of the functions
+as scaffolded by <code class="language-plaintext highlighter-rouge">advent-of-code-rust</code> is <code class="language-plaintext highlighter-rouge">Option&lt;u32&gt;</code> by default.</p>
+
+<p>I will be editing the test case result in the <code class="language-plaintext highlighter-rouge">test_part_one()</code> function into
+<code class="language-plaintext highlighter-rouge">24000</code> as given in the question statement as well.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nd">#[test]</span>
+<span class="k">fn</span> <span class="nf">test_part_one</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">let</span> <span class="n">input</span> <span class="o">=</span> <span class="nn">advent_of_code</span><span class="p">::</span><span class="nf">read_file</span><span class="p">(</span><span class="s">"examples"</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+	<span class="nd">assert_eq!</span><span class="p">(</span><span class="nf">part_one</span><span class="p">(</span><span class="n">input</span><span class="p">),</span> <span class="nf">Some</span><span class="p">(</span><span class="mi">24000</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="solving-the-second-part">Solving the second part</h2>
+
+<p>The second part's question statement is given as such:</p>
+
+<blockquote>
+  <p>By the time you calculate the answer to the Elves' question, they've already
+realized that the Elf carrying the most Calories of food might eventually
+<strong>run out of snacks</strong>.</p>
+
+  <p>To avoid this unacceptable situation, the Elves would instead like to know the
+total Calories carried by the <strong>top three</strong> Elves carrying the most Calories.
+That way, even if one of those Elves runs out of snacks, they still have two
+backups.</p>
+
+  <p>In the example above, the top three Elves are the fourth Elf (with <code class="language-plaintext highlighter-rouge">24000</code>
+Calories), then the third Elf (with <code class="language-plaintext highlighter-rouge">11000</code> Calories), then the fifth Elf (with
+<code class="language-plaintext highlighter-rouge">10000</code> Calories). The sum of the Calories carried by these three elves is
+<code class="language-plaintext highlighter-rouge">45000</code>.</p>
+
+  <p>Find the top three Elves carrying the most Calories. <strong>How many Calories are
+those Elves carrying in total?</strong></p>
+</blockquote>
+
+<p>We will be going through the same steps as the previous part: Splitting text
+input into chunks, pushing them into a vector, calculating the total Calories
+count for each Elf.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="k">let</span> <span class="n">elves</span><span class="p">:</span> <span class="nb">Vec</span><span class="o">&lt;&amp;</span><span class="nb">str</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">input</span><span class="nf">.split</span><span class="p">(</span><span class="s">"</span><span class="se">\n\n</span><span class="s">"</span><span class="p">)</span><span class="nf">.collect</span><span class="p">();</span>
+<span class="k">let</span> <span class="k">mut</span> <span class="n">foods</span><span class="p">:</span> <span class="nb">Vec</span><span class="o">&lt;</span><span class="nb">u32</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nd">vec!</span><span class="p">[];</span>
+<span class="k">for</span> <span class="n">elf</span> <span class="k">in</span> <span class="n">elves</span> <span class="p">{</span>
+	<span class="k">let</span> <span class="n">food</span><span class="p">:</span> <span class="nb">u32</span> <span class="o">=</span> <span class="n">elf</span><span class="nf">.lines</span><span class="p">()</span><span class="nf">.map</span><span class="p">(|</span><span class="n">x</span><span class="p">|</span> <span class="n">x</span><span class="py">.parse</span><span class="p">::</span><span class="o">&lt;</span><span class="nb">u32</span><span class="o">&gt;</span><span class="p">()</span><span class="nf">.unwrap</span><span class="p">())</span><span class="nf">.sum</span><span class="p">();</span>
+	<span class="n">foods</span><span class="nf">.push</span><span class="p">(</span><span class="n">food</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>For the next step, I'll be using Rust's built-in <code class="language-plaintext highlighter-rouge">.sort_by()</code> method to sort the
+<code class="language-plaintext highlighter-rouge">foods</code> vector in descending order.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">foods</span><span class="nf">.sort_by</span><span class="p">(|</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">|</span> <span class="n">b</span><span class="nf">.cmp</span><span class="p">(</span><span class="n">a</span><span class="p">));</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>After that, it's just a matter of grabbing the sum of the first 3 elements of
+the above vector.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nf">Some</span><span class="p">(</span><span class="n">foods</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">foods</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">foods</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Similar to the previous part's test case, I'll be editing its result to <code class="language-plaintext highlighter-rouge">45000</code>
+as given by the question statement.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nd">#[test]</span>
+<span class="k">fn</span> <span class="nf">test_part_two</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">let</span> <span class="n">input</span> <span class="o">=</span> <span class="nn">advent_of_code</span><span class="p">::</span><span class="nf">read_file</span><span class="p">(</span><span class="s">"examples"</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+	<span class="nd">assert_eq!</span><span class="p">(</span><span class="nf">part_two</span><span class="p">(</span><span class="o">&amp;</span><span class="n">input</span><span class="p">),</span> <span class="nf">Some</span><span class="p">(</span><span class="mi">45000</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="afterword">Afterword</h2>
+
+<p>As typical for all day 1 questions of each year, this is a rather simple and
+straightforward question that can basically be solved using some parsing. The
+harder part of this is to write clean and Rust-y code I guess? I feel like I can
+definitely make the <code class="language-plaintext highlighter-rouge">for</code> loops more Rust-y by using iterator methods more, but
+I still haven't figured it out yet!</p>
+
+<p>My code can be found on my
+<a href="https://github.com/j1nxie/aoc-rs-2022/blob/main/src/bin/01.rs">GitHub</a>. Feel
+free to check it out!</p>]]></content><author><name></name></author><category term="blogs" /><category term="english" /><category term="advent of code" /><category term="coding" /><summary type="html"><![CDATA[It's that time of the year again! December has started, and once again, another Advent of Code starts! For this year, I'll attempt to solve the puzzles on the days they are released, with solutions written mainly in Rust. For some puzzles, I shall try to up the ante by writing a solution in Game Boy-flavored C.]]></summary></entry><entry><title type="html">Understanding maimaiでらっくす&apos;s Rating System</title><link href="/posts/understanding-maimai-rating-system" rel="alternate" type="text/html" title="Understanding maimaiでらっくす&apos;s Rating System" /><published>2022-10-12T19:00:00+07:00</published><updated>2022-10-12T19:00:00+07:00</updated><id>/posts/understanding-maimai-rating-system</id><content type="html" xml:base="/posts/understanding-maimai-rating-system"><![CDATA[<p><em>(Update 01/12/2022: As pointed out by <a href="https://twitter.com/meyyosu">Amasugi</a>,
+maimaiでらっくす's ranking doesn't have the E-F ranks anymore, instead replaced
+by BB and BBB. I've updated the table below to reflect that!)</em></p>
+
+<p>I have been playing maimaiでらっくす for a couple of months now, and personally,
+I am very intrigued by the internal workings of the game. Sadly, I am not very
+knowledgeable in terms of arcade hardware, software and networking myself. But,
+after working on <a href="https://github.com/TNG-dev/Tachi">Tachi</a>'s <del>sadly still
+in-progress</del> maimaiでらっくす implementation, I started learning about the
+game's internal rating system. This post will focus on exactly that, from the
+very bottom up.</p>
+
+<h2 id="what-is-this-rating-youre-talking-about">What is this "Rating" you're talking about?</h2>
+
+<p>Let's start by understanding "rating". In maimaiでらっくす, for every difficulty
+of a song (hereby referred to as "chart") played, there will be an integer rating
+associated to it, depending on multiple factors. Each account will have a
+<em>total rating</em>, usually used as a metric to gauge progress and skill level. This
+total rating number can <em>only increase</em>, not decrease, as higher scored and harder
+charts gets played on that account. For each total rating range, there will be
+also a colored plate representing that range. In the community, it is referred
+to as below:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Color</th>
+      <th>Total rating range</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>White</td>
+      <td>0-999</td>
+    </tr>
+    <tr>
+      <td>Blue</td>
+      <td>1000-1999</td>
+    </tr>
+    <tr>
+      <td>Green</td>
+      <td>2000-3999</td>
+    </tr>
+    <tr>
+      <td>Yellow</td>
+      <td>4000-6999</td>
+    </tr>
+    <tr>
+      <td>Red</td>
+      <td>7000-9999</td>
+    </tr>
+    <tr>
+      <td>Purple</td>
+      <td>10000-11999</td>
+    </tr>
+    <tr>
+      <td>Bronze</td>
+      <td>12000-12999</td>
+    </tr>
+    <tr>
+      <td>Silver</td>
+      <td>13000-13999</td>
+    </tr>
+    <tr>
+      <td>Gold</td>
+      <td>14000-14499</td>
+    </tr>
+    <tr>
+      <td>Platinum</td>
+      <td>14500-14999</td>
+    </tr>
+    <tr>
+      <td>Rainbow</td>
+      <td>15000+</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="so-how-is-this-rating-calculated">So, how is this "rating" calculated?</h2>
+
+<p>We can start with the easier one out of everything: <em>total rating</em>. An account's
+total rating is made up of two parts, New Charts' ratings, and Old Charts'
+ratings. These ratings only accomodate for the best records on that account, and
+will not change if you achieve a downscore on the same chart.</p>
+
+<p><strong>New Charts</strong></p>
+
+<ul>
+  <li>New Charts are charts that are added in the latest title version (i.e.
+Universe, Universe Plus, etc.)</li>
+  <li>The top 15 ratings are listed here.</li>
+</ul>
+
+<p><strong>Old Charts</strong></p>
+
+<ul>
+  <li>Old Charts are charts that are added in previous title versions.</li>
+  <li>The top 35 ratings are listed here.</li>
+</ul>
+
+<p>The formula for total rating is given below:</p>
+
+\[\text{Total Rating} = S_N + S_B\]
+
+<ul>
+  <li>$S_N$ is the sum of all Ratings in New Charts.</li>
+  <li>$S_B$ is the sum of all Ratings in Old Charts.</li>
+</ul>
+
+<p>With that out of the way, we can now get into how each chart's rating is
+calculated. <em>Chart ratings</em> are calculated with the formula given below:</p>
+
+\[\text{Chart Rating} = \lfloor\text{Chart Constant} \times \text{Score} \times \text{Rank Multiplier}\rfloor\]
+
+<p>This formula shows that there are three relevant quantities when it comes to
+calculating the Chart Rating. Each of the sections below will proceed to explain
+each of them.</p>
+
+<h3 id="chart-constant">Chart Constant</h3>
+
+<p>In the game, each chart is assigned an <strong>integer</strong> difficulty level, ranging
+from 1-15. Between level 7-15, there are also intermediate levels, with a plus
+added to them to better distinguish charts' difficulties (e.g. 7+, 8+, 9+,
+etc.).</p>
+
+<p>If you looked at this, you would assume that all charts of the same
+difficulty level are actually of the same difficulty. This is a false
+assumption, as internally, each chart is assigned a <strong>decimal</strong> level for them.
+Given a difficulty level $X$, its internal level will range between $X.0$ to $X.6$,
+while $X+$ will range from $X.7$ to $X.9$.</p>
+
+<p>These values are either derived from the ratings obtained from the game itself,
+using the exact above formula, but finding for $\text{Chart Constant}$ instead
+of $\text{Chart Rating}$, or found inside the game files. I do not have a very
+well understanding the game files itself so I will not comment much on
+this matter.</p>
+
+<h3 id="score">Score</h3>
+
+<p>This is just the score you obtained, converted to a decimal. So, for example,
+100% will have a value of 1, and 101% will have a value of 1.01. By
+maimaiでらっくす's system, score will always have a maximum value of 101%,
+whereas maimai FiNALE scores will have a maximum value depending on the amount
+of BREAK notes found in the chart.</p>
+
+<p>This writeup will not go deep into how scores in both games are calculated, so
+this will end here.</p>
+
+<p>Another thing to note is all scores above 100.5% will be treated as 100.5%, so
+the rating algorithm essentially caps out at 100.5% if you are aiming to
+maximize rating for your scores.</p>
+
+<h3 id="rank-multiplier">Rank Multiplier</h3>
+
+<p>For some unknown reasons, internally, there are also multipliers associated with
+every ranking found in the game. There are 12 ranks, ranging from F to SSS+, and
+with each rank, there is a multiplier associated with it. This table below shows
+the multiplier for each rank:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Multiplier</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>SSS+</td>
+      <td>22.4</td>
+    </tr>
+    <tr>
+      <td>SSS</td>
+      <td>21.6</td>
+    </tr>
+    <tr>
+      <td>SS+</td>
+      <td>21.1</td>
+    </tr>
+    <tr>
+      <td>SS</td>
+      <td>20.8</td>
+    </tr>
+    <tr>
+      <td>S+</td>
+      <td>20.3</td>
+    </tr>
+    <tr>
+      <td>S</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <td>AAA</td>
+      <td>16.8</td>
+    </tr>
+    <tr>
+      <td>AA</td>
+      <td>15.2</td>
+    </tr>
+    <tr>
+      <td>A</td>
+      <td>13.6</td>
+    </tr>
+    <tr>
+      <td>BBB</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <td>BB</td>
+      <td>11.2</td>
+    </tr>
+    <tr>
+      <td>B</td>
+      <td>9.6</td>
+    </tr>
+    <tr>
+      <td>C</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <td>D</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="conclusions">Conclusions</h2>
+
+<p>With all three main parts of the formula and the total rating explained, I feel
+like this is enough for a wrap-up. For now, this should be everything that is
+needed to understand and work with maimaiでらっくす's rating system.</p>
+
+<p>For maimai FiNALE's rating system, the only thing I really understand about it
+is it has a decimal rating (similar to CHUNITHM's rating and Arcaea's
+Potential), and it can also increase or decrease depending on your score.</p>]]></content><author><name></name></author><category term="blogs" /><category term="english" /><category term="rhythm games" /><summary type="html"><![CDATA[(Update 01/12/2022: As pointed out by Amasugi, maimaiでらっくす's ranking doesn't have the E-F ranks anymore, instead replaced by BB and BBB. I've updated the table below to reflect that!) I have been playing maimaiでらっくす for a couple of months now, and personally, I am very intrigued by the internal workings of the game. Sadly, I am not very knowledgeable in terms of arcade hardware, software and networking myself. But, after working on Tachi's sadly still in-progress maimaiでらっくす implementation, I started learning about the game's internal rating system. This post will focus on exactly that, from the very bottom up. What is this "Rating" you're talking about? Let's start by understanding "rating". In maimaiでらっくす, for every difficulty of a song (hereby referred to as "chart") played, there will be an integer rating associated to it, depending on multiple factors. Each account will have a total rating, usually used as a metric to gauge progress and skill level. This total rating number can only increase, not decrease, as higher scored and harder charts gets played on that account. For each total rating range, there will be also a colored plate representing that range. In the community, it is referred to as below: Color Total rating range White 0-999 Blue 1000-1999 Green 2000-3999 Yellow 4000-6999 Red 7000-9999 Purple 10000-11999 Bronze 12000-12999 Silver 13000-13999 Gold 14000-14499 Platinum 14500-14999 Rainbow 15000+ So, how is this "rating" calculated? We can start with the easier one out of everything: total rating. An account's total rating is made up of two parts, New Charts' ratings, and Old Charts' ratings. These ratings only accomodate for the best records on that account, and will not change if you achieve a downscore on the same chart. New Charts New Charts are charts that are added in the latest title version (i.e. Universe, Universe Plus, etc.) The top 15 ratings are listed here. Old Charts Old Charts are charts that are added in previous title versions. The top 35 ratings are listed here. The formula for total rating is given below: \[\text{Total Rating} = S_N + S_B\] $S_N$ is the sum of all Ratings in New Charts. $S_B$ is the sum of all Ratings in Old Charts. With that out of the way, we can now get into how each chart's rating is calculated. Chart ratings are calculated with the formula given below: \[\text{Chart Rating} = \lfloor\text{Chart Constant} \times \text{Score} \times \text{Rank Multiplier}\rfloor\] This formula shows that there are three relevant quantities when it comes to calculating the Chart Rating. Each of the sections below will proceed to explain each of them. Chart Constant In the game, each chart is assigned an integer difficulty level, ranging from 1-15. Between level 7-15, there are also intermediate levels, with a plus added to them to better distinguish charts' difficulties (e.g. 7+, 8+, 9+, etc.). If you looked at this, you would assume that all charts of the same difficulty level are actually of the same difficulty. This is a false assumption, as internally, each chart is assigned a decimal level for them. Given a difficulty level $X$, its internal level will range between $X.0$ to $X.6$, while $X+$ will range from $X.7$ to $X.9$. These values are either derived from the ratings obtained from the game itself, using the exact above formula, but finding for $\text{Chart Constant}$ instead of $\text{Chart Rating}$, or found inside the game files. I do not have a very well understanding the game files itself so I will not comment much on this matter. Score This is just the score you obtained, converted to a decimal. So, for example, 100% will have a value of 1, and 101% will have a value of 1.01. By maimaiでらっくす's system, score will always have a maximum value of 101%, whereas maimai FiNALE scores will have a maximum value depending on the amount of BREAK notes found in the chart. This writeup will not go deep into how scores in both games are calculated, so this will end here. Another thing to note is all scores above 100.5% will be treated as 100.5%, so the rating algorithm essentially caps out at 100.5% if you are aiming to maximize rating for your scores. Rank Multiplier For some unknown reasons, internally, there are also multipliers associated with every ranking found in the game. There are 12 ranks, ranging from F to SSS+, and with each rank, there is a multiplier associated with it. This table below shows the multiplier for each rank: Rank Multiplier SSS+ 22.4 SSS 21.6 SS+ 21.1 SS 20.8 S+ 20.3 S 20 AAA 16.8 AA 15.2 A 13.6 BBB 12 BB 11.2 B 9.6 C 8 D 5 Conclusions With all three main parts of the formula and the total rating explained, I feel like this is enough for a wrap-up. For now, this should be everything that is needed to understand and work with maimaiでらっくす's rating system. For maimai FiNALE's rating system, the only thing I really understand about it is it has a decimal rating (similar to CHUNITHM's rating and Arcaea's Potential), and it can also increase or decrease depending on your score.]]></summary></entry><entry><title type="html">Yuru Camp: A chill camping experience from home</title><link href="/posts/yuru-camp" rel="alternate" type="text/html" title="Yuru Camp: A chill camping experience from home" /><published>2022-06-13T11:30:00+07:00</published><updated>2022-06-13T11:30:00+07:00</updated><id>/posts/yuru-camp</id><content type="html" xml:base="/posts/yuru-camp"><![CDATA[<p>I'll be honest, I'm a gigantic sucker for slice-of-life anime. My <a href="https://myanimelist.net/animelist/RylieXD?status=2">anime list</a>
+is literally chock-full of slice-of-life, with only a few selective shounens here and there. Most of the slice-of-life stuff are, as
+expected, mundane, basic and niche. But, one slice-of-life anime that truly struck different from everything else, is
+<a href="https://myanimelist.net/anime/34798/Yuru_Camp%E2%96%B3">Yuru Camp</a>.</p>
+
+<h2 id="premise">Premise</h2>
+
+<p>So, what is Yuru Camp? It's an anime about a group of girls who form a camping club at their school, and it's just about that. Camping, as it is,
+not just as a side activity or as something to build the characters upon. The anime just focuses around camping as an experience, no tension, no
+drama, that's it. It's a very straightforward anime with what it wants to cover and evolve.</p>
+
+<p>In my opinion, this is what makes Yuru Camp really good. It doesn't have something that people would just outright, "hate", because from its premise,
+Yuru Camp just feels like a very comfortable show that anyone can get into. People can dislike it, but it wasn't a type of "controversial" anime that
+has something that would really spark hatred, so those people who did were probably not vocal about it. But then, trying to sell Yuru Camp to others
+is also just as hard, because it seems like there is no appeal for a show that's just harmless, fun and chill compared to something else with
+(comparatively) more memorable emotional moments.</p>
+
+<p>Honestly, you cannot just recommend Yuru Camp to a skeptical person as it is. You have to show them how it actually feels to sit down and watch an episode of it.
+The quiet environment that it gives out is just soothing, just like having those ASMR audios in the background, but it's definitely more visual. Pure calmness of
+mind, no more, no less.</p>
+
+<h2 id="visuals">Visuals</h2>
+
+<p>Of course, to say that the premise carried everything in the series is definitely a mistake. Each episode is carefully crafted and executed properly, and there
+isn't anything that would make you feel, "oh wow, this is <em>sooooo</em> out of place."</p>
+
+<p>The visuals are an instant praise, honestly. The backgrounds are super detailed, and they're just amazing wallpaper material. I cannot stop taking screenshots of
+those landscape camera pans as the girls travel around and explore the area. With its clever usage of lighting, contrast between confined rooms and vast landscape,
+placing characters at the right spots for the sense of space and depth of field, it makes us viewers feel like we're actually belonging there. Without having any
+flashy cinematographic tricks, but just simple zoom-outs and panoramic shots of the character surrounded by the environment, Yuru Camp exponentially increased
+the visual appeal of the scenarios.</p>
+
+<p>The character design is rather okay for a slice-of-life anime as well. They are not too overstylized, a bit on the simpler side, 
+but consistently fitting with the realistic, soothing feeling of the backgrounds. Their clothes are not over-the-top either, yet the show gives them a surprisingly
+variety of outfits for each of the girls. Rin's hairstyle and her fashion choices as a whole makes her a very visually dynamic character, and the hairstyles even 
+turned into running jokes throughout the anime.</p>
+
+<p>The show's animation is very clean and fluid, definitely above average compared to what you would see from a slice-of-life anime. Despite that, there isn't too much focus
+on movement, and it can look quite static at times. Some parts of the show are surprisingly detailed in animation, but then it's sadly balanced out by abusing
+static and panning shots. Rather inconsistent, but always serviceable enough, and not a pain to look at.</p>
+
+<h2 id="audio">Audio</h2>
+
+<p>Music in Yuru Camp is excellent. We can just stop there and let you watch the entire thing yourself to see how it is. But, to delve deeper into things, the background music
+is perfect, truly spot on for each scene. It doesn't just let one song run mindlessly in the background while things happen on-screen, instead accurately timing pauses for
+the comedy scenes, and saving the best parts of each track for the best part of each scene. To put it simply, it does a very basic thing of, knowing when to stop and start,
+how to transit between calming music and comedic scenes, and which track to play when. It's a very basic thing, but it had a lot of effort put in.</p>
+
+<p>Outside of music, the audio effects in the show is also very well done. The way they crafted all the ambient sound effects for the environments really makes the show much more
+immersive. The wind breezing, leaves rustling, etc. It just feels very relaxing for the listener, even without the visuals. The girls also have very distinct personalities
+that I think are shown very well through their voice actors. Nadeshiko's voice truly shines her character through - a cute cinnamon roll that's just so, so pure. The quiet,
+but very empathetic trait of Rin's is also shown well in her voice acting. Of course, with that, for the rest of the main cast, the energy in Chiaki's voice and the
+soothingness felt inside Aoi's voice is also very much perfectly nailed.</p>
+
+<h2 id="writing">Writing</h2>
+
+<p>I did point out how Yuru Camp is very much straight to the point previously. And while it's a definitely an interesting thing to see, this is also the show's weakness.
+The girls, and the scenarios depicted, all focus around the idea of camping. Everything they talk about is also camping, everything they do in the show is also just camping.
+Some people will dislike this, since it can feel very much boring at times throughout the show, since it seemingly doesn't focus on anything else.</p>
+
+<p>But, that isn't to say the writing is uncreative or shallow. Within the show's consistent theme of camping, it also talks about friendship and trying out new things.
+You have Nadeshiko, a girl who just moved into town, experiencing camping itself for the first time; and you have Rin, a loner introvert, experiencing camping <strong>(but with friends)</strong>
+for the first time. Rather simple themes, but how it was executed is a high point of the show. Even though you have two characters who seemingly contrast in personalities,
+there is never a situation where one side is depicted as "wrong" or "problematic". Rin is introverted and loves camping alone, but she warms up to the experience of camping
+with others in the show. And of course, as stated, her introvertedness isn't shown as "problematic". It stays essential to her character, and other girls respect her
+boundaries. This same idea applies to Nadeshiko - an extremely extroverted girl who would seem to invade Rin's boundaries. She understands that forcing Rin to change isn't right,
+and lets Rin develop her own character in her own pace. The girls' mutual understanding and respect towards eachother truly makes the show very interesting to see.</p>
+
+<p>Everything in the show also doesn't feel forced. In fact, it feels very spontaneous and natural, as though anyone could imagine themselves in those situations. The girls'
+conversations feel very natural, and how they interact with eachother also has the same feeling to it. The "jokes" in the show aren't structured to be clear "jokes".
+The show doesn't try to tell you "hey, this is funny, this is why they are laughing" and it just feels genuine, both for the girls in the show and the viewers themselves.
+On top of this, the comedy throughout the show feels very much spontaneous, not forced to be comedic, and overall doesn't overstay its welcome at all.</p>
+
+<p>Notice how Yuru Camp has a consistent theme on camping, going outside and enjoying the environment. But it doesn't force the girls (or in fact, any character in the show)
+to always be disconnected from technology. On the other hand, Yuru Camp lets the girls use technology to show their friendship and how they connect to eachother. They use
+their phones to communicate and to plan things. Rin and Saitou mostly talk to eachother through phone text messages, yet still deeply understand eachother. Nadeshiko and
+Rin, despite being hundreds of kilometers away from eachother physically during Rin's solo camping trip, still connect deeply to eachother, to the point Nadeshiko becomes
+Rin's remote tour guide by talking to her by text.</p>
+
+<h2 id="afterwords">Afterwords</h2>
+
+<p>This has been a rather long post, and this is my first time writing something like this. I feel like, for Yuru Camp enjoyers, the way I enjoyed this show might be very
+much relatable and familiar to others of the same mind as well. I truly enjoyed both seasons of the show, and the manga as well. Please support the author whenever and
+whereever you can. Maybe once I rewatch both seasons of the anime after the movie has released (yes, a movie is coming!), I will come back to this again and write
+another one of these.</p>]]></content><author><name></name></author><category term="reviews" /><category term="english" /><category term="anime" /><summary type="html"><![CDATA[I'll be honest, I'm a gigantic sucker for slice-of-life anime. My anime list is literally chock-full of slice-of-life, with only a few selective shounens here and there. Most of the slice-of-life stuff are, as expected, mundane, basic and niche. But, one slice-of-life anime that truly struck different from everything else, is Yuru Camp.]]></summary></entry></feed>

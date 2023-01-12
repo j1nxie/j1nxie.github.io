@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="/assets/css/styles.css">
+		<title>Advent of Code 2022, Day 03 in Rust | lumi's trashcan
+		</title>
+		
+
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/favicons/site.webmanifest">
+<link rel="shortcut icon" href="/assets/img/favicons/favicon.ico">
+<meta name="apple-mobile-web-app-title" content="lumi's trashcan">
+<meta name="application-name" content="lumi's trashcan">
+<meta name="msapplication-TileColor" content="#aec6cf">
+<meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml">
+<meta name="theme-color" content="#000">
+
+	</head>
+
+	<body>
+		<div id="main-wrapper">
+			<div id="wrapper">
+				<div id="sidebar">
+					<header>
+						<p>
+							<a href="/">home</a> |
+							<a href="/archives">archives</a> |
+							<a href="/categories">categories</a> |
+							<a href="/tags">tags</a>
+							</br>
+							<a href="/projects">projects</a> |
+							<a href="/socials">socials</a>
+						</p>
+
+						<p>
+							<big>lumi's trashcan</big>
+						</p>
+					</header>
+
+					<footer>
+						<p>
+							art by <a href="https://twitter.com/felutiahime/">@felutiahime</a>
+							</br>
+							© 2022-2023 j1nxie
+						</p>
+					</footer>
+				</div>
+
+				<section id="main">
+					<div class="content">
+						<div class="title">
+	<h1>Advent of Code 2022, Day 03 in Rust</h1>
+	<p>December 03, 2022</p>
+	<hr>
+</div>
+
+<p>Getting to the third day, things are a <em>slight</em> bit more complicated this time.</p>
+
+<h2 id="solving-the-first-part">Solving the first part</h2>
+
+<blockquote>
+  <p>Each rucksack has two large <strong>compartments</strong>. All items of a given type are
+meant to go into exactly one of the two compartments. The Elf that did the
+packing failed to follow this rule for exactly one item type per rucksack.</p>
+
+  <p>The Elves have made a list of all of the items currently in each rucksack
+(your puzzle input), but they need your help finding the errors. Every item
+type is identified by a single lowercase or uppercase letter (that is, <code class="language-plaintext highlighter-rouge">a</code> and
+<code class="language-plaintext highlighter-rouge">A</code> refer to different types of items).</p>
+
+  <p>The list of items for each rucksack is given as characters all on a single
+line. A given rucksack always has the same number of items in each of its two
+compartments, so the first half of the characters represent items in the first
+compartment, while the second half of the characters represent items in the
+second compartment.</p>
+
+  <p>For example, suppose you have the following list of contents from six
+rucksacks:</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>vJrwpWtwJgWrhcsFMMfFFhFp
+jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
+PmmdzqPrVvPwwTWBwg
+wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
+ttgJtRGJQctTZtZT
+CrZsJsPPZsGzwwsLwLmpwMDw
+</pre></td></tr></tbody></table></code></pre></div>  </div>
+
+  <ul>
+    <li>The first rucksack contains the items <code class="language-plaintext highlighter-rouge">vJrwpWtwJgWrhcsFMMfFFhFp</code>, which
+means its first compartment contains the items <code class="language-plaintext highlighter-rouge">vJrwpWtwJgWr</code>, while the
+second compartment contains the items <code class="language-plaintext highlighter-rouge">hcsFMMfFFhFp</code>. The only item type
+that appears in both compartments is lowercase <code class="language-plaintext highlighter-rouge">p</code>.</li>
+    <li>The second rucksack's compartments contain <code class="language-plaintext highlighter-rouge">jqHRNqRjqzjGDLGL</code> and
+<code class="language-plaintext highlighter-rouge">rsFMfFZSrLrFZsSL</code>. The only item type that appears in both compartments is
+uppercase <code class="language-plaintext highlighter-rouge">L</code>.</li>
+    <li>The third rucksack's compartments contain <code class="language-plaintext highlighter-rouge">PmmdzqPrV</code> and <code class="language-plaintext highlighter-rouge">vPwwTWBwg</code>; the
+only common item type is uppercase <code class="language-plaintext highlighter-rouge">P</code>.</li>
+    <li>The fourth rucksack's compartments only share item type <code class="language-plaintext highlighter-rouge">v</code>.</li>
+    <li>The fifth rucksack's compartments only share item type <code class="language-plaintext highlighter-rouge">t</code>.</li>
+    <li>The sixth rucksack's compartments only share item type <code class="language-plaintext highlighter-rouge">s</code>.</li>
+  </ul>
+
+  <p>To help prioritize item rearrangement, every item type can be converted to a
+priority:</p>
+
+  <ul>
+    <li>Lowercase item types <code class="language-plaintext highlighter-rouge">a</code> through <code class="language-plaintext highlighter-rouge">z</code> have priorities 1 through 26.</li>
+    <li>Uppercase item types <code class="language-plaintext highlighter-rouge">A</code> through <code class="language-plaintext highlighter-rouge">Z</code> have priorities 27 through 52.</li>
+  </ul>
+
+  <p>In the above example, the priority of the item type that appears in both
+compartments of each rucksack is 16 (<code class="language-plaintext highlighter-rouge">p</code>), 38 (<code class="language-plaintext highlighter-rouge">L</code>), 42 (<code class="language-plaintext highlighter-rouge">P</code>), 22 (<code class="language-plaintext highlighter-rouge">v</code>), 20
+(<code class="language-plaintext highlighter-rouge">t</code>), and 19 (<code class="language-plaintext highlighter-rouge">s</code>); the sum of these is <code class="language-plaintext highlighter-rouge">157</code>.</p>
+
+  <p>Find the item type that appears in both compartments of each rucksack. <strong>What
+is the sum of the priorities of those item types?</strong></p>
+</blockquote>
+
+<p>The first part isn't too much outside of some parsing each line of the text
+content. Let's get to work, shall we?</p>
+
+<p>The above example gave us a result of <code class="language-plaintext highlighter-rouge">157</code>, so let's start with modifying the
+test result to 157.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nd">#[test]</span>
+<span class="k">fn</span> <span class="nf">test_part_one</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">let</span> <span class="n">input</span> <span class="o">=</span> <span class="nn">advent_of_code</span><span class="p">::</span><span class="nf">read_file</span><span class="p">(</span><span class="s">"examples"</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+	<span class="nd">assert_eq!</span><span class="p">(</span><span class="nf">part_one</span><span class="p">(</span><span class="o">&amp;</span><span class="n">input</span><span class="p">),</span> <span class="nf">Some</span><span class="p">(</span><span class="mi">157</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Since we are finding the <em>single letter</em> that is shared between two strings, my
+idea is to convert them into <code class="language-plaintext highlighter-rouge">HashSet</code>s, then finding the intersection between
+those two sets (basic set theory is powerful here!). Afterwards, I'll simply be
+converting the found character to its priority, then summing them up. I think
+the code below is rather self explanatory.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+</pre></td><td class="rouge-code"><pre><span class="k">let</span> <span class="k">mut</span> <span class="n">answer</span><span class="p">:</span> <span class="nb">u32</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">line</span> <span class="k">in</span> <span class="n">input</span><span class="nf">.lines</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">let</span> <span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">)</span> <span class="o">=</span> <span class="n">line</span><span class="nf">.split_at</span><span class="p">(</span><span class="n">line</span><span class="nf">.len</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+	<span class="k">let</span> <span class="k">mut</span> <span class="n">a</span> <span class="o">=</span> <span class="nn">HashSet</span><span class="p">::</span><span class="nf">new</span><span class="p">();</span>
+	<span class="k">let</span> <span class="k">mut</span> <span class="n">b</span> <span class="o">=</span> <span class="nn">HashSet</span><span class="p">::</span><span class="nf">new</span><span class="p">();</span>
+
+	<span class="k">for</span> <span class="n">c</span> <span class="k">in</span> <span class="n">first</span><span class="nf">.chars</span><span class="p">()</span> <span class="p">{</span>
+		<span class="n">a</span><span class="nf">.insert</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="k">for</span> <span class="n">c</span> <span class="k">in</span> <span class="n">second</span><span class="nf">.chars</span><span class="p">()</span> <span class="p">{</span>
+		<span class="n">b</span><span class="nf">.insert</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="k">let</span> <span class="n">intersect</span> <span class="o">=</span> <span class="n">a</span><span class="nf">.intersection</span><span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">)</span><span class="nf">.next</span><span class="p">()</span><span class="nf">.unwrap</span><span class="p">();</span>
+
+	<span class="k">match</span> <span class="n">intersect</span> <span class="p">{</span>
+		<span class="sc">'a'</span><span class="o">..=</span><span class="sc">'z'</span> <span class="k">=&gt;</span> <span class="n">answer</span> <span class="o">+=</span> <span class="o">*</span><span class="n">intersect</span> <span class="k">as</span> <span class="nb">u32</span> <span class="o">-</span> <span class="mi">96</span><span class="p">,</span>
+		<span class="n">_</span> <span class="k">=&gt;</span> <span class="n">answer</span> <span class="o">+=</span> <span class="o">*</span><span class="n">intersect</span> <span class="k">as</span> <span class="nb">u32</span> <span class="o">-</span> <span class="mi">64</span> <span class="o">+</span> <span class="mi">26</span><span class="p">,</span>
+		<span class="p">}</span>
+<span class="p">}</span>
+<span class="nf">Some</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>I splitted the input line into half (at the position <code class="language-plaintext highlighter-rouge">length / 2</code>), then
+inserting each character of those two halves into two different <code class="language-plaintext highlighter-rouge">HashSet</code>s.
+Then, I used the <code class="language-plaintext highlighter-rouge">.intersection()</code> method onto the two, and processed that.</p>
+
+<p>Why <code class="language-plaintext highlighter-rouge">- 96</code> and <code class="language-plaintext highlighter-rouge">- 64 + 26</code>? The characters <code class="language-plaintext highlighter-rouge">a</code> to <code class="language-plaintext highlighter-rouge">z</code> has the ASCII values of
+<code class="language-plaintext highlighter-rouge">97</code> to <code class="language-plaintext highlighter-rouge">122</code>, so to convert them back into the priority numbers the question
+wanted, I subtracted them by 96 to get the priority. Similarly, the ASCII values
+of <code class="language-plaintext highlighter-rouge">A</code> to <code class="language-plaintext highlighter-rouge">Z</code> are <code class="language-plaintext highlighter-rouge">65</code> to <code class="language-plaintext highlighter-rouge">90</code>, so I'll subtract them by 64, and then adding 26
+to make them match the priorities given by the question.</p>
+
+<h2 id="solving-the-second-part">Solving the second part</h2>
+
+<blockquote>
+  <p>For safety, the Elves are divided into groups of three. Every Elf carries a
+badge that identifies their group. For efficiency, within each group of three
+Elves, the badge is the <strong>only item type carried by all three Elves</strong>. That
+is, if a group's badge is item type <code class="language-plaintext highlighter-rouge">B</code>, then all three Elves will have item
+type B somewhere in their rucksack, and at most two of the Elves will be
+carrying any other item type.</p>
+
+  <p>The problem is that someone forgot to put this year's updated authenticity
+sticker on the badges. All of the badges need to be pulled out of the
+rucksacks so the new authenticity stickers can be attached.</p>
+
+  <p>Additionally, nobody wrote down which item type corresponds to each group's
+badges. The only way to tell which item type is the right one is by finding
+the one item type that is <strong>common between all three Elves</strong> in each group.</p>
+
+  <p>Every set of three lines in your list corresponds to a single group, but each
+group can have a different badge item type. So, in the above example, the
+first group's rucksacks are the first three lines:</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>vJrwpWtwJgWrhcsFMMfFFhFp
+jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
+PmmdzqPrVvPwwTWBwg
+</pre></td></tr></tbody></table></code></pre></div>  </div>
+
+  <p>And the second group's rucksacks are the next three lines:</p>
+
+  <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
+ttgJtRGJQctTZtZT
+CrZsJsPPZsGzwwsLwLmpwMDw
+</pre></td></tr></tbody></table></code></pre></div>  </div>
+
+  <p>In the first group, the only item type that appears in all three rucksacks is
+lowercase <code class="language-plaintext highlighter-rouge">r</code>; this must be their badges. In the second group, their badge
+item type must be <code class="language-plaintext highlighter-rouge">Z</code>.</p>
+
+  <p>Priorities for these items must still be found to organize the sticker
+attachment efforts: here, they are 18 (<code class="language-plaintext highlighter-rouge">r</code>) for the first group and 52 (<code class="language-plaintext highlighter-rouge">Z</code>)
+for the second group. The sum of these is <code class="language-plaintext highlighter-rouge">70</code>.</p>
+
+  <p>Find the item type that corresponds to the badges of each three-Elf group.
+<strong>What is the sum of the priorities of those item types?</strong></p>
+</blockquote>
+
+<p>Well, this isn't much more than the first question, but to consider every 3
+lines as a group, instead of two halves of one line.</p>
+
+<p>Let's edit our test case to 70 first:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nd">#[test]</span>
+<span class="k">fn</span> <span class="nf">test_part_two</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">let</span> <span class="n">input</span> <span class="o">=</span> <span class="nn">advent_of_code</span><span class="p">::</span><span class="nf">read_file</span><span class="p">(</span><span class="s">"examples"</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+	<span class="nd">assert_eq!</span><span class="p">(</span><span class="nf">part_two</span><span class="p">(</span><span class="o">&amp;</span><span class="n">input</span><span class="p">),</span> <span class="nf">Some</span><span class="p">(</span><span class="mi">70</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>Because this part of the question isn't much more than parsing every 3 lines, I
+opted for a bunch of Rust iterator magic. I think explaining each line as
+comments would be easier, so below would be my code, with comments!</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+</pre></td><td class="rouge-code"><pre><span class="k">pub</span> <span class="k">fn</span> <span class="nf">part_two</span><span class="p">(</span><span class="n">input</span><span class="p">:</span> <span class="o">&amp;</span><span class="nb">str</span><span class="p">)</span> <span class="k">-&gt;</span> <span class="nb">Option</span><span class="o">&lt;</span><span class="nb">u32</span><span class="o">&gt;</span> <span class="p">{</span>
+	<span class="k">let</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">input</span>
+	<span class="c1">// grab the lines of the input as an iterator</span>
+		<span class="nf">.lines</span><span class="p">()</span>
+		<span class="c1">// iterate every 3 lines</span>
+		<span class="nf">.step_by</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+		<span class="c1">// "zip" the iterator with another iterator</span>
+		<span class="nf">.zip</span><span class="p">(</span>
+			<span class="n">input</span>
+				<span class="nf">.lines</span><span class="p">()</span>
+				<span class="c1">// skip through the first line (so we are taking the second line</span>
+				<span class="c1">// here)</span>
+				<span class="nf">.skip</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+				<span class="c1">// iterate another 3 lines</span>
+				<span class="nf">.step_by</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+				<span class="c1">// "zip" with another iterator</span>
+				<span class="c1">// I get the third line from the input text in the similar way</span>
+				<span class="nf">.zip</span><span class="p">(</span><span class="n">input</span><span class="nf">.lines</span><span class="p">()</span><span class="nf">.skip</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="nf">.step_by</span><span class="p">(</span><span class="mi">3</span><span class="p">)),</span>
+		<span class="p">)</span>
+		<span class="c1">// map and flattens down the iterators</span>
+		<span class="nf">.flat_map</span><span class="p">(|(</span><span class="n">first</span><span class="p">,</span> <span class="p">(</span><span class="n">second</span><span class="p">,</span> <span class="n">third</span><span class="p">))|</span> <span class="p">{</span>
+			<span class="n">first</span>
+			<span class="c1">// get the characters of the first line</span>
+			<span class="nf">.chars</span><span class="p">()</span>
+			<span class="c1">// then finding the character that is contained in both the</span>
+			<span class="c1">// second and the third line</span>
+			<span class="nf">.find</span><span class="p">(|</span><span class="n">c</span><span class="p">|</span> <span class="n">second</span><span class="nf">.contains</span><span class="p">(</span><span class="o">*</span><span class="n">c</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">third</span><span class="nf">.contains</span><span class="p">(</span><span class="o">*</span><span class="n">c</span><span class="p">))</span>
+		<span class="p">})</span>
+		<span class="c1">// collect the character into a String</span>
+		<span class="py">.collect</span><span class="p">::</span><span class="o">&lt;</span><span class="nb">String</span><span class="o">&gt;</span><span class="p">()</span>
+		<span class="c1">// grab its characters again</span>
+		<span class="nf">.chars</span><span class="p">()</span>
+		<span class="c1">// folding it with an accumulator - that is our answer</span>
+		<span class="nf">.fold</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">|</span><span class="n">acc</span><span class="p">,</span> <span class="n">c</span><span class="p">|</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="n">c</span><span class="nf">.is_ascii_lowercase</span><span class="p">()</span> <span class="p">{</span>
+				<span class="n">acc</span> <span class="o">+</span> <span class="p">(</span><span class="n">c</span> <span class="k">as</span> <span class="nb">u32</span><span class="p">)</span> <span class="o">-</span> <span class="mi">96</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+				<span class="n">acc</span> <span class="o">+</span> <span class="p">(</span><span class="n">c</span> <span class="k">as</span> <span class="nb">u32</span><span class="p">)</span> <span class="o">-</span> <span class="mi">38</span>
+			<span class="p">}</span>
+		<span class="p">});</span>
+	<span class="nf">Some</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="afterword">Afterword</h2>
+
+<p>Once again, a parsing problem that takes more effort to think about the parsing
+method than actually solving the problem! Not too hard, just really annoying to
+think about how to code in an idiomatic way.</p>
+
+<p>My code can be found on my
+<a href="https://github.com/j1nxie/aoc-rs-2022/blob/main/src/bin/03.rs">GitHub</a>.</p>
+
+
+					</div>
+				</section>
+			</div>
+		</div>
+	</body>
+</html>
