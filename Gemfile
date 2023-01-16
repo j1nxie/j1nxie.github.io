@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "catgirl", "~> 0.1"
+gem "catgirl", "~> 0.1.1"
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
 # and associated library.
