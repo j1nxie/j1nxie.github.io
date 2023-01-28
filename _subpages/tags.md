@@ -1,3 +1,4 @@
 ---
+title: tags
 layout: tags
 ---

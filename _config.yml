@@ -1,5 +1,5 @@
-title: lumi's trashcan
-description: a personal trashcan for ideas and thoughts.
+title: catgirl owo
+description: a weeb theme for your jekyll site OwO
 
 # build settings
 
@@ -7,6 +7,7 @@ theme: catgirl
 
 plugins:
   - jekyll-feed
+  - jekyll-archives
 
 kramdown:
   smart_quotes: ["apos", "apos", "quot", "quot"]
@@ -22,6 +23,8 @@ kramdown:
 collections:
   subpages:
     output: true
+  projects:
+    output: true
 
 defaults:
   - scope:
@@ -34,8 +37,14 @@ defaults:
       path: ""
       type: subpages
     values:
-      layout: page
+      layout: default
       permalink: /:title
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: project
+      permalink: /projects/:title
 
 compress_html:
   clippings: all
@@ -45,6 +54,15 @@ compress_html:
   blanklines: false
   ignore:
     envs: [development]
+
+jekyll-archives:
+  enabled: [categories, tags]
+  layouts:
+    category: category
+    tag: tag
+  permalinks:
+    tag: /tags/:name/
+    category: /categories/:name/
 
 exclude:
   - "*.gem"

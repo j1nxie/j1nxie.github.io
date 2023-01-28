@@ -1,3 +1,4 @@
 ---
-layout: projects
+title: projects
+layout: default
 ---
