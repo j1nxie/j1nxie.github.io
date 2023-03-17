@@ -7,7 +7,7 @@ the rhythm game osu!.
 
 Each crate has its own usage, and the list of crates can be found below.
 
-- [hoshizora-parser](projects/hoshizora-parser) - an osu! beatmap parser, for
+- [hoshizora-parser](hoshizora-parser) - an osu! beatmap parser, for
   the `.osu` file format.
 
 The source code for the entire ecosystem can be found
