@@ -69,5 +69,3 @@ exclude:
   - "*.gemspec"
   - README.md
   - LICENSE.txt
-  - "tags"
-  - "tags.*"
