@@ -21,7 +21,7 @@ shooters. Currently, I mainly spend my time playing maimai DX and BMS.
 ## socials
 
 Discord: `_lumi9`  
-Twitter: [@\_lumi9](https://twitter.com/@_lumi9)  
+Twitter: [@\_lumi9](https://twitter.com/_lumi9)  
 Ko-fi (Donations if you like my projects!): [kotonya](https://ko-fi.com/kotonya)  
 Steam: [cauvong-chan](https://steamcommunity.com/id/cauvong-chan)  
 MyAnimeList: [RylieXD](https://myanimelist.net/profile/RylieXD)
