@@ -1,4 +1,0 @@
----
-title: socials
-layout: default
----
