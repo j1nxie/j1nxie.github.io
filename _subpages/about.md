@@ -31,7 +31,7 @@ MyAnimeList: [RylieXD](https://myanimelist.net/profile/RylieXD)
 | Game                      | Username                                        | Notes                                                 |
 | ------------------------- | ----------------------------------------------- | ----------------------------------------------------- |
 | osu!                      | [peachansimp](https://osu.ppy.sh/u/peachansimp) | 4-mode player, mainly o!taiko right now               |
-| maimai DX (International) | rylie !? (`8077794290292`)                      | 14485, 六段 (UNiVERSE+)                               |
+| maimai DX (International) | rylie !? (`8077794290292`)                      | 14485, 六段 (UNiVERSE PLUS)                           |
 | CHUNITHM (International)  | rylie !? (`8078704595202`)                      | 15.08, CLASS II (SUN PLUS)                            |
 | SOUND VOLTEX              |                                                 | 15.145, 八断 (EXCEED GEAR)                            |
 | Arknights (Global)        | Rylie#4029 (`40887692`)                         |                                                       |
