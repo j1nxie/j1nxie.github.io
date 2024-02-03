@@ -3,7 +3,9 @@ title: projects
 layout: default
 ---
 
-# projects
+<div class="title">
+    <h1>projects</h1>
+</div>
 
 I have plenty of personal projects, most of which are built for learning
 experiences, mainly tinkering with new tools and frameworks. Hopefully, I can
