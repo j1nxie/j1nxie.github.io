@@ -28,16 +28,15 @@ MyAnimeList: [RylieXD](https://myanimelist.net/profile/RylieXD)
 
 ## in-game
 
-| Game                      | Username                                        | Notes                                                 |
-| ------------------------- | ----------------------------------------------- | ----------------------------------------------------- |
-| osu!                      | [peachansimp](https://osu.ppy.sh/u/peachansimp) | 4-mode player, mainly o!taiko right now               |
-| maimai DX (International) | rylie !? (`8077794290292`)                      | 14485, 六段 (UNiVERSE PLUS)                           |
-| CHUNITHM (International)  | rylie !? (`8078704595202`)                      | 15.08, CLASS II (SUN PLUS)                            |
-| SOUND VOLTEX              |                                                 | 15.145, 八断 (EXCEED GEAR)                            |
-| Arknights (Global)        | Rylie#4029 (`40887692`)                         |                                                       |
-| Arcaea                    | RylieXD (`666 307 736`)                         | 11.25, mainly inactive right now                      |
-| BMS                       | [Rylie](https://bokutachi.xyz/u/Rylie)          | normal 6th dan, playing on LR2oraja with Bokutachi IR |
-| Final Fantasy XIV         | Lumine Vernilet                                 | DNC, Typhon [Elemental]                               |
+| Game                      | Username                               | Notes                                                 |
+| ------------------------- | -------------------------------------- | ----------------------------------------------------- |
+| maimai DX (International) | rylie !? (`8077794290292`)             | 14485, 六段 (UNiVERSE PLUS)                           |
+| CHUNITHM (International)  | rylie !? (`8078704595202`)             | 15.08, CLASS II (SUN PLUS)                            |
+| SOUND VOLTEX              |                                        | 15.145, 八断 (EXCEED GEAR)                            |
+| Arknights (Global)        | Rylie#4029 (`40887692`)                |                                                       |
+| Arcaea                    | RylieXD (`666 307 736`)                | 11.25, mainly inactive right now                      |
+| BMS                       | [Rylie](https://bokutachi.xyz/u/Rylie) | normal 6th dan, playing on LR2oraja with Bokutachi IR |
+| Final Fantasy XIV         | Lumine Vernilet                        | DNC, Typhon [Elemental]                               |
 
 If you have job offers, or you're interested in requesting my work (related to
 programming), contact me anywhere and we'll work things out.
