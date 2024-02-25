@@ -7,16 +7,11 @@ layout: default
     <h1>about</h1>
 </div>
 
-Hi! I go by Rylie on most platforms, \_lumi9 on a few others, and I'm also known
-under many more aliases. I program random things in my free time, and I also
-code professionally for a living.
+Hi! I go by Rylie on most platforms, \_lumi9 on a few others, and I'm also known under many more aliases. I program random things in my free time, and I also code professionally for a living.
 
-I mainly write Discord bots, backend stuff, scrapers and random things I'm
-interested in, with a little bit of infrastructure going along with it.
+I mainly write Discord bots, backend stuff, scrapers and random things I'm interested in, with a little bit of infrastructure going along with it.
 
-My hobbies are anime, manga, playing games and programming. I also want to
-dabble in digital art too. I mainly play a ton of rhythm games, JRPGs and
-shooters. Currently, I mainly spend my time playing maimai DX and BMS.
+My hobbies are anime, manga, playing games and programming. I also want to dabble in digital art too. I mainly play a ton of rhythm games, JRPGs and shooters. Currently, I mainly spend my time playing maimai DX and BMS.
 
 ## socials
 
@@ -38,5 +33,4 @@ MyAnimeList: [RylieXD](https://myanimelist.net/profile/RylieXD)
 | BMS                       | [Rylie](https://bokutachi.xyz/u/Rylie) | normal 6th dan, playing on LR2oraja with Bokutachi IR |
 | Final Fantasy XIV         | Lumine Vernilet                        | DNC, Typhon [Elemental]                               |
 
-If you have job offers, or you're interested in requesting my work (related to
-programming), contact me anywhere and we'll work things out.
+If you have job offers, or you're interested in requesting my work (related to programming), contact me anywhere and we'll work things out.
