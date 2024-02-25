@@ -1,7 +1,7 @@
 ---
 title: "Understanding maimaiでらっくす's Rating System"
 date: 2022-10-12 19:00:00 +0700
-categories: [blogs, english]
+categories: [blogs]
 tags: [rhythm games]
 ---
 
