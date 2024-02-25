@@ -9,13 +9,14 @@ _(Update 01/12/2022: As pointed out by [Amasugi](https://twitter.com/meyyosu),
 maimai でらっくす's ranking doesn't have the E-F ranks anymore, instead replaced
 by BB and BBB. I've updated the table below to reflect that!)_
 
-I have been playing maimai でらっくす for a couple of months now, and personally,
-I am very intrigued by the internal workings of the game. Sadly, I am not very
-knowledgeable in terms of arcade hardware, software and networking myself. But,
-after working on [Tachi](https://github.com/TNG-dev/Tachi)'s ~~sadly still
-in-progress~~ maimai でらっくす implementation, I started learning about the
-game's internal rating system. This post will focus on exactly that, from the
-very bottom up.
+_(Update 26/02/2024: Updated a few things because I know more about the game
+now!)_
+
+I have been playing maimai でらっくす for ~~a couple of months~~ a while now,
+and personally, I am very intrigued by the internal workings of the game.
+After working on [Tachi](https://github.com/TNG-dev/Tachi)'s maimai でらっくす
+implementation, I started learning about the game's internal rating system.
+This post will focus on exactly that, from the very bottom up.
 
 ## What is this "Rating" you're talking about?
 
@@ -51,21 +52,21 @@ will not change if you achieve a downscore on the same chart.
 
 **New Charts**
 
-- New Charts are charts that are added in the latest title version (i.e.
-  Universe, Universe Plus, etc.)
-- The top 15 ratings are listed here.
+-   New Charts are charts that are added in the latest title version (i.e.
+    Universe, Universe Plus, etc.)
+-   The top 15 ratings are listed here.
 
 **Old Charts**
 
-- Old Charts are charts that are added in previous title versions.
-- The top 35 ratings are listed here.
+-   Old Charts are charts that are added in previous title versions.
+-   The top 35 ratings are listed here.
 
 The formula for total rating is given below:
 
 $$\text{Total Rating} = S_N + S_B$$
 
-- $S_N$ is the sum of all Ratings in New Charts.
-- $S_B$ is the sum of all Ratings in Old Charts.
+-   $S_N$ is the sum of all Ratings in New Charts.
+-   $S_B$ is the sum of all Ratings in Old Charts.
 
 With that out of the way, we can now get into how each chart's rating is
 calculated. _Chart ratings_ are calculated with the formula given below:
@@ -83,28 +84,27 @@ from 1-15. Between level 7-15, there are also intermediate levels, with a plus
 added to them to better distinguish charts' difficulties (e.g. 7+, 8+, 9+,
 etc.).
 
-If you looked at this, you would assume that all charts of the same
-difficulty level are actually of the same difficulty. This is a false
-assumption, as internally, each chart is assigned a **decimal** level for them.
-Given a difficulty level $X$, its internal level will range between $X.0$ to $X.6$,
+If you looked at this, you would assume that all charts of the same difficulty
+level are actually of the same difficulty. This is a false assumption, as
+internally, each chart is assigned a **decimal** level for them. Given a
+difficulty level $X$, its internal level will range between $X.0$ to $X.6$,
 while $X+$ will range from $X.7$ to $X.9$.
 
-These values are either derived from the ratings obtained from the game itself,
-using the exact above formula, but finding for $\text{Chart Constant}$ instead
-of $\text{Chart Rating}$, or found inside the game files. I do not have a very
-well understanding the game files itself so I will not comment much on
-this matter.
+These values are usually derived from the rating changes observed when finishing
+a chart ingame, using the above formula, but finding for $\text{Chart Constant}$.
+For those who has access to the game files, this is also defined in the chart's
+XML file as well.
 
 ### Score
 
 This is just the score you obtained, converted to a decimal. So, for example,
-100% will have a value of 1, and 101% will have a value of 1.01. By
+100% will have a value of 1, and 101% will have a value of 1.01. With
 maimai でらっくす's system, score will always have a maximum value of 101%,
 whereas maimai FiNALE scores will have a maximum value depending on the amount
 of BREAK notes found in the chart.
 
-This writeup will not go deep into how scores in both games are calculated, so
-this will end here.
+This writeup will not go deep into how scores in both games are calculated, as
+it is not the focus of what we are discussing.
 
 Another thing to note is all scores above 100.5% will be treated as 100.5%, so
 the rating algorithm essentially caps out at 100.5% if you are aiming to
@@ -112,10 +112,10 @@ maximize rating for your scores.
 
 ### Rank Multiplier
 
-For some unknown reasons, internally, there are also multipliers associated with
-every ranking found in the game. There are 12 ranks, ranging from F to SSS+, and
-with each rank, there is a multiplier associated with it. This table below shows
-the multiplier for each rank:
+For maimai でらっくす, SEGA has opted for a rank-based multiplier, instead of a
+more linear multiplier like in CHUNITHM. This means your rating will increase
+with each rank, while small score increments will usually not result
+in a rating increase.
 
 | Rank | Multiplier |
 | ---- | ---------- |
@@ -139,7 +139,3 @@ the multiplier for each rank:
 With all three main parts of the formula and the total rating explained, I feel
 like this is enough for a wrap-up. For now, this should be everything that is
 needed to understand and work with maimai でらっくす's rating system.
-
-For maimai FiNALE's rating system, the only thing I really understand about it
-is it has a decimal rating (similar to CHUNITHM's rating and Arcaea's
-Potential), and it can also increase or decrease depending on your score.
