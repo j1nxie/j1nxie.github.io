@@ -11,7 +11,7 @@ Hi! I go by Rylie on most platforms, \_lumi9 on a few others, and I'm also known
 
 I mainly write Discord bots, backend stuff, scrapers and random things I'm interested in, with a little bit of infrastructure going along with it.
 
-My hobbies are anime, manga, playing games and programming. I also want to dabble in digital art too. I mainly play a ton of rhythm games, JRPGs and shooters. Currently, I mainly spend my time playing maimai DX and BMS.
+My hobbies are anime, manga, playing games and programming. I also want to dabble in digital art too. I mainly play a ton of rhythm games, JRPGs and shooters. Currently, I mainly spend my time playing ~~maimai DX~~ (I finally got rainbow, taking a break :3) CHUNITHM, FFXIV, osu! and random shooters.
 
 ## socials
 
