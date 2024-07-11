@@ -23,11 +23,13 @@ MyAnimeList: [RylieXD](https://myanimelist.net/profile/RylieXD)
 
 ## in-game
 
+(last updated: july 11, 2024)
+
 | Game                      | Username                               | Notes                                                 |
-| ------------------------- | -------------------------------------- | ----------------------------------------------------- |
-| maimai DX (International) | rylie !? (`8077794290292`)             | 14485, 六段 (UNiVERSE PLUS)                           |
-| CHUNITHM (International)  | rylie !? (`8078704595202`)             | 15.08, CLASS II (SUN PLUS)                            |
-| SOUND VOLTEX              |                                        | 15.145, 八断 (EXCEED GEAR)                            |
+|---------------------------+----------------------------------------+-------------------------------------------------------|
+| maimai DX (International) | rylie !? (`8077794290292`)             | 15041 (虹), 六段 (UNiVERSE PLUS), 十段 (BUDDiES)        |
+| CHUNITHM (International)  | rylie !? (`8078704595202`)             | 15.50 (鉑), CLASS II (SUN PLUS), CLASS III (LUMINOUS)  |
+| SOUND VOLTEX              |                                        | 15.711 (Scarlet III), 八断 (EXCEED GEAR)               |
 | Arknights (Global)        | Rylie#4029 (`40887692`)                |                                                       |
 | Arcaea                    | RylieXD (`666 307 736`)                | 11.25, mainly inactive right now                      |
 | BMS                       | [Rylie](https://bokutachi.xyz/u/Rylie) | normal 6th dan, playing on LR2oraja with Bokutachi IR |
