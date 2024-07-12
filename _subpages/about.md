@@ -25,14 +25,14 @@ MyAnimeList: [RylieXD](https://myanimelist.net/profile/RylieXD)
 
 (last updated: july 11, 2024)
 
-| Game                      | Username                               | Notes                                                 |
-|---------------------------+----------------------------------------+-------------------------------------------------------|
-| maimai DX (International) | rylie !? (`8077794290292`)             | 15041 (虹), 六段 (UNiVERSE PLUS), 十段 (BUDDiES)        |
-| CHUNITHM (International)  | rylie !? (`8078704595202`)             | 15.50 (鉑), CLASS II (SUN PLUS), CLASS III (LUMINOUS)  |
-| SOUND VOLTEX              |                                        | 15.711 (Scarlet III), 八断 (EXCEED GEAR)               |
-| Arknights (Global)        | Rylie#4029 (`40887692`)                |                                                       |
-| Arcaea                    | RylieXD (`666 307 736`)                | 11.25, mainly inactive right now                      |
-| BMS                       | [Rylie](https://bokutachi.xyz/u/Rylie) | normal 6th dan, playing on LR2oraja with Bokutachi IR |
-| Final Fantasy XIV         | Lumine Vernilet                        | DNC, Typhon [Elemental]                               |
+| Game                      | Username                               | Notes                                                               |
+|---------------------------+----------------------------------------+---------------------------------------------------------------------|
+| maimai DX (International) | rylie !? (`8077794290292`)             | - rating: 15041 (虹)<br>- dans: 六段 (UNiVERSE PLUS), 十段 (BUDDiES)  |
+| CHUNITHM (International)  | rylie !? (`8078704595202`)             | - rating: 15.50 (鉑)<br>- classes: II (SUN PLUS), III (LUMINOUS)     |
+| SOUND VOLTEX              |                                        | - volforce: 15.711 (Scarlet III)<br>- dans: 八断 (EXCEED GEAR)       |
+| Arknights (Global)        | Rylie#4029 (`40887692`)                |                                                                     |
+| Arcaea                    | RylieXD (`666 307 736`)                | - potential: 11.25<br> - dans: phase 6<br>mainly inactive right now |
+| BMS                       | [Rylie](https://bokutachi.xyz/u/Rylie) | normal 6th dan, playing on LR2oraja with Bokutachi IR               |
+| Final Fantasy XIV         | Lumine Vernilet                        | DNC, Typhon [Elemental]                                             |
 
 If you have job offers, or you're interested in requesting my work (related to programming), contact me anywhere and we'll work things out.
