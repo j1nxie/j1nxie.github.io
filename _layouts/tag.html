@@ -1,0 +1,29 @@
+---
+layout: default
+---
+
+<div class="page-tag">
+	<div class="title">
+		<h1>
+			{{ page.title }}
+			• <span class="posts-count">
+				{% assign posts_count = page.posts | size %}
+				{{ posts_count }}
+				{% if posts_count > 1 %}
+				posts
+				{% else %}
+				post
+				{% endif %}
+			</span>
+		</h1>
+	</div>
+	
+	<ul class="posts-list">
+		{% for post in page.posts %}
+		<li>
+			<a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+			<span class="date">({{ post.date | date: "%B %d" }})</span>
+		</li>
+		{% endfor %}
+	</ul>
+</div>

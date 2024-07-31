@@ -1,6 +1,9 @@
-source "https://rubygems.org"
+# frozen_string_literal: true
 
-gem "catgirl", "~> 0.7.0"
+source "https://rubygems.org"
+gemspec
+
+gem "kramdown-math-katex"
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
 # and associated library.
