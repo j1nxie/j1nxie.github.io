@@ -7,7 +7,7 @@ layout: default
     <h1>about</h1>
 </div>
 
-Hi! I go by Rylie on most platforms, \_lumi9 on a few others, and I'm also known under many more aliases. I program random things in my free time, and I also code professionally for a living.
+Hi! I go by Rylie on most platforms, \_lumi9 on a few others, and I'm also under many more aliases. I program random things in my free time, and I also code professionally for a living.
 
 I mainly write Discord bots, backend stuff, scrapers and random things I'm interested in, with a little bit of infrastructure going along with it.
 
@@ -15,20 +15,20 @@ My hobbies are anime, manga, playing games and programming. I also want to dabbl
 
 ## socials
 
-Discord: `_lumi9`  
-Twitter: [@\_lumi9](https://twitter.com/_lumi9)  
-Ko-fi (Donations if you like my projects!): [kotonya](https://ko-fi.com/kotonya)  
-Steam: [cauvong-chan](https://steamcommunity.com/id/cauvong-chan)  
+Discord: `_lumi9` \
+Twitter: [@\_lumi9](https://twitter.com/_lumi9) \
+Ko-fi (Donations if you like my projects!): [kotonya](https://ko-fi.com/kotonya) \
+Steam: [cauvong-chan](https://steamcommunity.com/id/cauvong-chan) \
 MyAnimeList: [RylieXD](https://myanimelist.net/profile/RylieXD)
 
 ## in-game
 
-(last updated: july 11, 2024)
+(last updated: july 31, 2024)
 
 | Game                      | Username                               | Notes                                                               |
 |---------------------------+----------------------------------------+---------------------------------------------------------------------|
-| maimai DX (International) | rylie !? (`8077794290292`)             | - rating: 15041 (虹)<br>- dans: 六段 (UNiVERSE PLUS), 十段 (BUDDiES)  |
-| CHUNITHM (International)  | rylie !? (`8078704595202`)             | - rating: 15.50 (鉑)<br>- classes: II (SUN PLUS), III (LUMINOUS)     |
+| maimai DX (International) | rylie !? (`8077794290292`)             | - rating: 15042 (虹)<br>- dans: 六段 (UNiVERSE PLUS), 十段 (BUDDiES)  |
+| CHUNITHM (International)  | rylie !? (`8078704595202`)             | - rating: 15.54 (鉑)<br>- classes: II (SUN PLUS), III (LUMINOUS)     |
 | SOUND VOLTEX              |                                        | - volforce: 15.711 (Scarlet III)<br>- dans: 八断 (EXCEED GEAR)       |
 | Arknights (Global)        | Rylie#4029 (`40887692`)                |                                                                     |
 | Arcaea                    | RylieXD (`666 307 736`)                | - potential: 11.25<br> - dans: phase 6<br>mainly inactive right now |
