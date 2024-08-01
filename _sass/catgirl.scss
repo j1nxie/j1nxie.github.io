@@ -17,13 +17,11 @@ body {
 	position: absolute;
 }
 
-p {
-	img {
-		display: inline-block;
-		height: 1em;
-		transform: translate(0, 0.1em);
-		width: 1em;
-	}
+.emoji {
+	display: inline-block;
+	height: 1em;
+	transform: translate(0, 0.1em);
+	width: 1em;
 }
 
 #main {
