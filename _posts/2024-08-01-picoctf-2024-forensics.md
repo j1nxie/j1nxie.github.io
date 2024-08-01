@@ -5,7 +5,7 @@ categories: [blogs]
 tags: ["picoctf", coding, ctf]
 ---
 
-I have had interest in cyber security and CTF-related stuff for a while now, but I've never had the time to properly learn them. Given that SekaiCTF 2024 is starting soon, and my planned ideas edging closer to things related in this field, I will be trying to prepare for it and spend some time learning more about it! Thanks to Bottersnike's recommendations, I started doing PicoCTF's backlog of challenges to have a better grasp at this! In this post, I will be giving writeups for the forensics challenges as I go through them.
+I have had interest in cyber security and CTF-related stuff for a while now, but I've never had the time to properly learn them. Given that [SekaiCTF 2024](https://ctf.sekai.team) is starting soon, and my planned ideas edging closer to things related in this field, I will be trying to prepare for it and spend some time learning more about it! Thanks to Bottersnike's recommendations, I started doing [PicoCTF's](https://picoctf.org) backlog of challenges to have a better grasp at this! In this post, I will be giving writeups for the forensics challenges as I go through them.
 
 > This blogpost will describe the challenges and give the solutions to them - but I will not be giving out the flag in its entirety.
 
