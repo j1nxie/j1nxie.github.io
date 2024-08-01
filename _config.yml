@@ -10,6 +10,7 @@ plugins:
   - jekyll-archives
 
 kramdown:
+  auto_ids: true
   smart_quotes: ["apos", "apos", "quot", "quot"]
   syntax_highlighter: rouge
   syntax_highlighter_opts:
