@@ -14,11 +14,12 @@ kramdown:
   smart_quotes: ["apos", "apos", "quot", "quot"]
   syntax_highlighter: rouge
   syntax_highlighter_opts:
+    linenums: inline
     css_class: highlight
     span:
       line_numbers: false
     block:
-      line_numbers: true
+      line_numbers: false
       start_line: 1
 
 collections:

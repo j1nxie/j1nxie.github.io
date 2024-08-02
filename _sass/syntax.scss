@@ -30,12 +30,13 @@ code {
 }
 
 .highlight {
-
 	table,
 	td,
 	pre {
 		border: 0;
 		border-collapse: separate;
+		white-space: pre-wrap;
+		margin: 5px;
 	}
 }
 
