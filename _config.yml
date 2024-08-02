@@ -21,6 +21,7 @@ kramdown:
     block:
       line_numbers: false
       start_line: 1
+  math_engine: katex
 
 collections:
   subpages:
