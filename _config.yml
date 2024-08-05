@@ -1,5 +1,5 @@
 title: lumi's trashcan
-description: a personal webpage for blogs, ideas and plenty more!
+description: a personal webpage for blogs, ideas and more!
 
 # build settings
 
@@ -8,6 +8,7 @@ theme: catgirl
 plugins:
   - jekyll-feed
   - jekyll-archives
+  - jekyll-seo-tag
 
 kramdown:
   auto_ids: true
