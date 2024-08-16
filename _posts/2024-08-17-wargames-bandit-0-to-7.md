@@ -6,7 +6,7 @@ tags: [wargames, "bandit", ctf]
 
 Well, here we are again, in the middle of the night - I am bored and I am preparing for [idekCTF 2024](https://ctf.idek.team). What's better than sitting and solving some more CTF stuff? I'm gonna start with [Bandit](https://overthewire.org/wargames/bandit/) - and go all the way up slowly as per the recommended order on the [Wargames homepage](https://overthewire.org/wargames/).
 
-The first few levels are really simple - mostly about teaching you simple Unix/Linux utilities.
+The first few levels (or Bandit itself, really) are really simple - mostly about teaching you about Unix/Linux utilities, and various other tools you might need while doing CTF challenges.
 
 1. Table of Contents
 {:toc}
