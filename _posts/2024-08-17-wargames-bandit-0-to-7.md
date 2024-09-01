@@ -1,7 +1,7 @@
 ---
 title: "Wargames - Bandit (Levels 0 to 7)"
 categories: [blogs]
-tags: [wargames, "bandit", ctf]
+tags: [wargames, bandit, ctf]
 ---
 
 Well, here we are again, in the middle of the night - I am bored and I am preparing for [idekCTF 2024](https://ctf.idek.team). What's better than sitting and solving some more CTF stuff? I'm gonna start with [Bandit](https://overthewire.org/wargames/bandit/) - and go all the way up slowly as per the recommended order on the [Wargames homepage](https://overthewire.org/wargames/).

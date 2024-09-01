@@ -1,7 +1,7 @@
 ---
 title: "PicoCTF 2024: Cryptography"
 categories: [blogs]
-tags: ["picoctf", coding, ctf, cryptography]
+tags: [picoctf, coding, ctf, cryptography]
 ---
 
 Time to dig down the cryptography challenges! This is probably one of my favorite categories too, as my girlfriend is a huge cryptography enjoyer and it tickles our brains.

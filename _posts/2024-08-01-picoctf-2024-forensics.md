@@ -2,7 +2,7 @@
 title: "PicoCTF 2024: Forensics"
 date: 2024-08-01 18:00:00 +0700
 categories: [blogs]
-tags: ["picoctf", coding, ctf, forensics]
+tags: [picoctf, coding, ctf, forensics]
 ---
 
 I have had interest in cyber security and CTF-related stuff for a while now, but I've never had the time to properly learn them. Given that [SekaiCTF 2024](https://ctf.sekai.team) is starting soon, and my planned ideas edging closer to things related in this field, I will be trying to prepare for it and spend some time learning more about it! Thanks to Bottersnike's recommendations, I started doing [PicoCTF's](https://picoctf.org) backlog of challenges to have a better grasp at this! In this post, I will be giving writeups for the forensics challenges as I go through them.
