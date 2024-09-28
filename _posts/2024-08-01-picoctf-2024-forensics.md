@@ -1,7 +1,7 @@
 ---
 title: "PicoCTF 2024: Forensics"
 date: 2024-08-01 18:00:00 +0700
-categories: [blogs]
+categories: [blog]
 tags: [picoctf, coding, ctf, forensics]
 ---
 

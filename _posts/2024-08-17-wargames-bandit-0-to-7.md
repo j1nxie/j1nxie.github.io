@@ -1,6 +1,6 @@
 ---
 title: "Wargames - Bandit (Levels 0 to 7)"
-categories: [blogs]
+categories: [blog]
 tags: [wargames, bandit, ctf]
 ---
 

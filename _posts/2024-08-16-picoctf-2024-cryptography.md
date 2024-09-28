@@ -1,6 +1,6 @@
 ---
 title: "PicoCTF 2024: Cryptography"
-categories: [blogs]
+categories: [blog]
 tags: [picoctf, coding, ctf, cryptography]
 ---
 
