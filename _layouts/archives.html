@@ -5,6 +5,7 @@ layout: default
 <div id="archives">
 	<div class="title">
 		<h1>archives</h1>
+		<hr />
 	</div>
 	{% for post in site.posts %}
 	{% capture curr_year %}{{ post.date | date: "%Y" }}{% endcapture %}
