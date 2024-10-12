@@ -12,7 +12,7 @@ layout: default
 
 	{% if curr_year != last_year %}
 	{% unless forloop.first %}</ul>{% endunless %}
-	<div class="year">{{ curr_year }}</div>
+	<h2 class="year">{{ curr_year }}</h2>
 	<ul>
 		{% assign last_year = curr_year %}
 		{% endif %}

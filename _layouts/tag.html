@@ -18,13 +18,20 @@ layout: default
 		</h1>
 		<hr />
 	</div>
-	
-	<ul class="posts-list">
-		{% for post in page.posts %}
+
+	{% for post in page.posts %}
+	{% capture curr_year %}{{ post.date | date: "%Y" }}{% endcapture %}
+
+	{% if curr_year != last_year %}
+	{% unless forloop.first %}</ul>{% endunless %}
+	<h2 class="year">{{ curr_year }}</h2>
+	<ul>
+		{% assign last_year = curr_year %}
+		{% endif %}
+		{% assign ts = post.date | date: "%s" %}
 		<li>
 			<a href="{{ post.url | relative_url }}">{{ post.title }}</a>
 			<span class="date">({{ post.date | date: "%B %d" }})</span>
 		</li>
 		{% endfor %}
-	</ul>
 </div>
