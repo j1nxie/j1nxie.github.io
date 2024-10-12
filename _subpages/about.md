@@ -5,6 +5,7 @@ layout: default
 
 <div class="title">
     <h1>about</h1>
+    <hr />
 </div>
 
 Hi! I go by Rylie on most platforms, \_lumi9 on a few others, and I'm also under many more aliases. I program random things in my free time, and I also code professionally for a living.

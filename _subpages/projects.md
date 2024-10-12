@@ -5,6 +5,7 @@ layout: default
 
 <div class="title">
     <h1>projects</h1>
+    <hr />
 </div>
 
 I have plenty of personal projects, most of which are built for learning experiences, mainly tinkering with new tools and frameworks. I'm also cooking a few things in secret, but that's the future to come. Hopefully, I can share what I've learnt through these projects!
