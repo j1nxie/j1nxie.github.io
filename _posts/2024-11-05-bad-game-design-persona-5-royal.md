@@ -26,7 +26,11 @@ Nonetheless, I feel like the mechanics of Kaneshiro's Palace are just slightly a
 
 # Okumura's Palace
 
-Kaneshiro's Palace is definitely, definitely, **definitely** no match for this. The fifth palace in the game has to be one of the *worst* designed palaces I've ever seen. A *ton* of the mechanics are timed, which technically fits the theme of "capitalism draining everyone dry", but it's just so, so, so annoying. Pathing through the map involves a bunch of 30-second timed platforms, and you need to backtrack and re-activate the platforms to progress if you don't make it in time. This time passes during fights too, so if you accidentally get an encounter, have fun backtracking!
+Kaneshiro's Palace is definitely, definitely, **definitely** no match for this. The fifth palace in the game has to be one of the *worst* designed palaces I've ever seen. It's so bad we even got subsections for it!
+
+## Timed mechanics
+
+A *ton* of the mechanics are timed, which technically fits the theme of "capitalism draining everyone dry", but it's just so, so, so annoying. Pathing through the map involves a bunch of 30-second timed platforms, and you need to backtrack and re-activate the platforms to progress if you don't make it in time. This time passes during fights too, so if you accidentally get an encounter, have fun backtracking!
 
 Yippee, you've made it to the end of the palace, and you sent the calling card. You enter the palace again, fast travel to the last section before the boss encounter, and you feel like you're *so* prepared to do this boss fight. You're wrong. You are **not** ready to do this boss fight.
 
@@ -34,13 +38,19 @@ After a little bit of a cutscene, a 10-minute timer starts, and you're supposed 
 
 That should be it right? Oh dear sweet summer child, you're getting even *more* wrong. The boss fight has a **thirty-minute** time limit. "It's a whopping thirty minutes!", I hear you say. Well, let me tell you about the mechanics.
 
+## Boss fight mechanics
+
 Okumura sends waves of **four** robots of increasing strength to face you, while he sits in the back and either buffs them or debuffs your party. The robots are weak to certain elements, and resists everything else. You have met all of these robots as part of the introductory sequence of the palace, and good luck preparing for **all** of them.
 
 For you, you have three turns to attack and kill these robots to clear the "wave". If you don't kill them in time, if you dealt even just **a single point** of damage to any of them, they would flee and you would fail the wave. This is probably the part where the game expects you to abuse the hell out of Baton Passes to maximize damage dealt, but I'm telling you, even on Normal difficulty, maximum Baton Passes on Haru struggles to take down the last wave of robots.
 
 This straight up makes it extremely annoying as these robots are super tanky *and* they deal a ton of damage to your party as well. With all of this, you can probably start to see how thirty minutes straight up isn't enough to clear the fight.
 
-I've sat and pulled my hair for at least **three hours** doing Okumura's boss fight and *I still haven't cleared it*, and I've got close to clearing the fight only *once*... If this isn't one of the worst designed boss fights in the game, I don't know what is. It frustrates me genuinely because Haru's arc was getting really, really good and this horrible boss fight makes it so tedious to go through, and simply ruins the narration for me purely because how long it takes to finish it. I've also spent at least two hours looking at Reddit posts asking on how to fight it and a *whole lot* of them is pointing towards abusing Merciless' 3x weakness multiplier and a DLC Persona to clear the fight. I'm *very close* to just doing that, but I'm still holding out hope that I can clear it without resorting to that.
+I've sat and pulled my hair for at least **three hours** doing Okumura's boss fight and *I still haven't cleared it*, and I've got close to clearing the fight only *once*... If this isn't one of the worst designed boss fights in the game, I don't know what is. It frustrates me genuinely because Haru's arc was getting really, really good and this horrible boss fight makes it so tedious to go through, and simply ruins the narration for me purely because how long it takes to finish it. I've also spent at least two hours looking at Reddit posts asking on how to fight it and a *whole lot* of them is pointing towards abusing Merciless' 3x weakness multiplier and a DLC Persona to clear the fight. I'm *very close* to just doing that, but I'm still holding out hope that I can clear it without resorting to that. The sheer difficulty of the fight just makes me reconsider doing NG+ runs as well, but I will see how that goes...
+
+## The damn airlock puzzles
+
+A bit before the boss fight, you have to go through a series of airlock puzzles to progress. It's **not** very clear what you really need to do, other than toggling the various switches to progress. It's so annoying that you constantly need to constantly toggle the map to find out the path you need to take *while* attempting to grab the third Will Seed. The pathing took me forever since you're meant to go in one specific direction. This puts the icing on the cake for how bad Okumura's Palace is designed. Thank **god** you're not timed on this section, or else I would genuinely flip doing this palace.
 
 # Closing thoughts
 
