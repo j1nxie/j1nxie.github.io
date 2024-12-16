@@ -91,6 +91,7 @@ GEM
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
+    lucky_case (1.1.0)
     mercenary (0.4.0)
     pathutil (0.16.2)
       forwardable-extended (~> 2.6)
@@ -185,6 +186,7 @@ DEPENDENCIES
   http_parser.rb (~> 0.6.0)
   jekyll-seo-tag
   kramdown-math-katex
+  lucky_case
   tzinfo (>= 1, < 3)
   tzinfo-data
   wdm (~> 0.1.1)

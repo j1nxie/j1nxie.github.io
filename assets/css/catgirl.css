@@ -105,6 +105,42 @@ blockquote {
     padding: 0em 10px;
 }
 
+blockquote div {
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: 18px;
+}
+
+blockquote>p:not(:only-child) {
+    margin-block-start: 0.25em;
+}
+
+blockquote.alert-warning,
+blockquote.alert-tangent {
+    background-color: rgba(255, 166, 0, 0.2);
+    border-color: #ff9800;
+}
+
+blockquote.alert-note {
+    background-color: rgba(30, 144, 255, 0.2);
+    border-left-color: #1e90ff;
+}
+
+blockquote.alert-tip {
+    background-color: rgba(46, 204, 113, 0.2);
+    border-left-color: #2ecc71;
+}
+
+blockquote.alert-important {
+    background-color: rgba(231, 76, 60, 0.2);
+    border-left-color: #e74c3c;
+}
+
+p:has(img) {
+    display: flex;
+    justify-content: center;
+}
+
 table,
 th,
 td {

@@ -4,7 +4,8 @@ categories: [blog]
 tags: [games, "game design"]
 ---
 
-> **NOTE**: This post contains spoilers for Persona 5 Royal! If you haven't played the game yet, I suggest you stop reading to avoid spoilers, else, proceed at your own caution.
+> [!NOTE]
+> This post contains spoilers for Persona 5 Royal! If you haven't played the game yet, I suggest you stop reading to avoid spoilers, else, proceed at your own caution.
 
 Recently, I decided to pick up Persona 5 Royal, as I broke my controller and... Persona 4 Golden on a keyboard felt horrible (this probably needs its own blog post...) so I put it on pause for now. Fast-forward a few weeks later and I'm 60 hours into it. I've been enjoying the game **a whole lot**, but there are points where I feel like the game is out to annoy me. I've still got half the game left to go - but these will be my thoughts up to this point, for Kaneshiro's bank and Okumura's spaceport.
 
