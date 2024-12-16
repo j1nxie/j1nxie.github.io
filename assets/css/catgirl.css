@@ -35,17 +35,13 @@ body {
 }
 
 #main {
-    display: flex;
-    flex: 0 0 50px;
-    flex-basis: auto;
     line-height: 2em;
     width: 800px;
 }
 
 .content {
-    flex-basis: auto;
-    flex-wrap: wrap;
     width: 800px;
+    padding-bottom: 10px;
 }
 
 .title {
