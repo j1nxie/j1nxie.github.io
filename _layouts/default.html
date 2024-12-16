@@ -3,46 +3,44 @@
 {% include head.html %}
 
 <body>
-	<div id="main-wrapper">
-		<div id="wrapper">
-			<div id="sidebar">
-				<header>
-					<p>
-						<a href="/">home</a> |
-						<a href="/about">about</a> |
-						<a href="/archives">archives</a>
-						<br>
-						<a href="/categories">categories</a> |
-						<a href="/tags">tags</a> |
-						<a href="/projects">projects</a>
-					</p>
+    <div id="wrapper">
+        <div id="sidebar">
+            <header>
+                <p>
+                    <a href="/">home</a> |
+                    <a href="/about">about</a> |
+                    <a href="/archives">archives</a>
+                    <br>
+                    <a href="/categories">categories</a> |
+                    <a href="/tags">tags</a> |
+                    <a href="/projects">projects</a>
+                </p>
 
-					<p>
-						<big>lumi's trashcan</big>
-					</p>
-				</header>
+                <p>
+                    <big>lumi's trashcan</big>
+                </p>
+            </header>
 
-				<footer>
-					<p>
-						art by <a href="https://twitter.com/felutiahime/">@felutiahime</a>
-						</br>
-						© 2022-2024 j1nxie
-					</p>
-				</footer>
-			</div>
+            <footer>
+                <p>
+                    art by <a href="https://twitter.com/felutiahime/">@felutiahime</a>
+                    </br>
+                    © 2022-2024 j1nxie
+                </p>
+            </footer>
+        </div>
 
-			<section id="main">
-				<div class="content">
-					{{ content }}
-				</div>
-			</section>
-		</div>
-	</div>
-	<script>
-		twemoji.parse(
-			document.body,
-			{ base: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/" });
-	</script>
+        <section id="main">
+            <div class="content">
+                {{ content }}
+            </div>
+        </section>
+    </div>
+    <script>
+    twemoji.parse(
+        document.body,
+        { base: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/" });
+    </script>
 </body>
 
 </html>

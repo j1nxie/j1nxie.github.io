@@ -1,0 +1,161 @@
+@import "fonts.css";
+@import "syntax.css";
+
+:root {
+    --sidebar-size: 280px;
+    --dark-bg: #000;
+    --dark-text: #fff;
+    --light-bg: #fff;
+    --light-text: #000;
+    font-size: 16px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background: var(--dark-bg);
+    height: 100%;
+}
+
+body {
+    color: var(--dark-text);
+    inset: 0;
+    overflow: auto;
+    padding: 10px;
+    position: absolute;
+}
+
+.emoji {
+    display: inline-block;
+    height: 1em;
+    transform: translate(0, 0.1em);
+    width: 1em;
+}
+
+#main {
+    display: flex;
+    flex: 0 0 50px;
+    flex-basis: auto;
+    line-height: 2em;
+    width: 800px;
+}
+
+.content {
+    flex-basis: auto;
+    flex-wrap: wrap;
+    width: 800px;
+}
+
+.title {
+    font-size: 20px;
+}
+
+#sidebar {
+    background: linear-gradient(rgb(0 0 0 / 85%), rgb(0 0 0 / 85%)), url("/assets/img/suisei.png");
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: flex;
+    flex-direction: column;
+    height: 700px;
+    justify-content: space-between;
+    width: var(--sidebar-size);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+header {
+    -webkit-font-smoothing: subpixel-antialiased;
+    line-height: 1.25em;
+    text-align: center;
+    width: var(--sidebar-size);
+}
+
+footer {
+    bottom: 50px;
+    -webkit-font-smoothing: subpixel-antialiased;
+    line-height: 1.25em;
+    width: var(--sidebar-size);
+}
+
+#wrapper {
+    column-gap: 30px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    position: relative;
+    width: 860px;
+}
+
+a:link,
+a:visited {
+    color: var(--dark-text);
+}
+
+blockquote {
+    border-left: 5px solid #ccc;
+    border-left-color: rgb(62, 68, 70);
+    margin: 1.5em 10px;
+    padding: 0em 10px;
+}
+
+table,
+th,
+td {
+    border: 1px solid;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 3px 5px;
+}
+
+span .katex-html {
+    display: none;
+}
+
+@media all and (min-width: 1166px) {
+
+    #wrapper {
+        height: 100%;
+    }
+}
+
+@media all and (max-width: 1165px) {
+
+    #main,
+    .content {
+        width: 100%;
+    }
+
+    #sidebar {
+        width: auto;
+        height: auto;
+        background: none;
+
+        header {
+            width: auto;
+        }
+
+        footer {
+            display: none;
+        }
+    }
+
+    #wrapper {
+        flex-direction: column;
+        width: auto;
+    }
+
+    section {
+        border: 1px solid #e5e5e5;
+        border-width: 1px 0;
+        margin: 0 0 20px;
+        padding: 20px 0;
+    }
+}
