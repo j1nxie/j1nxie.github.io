@@ -48,6 +48,11 @@ body {
     font-size: 20px;
 }
 
+.post-link {
+    font-size: 18px;
+    line-height: 2em;
+}
+
 #sidebar {
     background: linear-gradient(rgb(0 0 0 / 85%), rgb(0 0 0 / 85%)), url("/assets/img/suisei.png");
     background-position: bottom;

@@ -30,8 +30,8 @@ layout: default
 		{% endif %}
 		{% assign ts = post.date | date: "%s" %}
 		<li>
-			<a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-			<span class="date">({{ post.date | date: "%B %d" }})</span>
+			<a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+			<div class="date">{{ post.date | date: "%B %d, %Y" }}</div>
 		</li>
 		{% endfor %}
 </div>
