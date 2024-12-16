@@ -39,8 +39,7 @@ code {
     pre {
         border: 0;
         border-collapse: separate;
-        white-space: pre-wrap;
-        word-break: break-word;
+        overflow: auto hidden;
         margin: 5px;
     }
 }
