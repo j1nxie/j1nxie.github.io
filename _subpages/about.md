@@ -12,7 +12,7 @@ Hi! I go by Rylie on most platforms, \_lumi9 on a few others, and I'm also under
 
 I mainly write Discord bots, backend stuff, scrapers and random things I'm interested in, with a little bit of infrastructure going along with it.
 
-My hobbies are anime, manga, playing games and programming. I also want to dabble in digital art too. I mainly play a ton of rhythm games, JRPGs and shooters. Currently, I mainly spend my time playing ~~maimai DX~~ (I finally got rainbow, taking a break :3) CHUNITHM, FFXIV, osu! and random shooters.
+My hobbies are anime, manga, playing games and programming. I also want to dabble in digital art too. I mainly play a ton of rhythm games, JRPGs and shooters. Currently, I mainly spend my time playing CHUNITHM, random shooters and other games I find interesting at the moment.
 
 ## socials
 
@@ -30,7 +30,7 @@ Steam: [cauvong-chan](https://steamcommunity.com/id/cauvong-chan) \
 | Game                      | Username                               | Notes                                                                                     |
 |---------------------------+----------------------------------------+-------------------------------------------------------------------------------------------|
 | maimai DX (International) | rylie !? (`8077794290292`)             | - rating: 15044 (虹)<br>- dans: 六段 (UNiVERSE PLUS), 十段 (BUDDiES)                        |
-| CHUNITHM (International)  | rylie !? (`8078704595202`)             | - rating: 15.73 (鉑)<br>- classes: II (SUN PLUS), III (LUMINOUS), III (LUMINOUS PLUS)     |
+| CHUNITHM (International)  | rylie !? (`8078704595202`)             | - rating: 15.96 (鉑)<br>- classes: II (SUN PLUS), III (LUMINOUS), IV (LUMINOUS PLUS)       |
 | SOUND VOLTEX              |                                        | - volforce: 15.711 (Scarlet III)<br>- dans: 八断 (EXCEED GEAR)                             |
 | Arknights (Global)        | Rylie#4029 (`40887692`)                |                                                                                           |
 | Arcaea                    | RylieXD (`666 307 736`)                | - potential: 11.25<br> - dans: phase 6<br>mainly inactive right now                       |
