@@ -21,7 +21,7 @@ Twitter: [@\_lumi9](https://twitter.com/_lumi9) \
 Bluesky: [@rylie.moe](https://bsky.app/profile/rylie.moe) \
 Ko-fi (Donations if you like my projects!): [kotonya](https://ko-fi.com/kotonya) \
 Steam: [cauvong-chan](https://steamcommunity.com/id/cauvong-chan) \
-~~MyAnimeList~~ AniList: [Lumi9](https://anilist.co/user/Lumi9)
+AniList: [Lumi9](https://anilist.co/user/Lumi9)
 
 ## in-game
 
@@ -30,7 +30,7 @@ Steam: [cauvong-chan](https://steamcommunity.com/id/cauvong-chan) \
 | Game                      | Username                               | Notes                                                                                     |
 |---------------------------+----------------------------------------+-------------------------------------------------------------------------------------------|
 | maimai DX (International) | rylie !? (`8077794290292`)             | - rating: 15044 (虹)<br>- dans: 六段 (UNiVERSE PLUS), 十段 (BUDDiES)                        |
-| CHUNITHM (International)  | rylie !? (`8078704595202`)             | - rating: 15.96 (鉑)<br>- classes: II (SUN PLUS), III (LUMINOUS), IV (LUMINOUS PLUS)       |
+| CHUNITHM (International)  | rylie !? (`8078704595202`)             | - rating: 16.00 (鉑)<br>- classes: II (SUN PLUS), III (LUMINOUS), IV (LUMINOUS PLUS)       |
 | SOUND VOLTEX              |                                        | - volforce: 15.711 (Scarlet III)<br>- dans: 八断 (EXCEED GEAR)                             |
 | Arknights (Global)        | Rylie#4029 (`40887692`)                |                                                                                           |
 | Arcaea                    | RylieXD (`666 307 736`)                | - potential: 11.25<br> - dans: phase 6<br>mainly inactive right now                       |
