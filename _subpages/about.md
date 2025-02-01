@@ -29,8 +29,8 @@ AniList: [Lumi9](https://anilist.co/user/Lumi9)
 
 | Game                      | Username                               | Notes                                                                                     |
 |---------------------------+----------------------------------------+-------------------------------------------------------------------------------------------|
-| maimai DX (International) | rylie !? (`8077794290292`)             | - rating: 15044 (虹)<br>- dans: 六段 (UNiVERSE PLUS), 十段 (BUDDiES)                        |
-| CHUNITHM (International)  | rylie !? (`8078704595202`)             | - rating: 16.00 (鉑)<br>- classes: II (SUN PLUS), III (LUMINOUS), IV (LUMINOUS PLUS)       |
+| maimai DX                 | rylie !? (`8077794290292`)             | - rating: 15049 (虹)<br>- dans: 六段 (UNiVERSE PLUS), 十段 (BUDDiES, PRiSM)                 |
+| CHUNITHM                  | rylie !? (`8078704595202`)             | - rating: 16.16 (虹)<br>- classes: II (SUN PLUS), III (LUMINOUS), IV (LUMINOUS PLUS)       |
 | SOUND VOLTEX              |                                        | - volforce: 15.711 (Scarlet III)<br>- dans: 八断 (EXCEED GEAR)                             |
 | Arknights (Global)        | Rylie#4029 (`40887692`)                |                                                                                           |
 | Arcaea                    | RylieXD (`666 307 736`)                | - potential: 11.25<br> - dans: phase 6<br>mainly inactive right now                       |
