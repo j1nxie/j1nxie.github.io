@@ -2,8 +2,6 @@
 useSeoMeta({
 	title: "weeb | lumi's trashcan",
 	ogTitle: "weeb | lumi's trashcan",
-	description: "This is my amazing site, let me tell you all about it.",
-	ogDescription: "This is my amazing site, let me tell you all about it.",
 });
 </script>
 

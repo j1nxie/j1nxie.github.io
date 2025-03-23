@@ -9,8 +9,6 @@ const { data: posts } = await useAsyncData(
 useSeoMeta({
 	title: "blog | lumi's trashcan",
 	ogTitle: "blog | lumi's trashcan",
-	description: "This is my amazing site, let me tell you all about it.",
-	ogDescription: "This is my amazing site, let me tell you all about it.",
 });
 </script>
 

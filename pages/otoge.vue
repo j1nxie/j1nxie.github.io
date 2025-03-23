@@ -4,8 +4,6 @@ import { OtogeStats } from "#components";
 useSeoMeta({
 	title: "rhythm games | lumi's trashcan",
 	ogTitle: "rhythm games | lumi's trashcan",
-	description: "This is my amazing site, let me tell you all about it.",
-	ogDescription: "This is my amazing site, let me tell you all about it.",
 });
 </script>
 
@@ -43,6 +41,8 @@ useSeoMeta({
 		</p>
 
 		<OtogeStats />
+
+		<p>still a massive wip. come back later?</p>
 	</div>
 </template>
 
