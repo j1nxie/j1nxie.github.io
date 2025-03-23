@@ -18,6 +18,14 @@ export default defineNuxtConfig({
 				},
 			},
 		},
+		database: {
+			type: "d1",
+			bindingName: "DB",
+		},
+	},
+
+	nitro: {
+		preset: "cloudflare_pages",
 	},
 
 	modules: [
