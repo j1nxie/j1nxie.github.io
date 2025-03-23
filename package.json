@@ -1,0 +1,42 @@
+{
+    "name": "catgirl",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "nuxt build",
+        "dev": "nuxt dev",
+        "generate": "nuxt generate",
+        "preview": "nuxt preview",
+        "postinstall": "nuxt prepare"
+    },
+    "dependencies": {
+        "@nuxt/content": "3.4.0",
+        "@nuxt/eslint": "1.2.0",
+        "@nuxt/fonts": "0.11.0",
+        "@nuxt/icon": "1.11.0",
+        "@nuxt/image": "1.10.0",
+        "nuxt": "^3.16.1",
+        "nuxt-time": "1.0.3",
+        "nuxt-twemoji": "3.6.3",
+        "ufo": "^1.5.4",
+        "vue": "^3.5.13",
+        "vue-router": "^4.5.0"
+    },
+    "packageManager": "pnpm@10.6.5+sha512.cdf928fca20832cd59ec53826492b7dc25dc524d4370b6b4adbf65803d32efaa6c1c88147c0ae4e8d579a6c9eec715757b50d4fa35eea179d868eada4ed043af",
+    "devDependencies": {
+        "@iconify-json/fa6-brands": "^1.2.5",
+        "@iconify-json/simple-icons": "^1.2.29",
+        "@types/node": "^22.13.11",
+        "eslint": "^9.22.0",
+        "eslint-plugin-hagemanto": "^5.0.1",
+        "eslint-plugin-vue": "^10.0.0"
+    },
+    "pnpm": {
+        "onlyBuiltDependencies": [
+            "@parcel/watcher",
+            "better-sqlite3",
+            "esbuild",
+            "sharp"
+        ]
+    }
+}

@@ -1,0 +1,8 @@
+:root {
+    font-family: "Noto Serif", "Noto Serif JP", system-ui, serif;
+    border-top: none;
+}
+
+a {
+    text-underline-offset: 2px;
+}
