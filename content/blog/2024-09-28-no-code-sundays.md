@@ -9,7 +9,7 @@ I used to be a really rough person when it comes to my own productivity - I ofte
 
 Fast forward to recently, I've just kinda been... working during the week, and leaving Sundays for cleaning, resting and just enjoying myself.
 
-![My GitHub activity graph](/assets/:wno-code-sundays/github-graph.png)
+![My GitHub activity graph](/assets/no-code-sundays/github-graph.png)
 
 (Excuse that one Sunday, I was fixing my own website on my free time.)
 
