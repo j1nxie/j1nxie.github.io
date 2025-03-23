@@ -30,12 +30,6 @@ export default defineNuxtConfig({
 		"nuxt-time",
 	],
 
-	routeRules: {
-		"/blog/**": {
-			prerender: true,
-		},
-	},
-
 	css: [
 		"~/neat.css",
 		"~/custom.css",
