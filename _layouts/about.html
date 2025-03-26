@@ -1,0 +1,163 @@
+---
+layout: default
+---
+
+<div id="about">
+    <h1>about</h1>
+    <hr>
+
+    <p>Hi! I go by Rylie on most platforms, _lumi9 on a few others, and I'm also under many more aliases. I program random things in my free time, and I also code professionally for a living.</p>
+
+    <p>I mainly write Discord bots, backend stuff, scrapers and random things I'm interested in, with a little bit of infrastructure going along with it.</p>
+
+    <p>My hobbies are anime, manga, playing games and programming. I also want to dabble in digital art too. I mainly play a ton of rhythm games, JRPGs and shooters. Currently, I mainly spend my time playing CHUNITHM, random shooters and other games I find interesting at the moment.</p>
+
+    <p>If you have job offers, or you're interested in requesting my work (related to programming), contact me anywhere and we'll work things out.</p>
+
+    <h2 id="socials">socials</h2>
+
+    <p>
+        Discord: <code class="language-plaintext highlighter-rouge">_lumi9</code> <br />
+        Twitter: <a href="https://twitter.com/_lumi9">@_lumi9</a> <br />
+        Bluesky: <a href="https://bsky.app/profile/rylie.moe">@rylie.moe</a> <br />
+        Ko-fi (Donations if you like my projects!): <a href="https://ko-fi.com/kotonya">kotonya</a> <br />
+        Steam: <a href="https://steamcommunity.com/id/cauvong-chan">cauvong-chan</a> <br />
+        AniList: <a href="https://anilist.co/user/Lumi9">Lumi9</a>
+    </p>
+
+    <h2 id="rhythm-games">rhythm games</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Game</th>
+                <th>Stats</th>
+                <th>Other notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>maimai DX</td>
+                <td>
+                    - rating: <span id="maimai-rating">loading...</span><br />
+                    - dans: 六段 (UNiVERSE PLUS), 十段 (BUDDiES, PRiSM)
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>CHUNITHM</td>
+                <td>
+                    - rating: <span id="chunithm-rating">loading...</span><br />
+                    - classes: II (SUN PLUS), III (LUMINOUS), IV (LUMINOUS PLUS)
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>SOUND VOLTEX</td>
+                <td>
+                    - volforce: <span id="sdvx-vf6">loading...</span><br />
+                    - dans: 八断 (EXCEED GEAR)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+const chunithmClassMap = {
+    BLUE: "青",
+    GREEN: "緑",
+    ORANGE: "橙",
+    RED: "赤",
+    PURPLE: "紫",
+    COPPER: "銅",
+    SILVER: "銀",
+    GOLD: "金",
+    PLATINUM: "鉑",
+    RAINBOW: "虹★",
+    RAINBOW_II: "虹★★",
+    RAINBOW_III: "虹★★★",
+    RAINBOW_IV: "虹★★★★",
+    RAINBOW_EX_I: "虹(極)★",
+    RAINBOW_EX_II: "虹(極)★★",
+    RAINBOW_EX_III: "虹(極)★★★"
+};
+
+const maimaiClassMap = {
+    WHITE: "White",
+    BLUE: "Blue",
+    GREEN: "Green",
+    YELLOW: "Yellow",
+    RED: "Red",
+    PURPLE: "Purple",
+    BRONZE: "Bronze",
+    SILVER: "Silver",
+    GOLD: "Gold",
+    PLATINUM: "Platinum",
+    RAINBOW: "Rainbow"
+};
+
+const sdvxClassMap = {
+    SIENNA_I: "Sienna I",
+    SIENNA_II: "Sienna II",
+    SIENNA_III: "Sienna III",
+    SIENNA_IV: "Sienna IV",
+    COBALT_I: "Cobalt I",
+    COBALT_II: "Cobalt II",
+    COBALT_III: "Cobalt III",
+    COBALT_IV: "Cobalt IV",
+    DANDELION_I: "Dandelion I",
+    DANDELION_II: "Dandelion II",
+    DANDELION_III: "Dandelion III",
+    DANDELION_IV: "Dandelion IV",
+    CYAN_I: "Cyan I",
+    CYAN_II: "Cyan II",
+    CYAN_III: "Cyan III",
+    CYAN_IV: "Cyan IV",
+    SCARLET_I: "Scarlet I",
+    SCARLET_II: "Scarlet II",
+    SCARLET_III: "Scarlet III",
+    SCARLET_IV: "Scarlet IV",
+    CORAL_I: "Coral I",
+    CORAL_II: "Coral II",
+    CORAL_III: "Coral III",
+    CORAL_IV: "Coral IV",
+    ARGENTO_I: "Argento I",
+    ARGENTO_II: "Argento II",
+    ARGENTO_III: "Argento III",
+    ARGENTO_IV: "Argento IV",
+    ELDORA_I: "Eldora I",
+    ELDORA_II: "Eldora II",
+    ELDORA_III: "Eldora III",
+    ELDORA_IV: "Eldora IV",
+    CRIMSON_I: "Crimson I",
+    CRIMSON_II: "Crimson II",
+    CRIMSON_III: "Crimson III",
+    CRIMSON_IV: "Crimson IV",
+    IMPERIAL_I: "Imperial I",
+    IMPERIAL_II: "Imperial II",
+    IMPERIAL_III: "Imperial III",
+    IMPERIAL_IV: "Imperial IV"
+};
+
+fetch("https://kamai.tachi.ac/api/v1/users/Rylie/games/chunithm/Single")
+    .then(resp => resp.json())
+    .then(resp => {
+        const body = resp.body;
+        document.getElementById("chunithm-rating").innerText = `${body.gameStats.ratings.naiveRating} (${chunithmClassMap[body.gameStats.classes.colour]})`;
+    });
+
+fetch("https://kamai.tachi.ac/api/v1/users/Rylie/games/maimaidx/Single")
+    .then(resp => resp.json())
+    .then(resp => {
+        const body = resp.body;
+        document.getElementById("maimai-rating").innerText = `${body.gameStats.ratings.naiveRate} (${maimaiClassMap[body.gameStats.classes.colour]})`;
+    });
+
+fetch("https://kamai.tachi.ac/api/v1/users/Rylie/games/sdvx/Single")
+    .then(resp => resp.json())
+    .then(resp => {
+        const body = resp.body;
+        document.getElementById("sdvx-vf6").innerText = `${body.gameStats.ratings.VF6.toFixed(3)} (${sdvxClassMap[body.gameStats.classes.vfClass]})`;
+    });
+</script>
