@@ -9,9 +9,6 @@ Time to dig down the cryptography challenges! This is probably one of my favorit
 
 > Same thing with web and forensics, this blogpost will describe the challenges and give the solutions to them - but I will not be giving out the flag in its entirety.
 
-1. Table of Contents
-{:toc}
-
 # interencdec
 
 > **Difficulty**: Easy \

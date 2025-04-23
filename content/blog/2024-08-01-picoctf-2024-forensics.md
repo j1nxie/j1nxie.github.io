@@ -9,9 +9,6 @@ I have had interest in cyber security and CTF-related stuff for a while now, but
 
 > This blogpost will describe the challenges and give the solutions to them - but I will not be giving out the flag in its entirety.
 
-1. Table of Contents
-{:toc}
-
 # Verify
 
 > **Difficulty**: Easy \
