@@ -1,6 +1,5 @@
 +++
 title = "Suffering on Discord at 17:00 - Decompiling Project Sekai: Colorful Stage! feat. Hatsune Miku"
-draft = true
 
 [taxonomies]
 tags = ["coding", "reverse engineering"]
