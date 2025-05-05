@@ -34,9 +34,9 @@ Digging around for a little bit, I found myself stumbling upon... nothing? Where
 
 # IL2CPPain...
 
-As it turns out, Unity has given developers the choice to make the game code exported as a native library, using what is called IL2CPP. This allows the game to run in environments that disallow just-in-time runtimes, e.g. iOS.
+As it turns out, Unity has given developers the choice to make the game code exported as a native library, using what is called IL2CPP. This allows the game to run in environments that disallow just-in-time[^2] runtimes, e.g. iOS.
 
-IL2CPP, in short, compiles all the IL code into C++ code, then said C++ code is used to compile into a native binary *ahead-of-time*[^2], in this case, `libil2cpp.so`. The most important thing for us here is that this strips away all the goodness that comes with IL, like symbol names and readable function bodies, as this is all going to be heavily optimized and stripped by the C++ compiler.
+IL2CPP, in short, compiles all the IL code into C++ code, then said C++ code is used to compile into a native binary *ahead-of-time*[^3], in this case, `libil2cpp.so`. The most important thing for us here is that this strips away all the goodness that comes with IL, like symbol names and readable function bodies, as this is all going to be heavily optimized and stripped by the C++ compiler.
 
 For the developers, this is heaven (or so we'll assume, to be determined later). For us, this is hell. If you jumped straight in and, say, put this output binary straight into a disassembler like Ghidra or IDA Pro, you're in for a very rough time.
 
@@ -221,4 +221,5 @@ So, what did we end up with? A decompiled `libil2cpp.so` for the inner workings 
 Once again, this is less so a formal tutorial, more so my own notes to approach Unity decompilation, and I managed to learn a whole lot from this! I might come around and snoop further into things, but for now, this is a wrap for our journey. See you next time... maybe.
 
 [^1]: <https://x.com/pjsekai_eng/status/1786372022307557495>
-[^2]: An optimization technique that compiles intermediate representations like IL into native machine code, so the resulting binary can be executed natively instead of within a provided runtime, as well as reducing the amount of work performed during runtime.
+[^2]: A compilation process where code is compiled from intermediate representations into machine code at runtime.
+[^3]: An optimization technique that compiles intermediate representations like IL into native machine code before execution, so the resulting binary can be executed natively instead of within a provided runtime, as well as reducing the amount of work performed during runtime.
