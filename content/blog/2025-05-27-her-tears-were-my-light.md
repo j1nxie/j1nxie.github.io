@@ -1,7 +1,6 @@
 +++
 title = "her tears were my light (2016)"
 description = "\"her tears were my light\" is a short visual novel, made for the NaNoRenO 2016 game jam. And when I said short, it was short. All the content is explorable in about half an hour to an hour of gameplay. Despite its length, it manages to hold up pretty well, with plenty of cute illustrations and a really nice soundtrack."
-draft = true
 
 [taxonomies]
 tags = ["games", "visual novel", "review"]
@@ -19,4 +18,4 @@ The game follows Time, Space and Nil - the three core ideas of the entire univer
 
 Being Time, a key gameplay mechanic is the ability to rewind time and change the past. This ability is executed really well, being very intuitive and doesn't make it feel complex for the reader. The story is intertwined heavily into this mechanic as well, so a good execution really made everything feel fluid.
 
-Find the game on [itch.io](https://nomnomnami.itch.io/her-tears-were-my-light) or [Steam](https://store.steampowered.com/app/2112520/her_tears_were_my_light/).
+In short, it's a really cute game, and it doesn't take up any time to finish. I think it's worth the hour spent reading. It's available for rather cheap too -  find the game on [itch.io](https://nomnomnami.itch.io/her-tears-were-my-light) or [Steam](https://store.steampowered.com/app/2112520/her_tears_were_my_light/).
