@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://rylie.moe/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:base_url>https:&#x2F;&#x2F;rylie.moe</tabi:base_url>
+        <tabi:separator>
+            |
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>visual novel</tabi:current_section>
+    </tabi:metadata><link rel="extra-stylesheet" href="https://rylie.moe/skins/sakura.css?h=2d9c69af51135683e3bd" /><title>lumi's trashcan - visual novel</title>
+        <subtitle>my thoughts and rants.</subtitle>
+    <link href="https://rylie.moe/tags/visual-novel/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://rylie.moe/tags/visual-novel/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-05-27T00:00:00+00:00</updated>
+    <id>https://rylie.moe/tags/visual-novel/atom.xml</id><entry xml:lang="en">
+        <title>her tears were my light (2016)</title>
+        <published>2025-05-27T00:00:00+00:00</published>
+        <updated>2025-05-27T00:00:00+00:00</updated>
+        <author>
+            <name>lumi</name>
+        </author>
+        <link rel="alternate" href="https://rylie.moe/blog/her-tears-were-my-light/" type="text/html"/>
+        <id>https://rylie.moe/blog/her-tears-were-my-light/</id>
+        
+            <content type="html">&lt;p&gt;&lt;img src=&quot;&#x2F;image&#x2F;her-tears-were-my-light&#x2F;header.jpg&quot; alt=&quot;her tears were my light Steam header&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;a love story between time and space&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;The Steam description was right.&lt;&#x2F;p&gt;
+&lt;p&gt;“her tears were my light” is a short visual novel, made for the NaNoRenO 2016
+game jam. And when I said short, it was short. All the content is explorable in
+about half an hour to an hour of gameplay. Despite its length, it manages to
+hold up pretty well, with plenty of cute illustrations and a really nice
+soundtrack.&lt;&#x2F;p&gt;
+&lt;p&gt;The game follows Time, Space and Nil - the three core ideas of the entire
+universe, in their love story. It’s rather surreal in some ways, but at the same
+time, it gives these very grand and cosmic concepts and their relationship a
+very human and emotional touch. Girls kissed. What else more could you ask for?&lt;&#x2F;p&gt;
+&lt;p&gt;Being Time, a key gameplay mechanic is the ability to rewind time and change the
+past. This ability is executed really well, being very intuitive and doesn’t
+make it feel complex for the reader. The story is intertwined heavily into this
+mechanic as well, so a good execution really made everything feel fluid.&lt;&#x2F;p&gt;
+&lt;p&gt;In short, it’s a really cute game, and it doesn’t take up any time to finish. I
+think it’s worth the hour spent reading. It’s available for rather cheap too -
+find the game on &lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;nomnomnami.itch.io&#x2F;her-tears-were-my-light&quot;&gt;itch.io&lt;&#x2F;a&gt;
+or &lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;store.steampowered.com&#x2F;app&#x2F;2112520&#x2F;her_tears_were_my_light&#x2F;&quot;&gt;Steam&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">&quot;her tears were my light&quot; is a short visual novel, made for the NaNoRenO 2016 game jam. And when I said short, it was short. All the content is explorable in about half an hour to an hour of gameplay. Despite its length, it manages to hold up pretty well, with plenty of cute illustrations and a really nice soundtrack.</summary>
+        </entry>
+</feed>

