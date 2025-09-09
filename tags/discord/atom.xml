@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://rylie.moe/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:base_url>https:&#x2F;&#x2F;rylie.moe</tabi:base_url>
+        <tabi:separator>
+            |
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>discord</tabi:current_section>
+    </tabi:metadata><link rel="extra-stylesheet" href="https://rylie.moe/skins/sakura.css?h=2d9c69af51135683e3bd" /><title>lumi's trashcan - discord</title>
+        <subtitle>my thoughts and rants.</subtitle>
+    <link href="https://rylie.moe/tags/discord/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://rylie.moe/tags/discord/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-12-16T00:00:00+00:00</updated>
+    <id>https://rylie.moe/tags/discord/atom.xml</id><entry xml:lang="en">
+        <title>Miki Sayaka Devblog 002: Two Months Later</title>
+        <published>2024-12-16T00:00:00+00:00</published>
+        <updated>2024-12-16T00:00:00+00:00</updated>
+        <author>
+            <name>lumi</name>
+        </author>
+        <link rel="alternate" href="https://rylie.moe/blog/sayaka-dev-02/" type="text/html"/>
+        <id>https://rylie.moe/blog/sayaka-dev-02/</id>
+        
+            <content type="html">&lt;p&gt;&lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;j1nxie&#x2F;mikisayaka&#x2F;commit&#x2F;c76ffc62a67e2724cf25182f97e0eea0cf3870ca&quot;&gt;Four months
+ago&lt;&#x2F;a&gt;,
+I started working on Sayaka, with some simple features to kick it off with. I
+originally planned to write a weekly-ish devblog, with the first entry being
+&lt;a href=&quot;https:&#x2F;&#x2F;rylie.moe&#x2F;blog&#x2F;sayaka-dev-02&#x2F;sayaka-dev-01&quot;&gt;two months ago&lt;&#x2F;a&gt;, but… being a combination of my laziness with
+how fast Sayaka was moving at that point, it was a rather impossible feat for me
+to do.&lt;&#x2F;p&gt;
+&lt;p&gt;So, two months later from that last post, where are we? I’m happy to say Sayaka
+has managed to bump &lt;strong&gt;one&lt;&#x2F;strong&gt; whole major version (!!!) and we’ve improved quite a
+lot from where we started.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;pagination&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#pagination&quot; aria-label=&quot;Anchor link for: pagination&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Pagination&lt;&#x2F;h2&gt;
+&lt;p&gt;To start off with, Sayaka has proper pagination now. As of the time of writing,
+she’s currently tracking about 115 manga titles. Using &lt;code&gt;s&amp;gt;manga list&lt;&#x2F;code&gt; now gives
+you a neat little embed like so, with buttons to change pages.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;image&#x2F;sayaka-dev-02&#x2F;embed.png&quot; alt=&quot;The message output for Sayaka’s manga list&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;This… unfortunately isn’t available (yet) in the self-roles commands…
+because I’m lazy… I’ll get around to it sometimes, I swear. It doesn’t see a
+whole lot of uses because Nazunacord itself doesn’t see much activity and we’re
+all admins, but I &lt;em&gt;cannot check
+&lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;j1nxie&#x2F;mikisayaka&#x2F;issues&#x2F;4&quot;&gt;this&lt;&#x2F;a&gt; off as finished until I do
+it…&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;link-parser&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#link-parser&quot; aria-label=&quot;Anchor link for: link-parser&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Link parser&lt;&#x2F;h2&gt;
+&lt;p&gt;Sayaka also got a neat feature, matching any MangaDex link posted to the Discord
+channel to read data for!&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;image&#x2F;sayaka-dev-02&#x2F;parser.png&quot; alt=&quot;The message output for Sayaka’s MD link parser&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;I originally let MangaDex’s original embed sorta coexist with Sayaka’s: MangaDex
+would have the description, the cover art, while Sayaka would have all the
+information. But, after a while it cluttered up pretty quickly. So… it took me
+like… two hours… to figure out how to remove another user’s embed from the
+bot’s side. I merged up the cover thumbnail, as well as the description, and
+there we have it!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;chapter-tracker&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#chapter-tracker&quot; aria-label=&quot;Anchor link for: chapter-tracker&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Chapter tracker&lt;&#x2F;h2&gt;
+&lt;p&gt;While I was at it, I also figured out how to neatly create a chapter tracker &#x2F;
+notifier as originally planned too!&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;image&#x2F;sayaka-dev-02&#x2F;chapter-tracker.png&quot; alt=&quot;Notification messages sent by Sayaka&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Originally, I implemented this by using a webhook, as I couldn’t figure out
+&lt;em&gt;how&lt;&#x2F;em&gt; to send a message through the bot client created by poise. Afterwards, I
+spent a lot of time trying to figure out, even thinking of using a MPSC channel
+to fire things from the tracker task to the bot client.&lt;&#x2F;p&gt;
+&lt;p&gt;After a good while figuring out the internals of the types used in poise and
+serenity, I realized… it’s all &lt;code&gt;Arc&amp;lt;T&amp;gt;&lt;&#x2F;code&gt; under the hood… The solution then? I
+&lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;j1nxie&#x2F;mikisayaka&#x2F;commit&#x2F;5b79da615c6581fd487bc768c68edcb66ba7a28d&quot;&gt;cloned the &lt;code&gt;Arc&amp;lt;Http&amp;gt;&lt;&#x2F;code&gt; instance from the
+bot&lt;&#x2F;a&gt;
+and just used it to send messages, as I already know the Discord channel I’ll be
+sending notifications into in the first place. This ends up making me really
+appreciate Rust and the &lt;code&gt;Arc&amp;lt;T&amp;gt;&lt;&#x2F;code&gt; type. Nothing beats being able to just do:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;rust&quot; class=&quot;language-rust z-code&quot;&gt;&lt;code class=&quot;language-rust&quot; data-lang=&quot;rust&quot;&gt;&lt;span class=&quot;z-source z-rust&quot;&gt;&lt;span class=&quot;z-storage z-type z-rust&quot;&gt;let&lt;&#x2F;span&gt; http &lt;span class=&quot;z-keyword z-operator z-assignment z-rust&quot;&gt;=&lt;&#x2F;span&gt; client&lt;span class=&quot;z-punctuation z-accessor z-dot z-rust&quot;&gt;.&lt;&#x2F;span&gt;http&lt;span class=&quot;z-punctuation z-accessor z-dot z-rust&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-function z-rust&quot;&gt;clone&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-rust&quot;&gt;(&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-rust&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-rust&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-rust&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-rust&quot;&gt;&lt;span class=&quot;z-storage z-type z-rust&quot;&gt;let&lt;&#x2F;span&gt; bot_handle &lt;span class=&quot;z-keyword z-operator z-assignment z-rust&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-path z-rust&quot;&gt;tokio&lt;span class=&quot;z-punctuation z-accessor z-rust&quot;&gt;::&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;spawn&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-rust&quot;&gt;(&lt;&#x2F;span&gt;async &lt;span class=&quot;z-storage z-modifier z-rust&quot;&gt;move&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-begin z-rust&quot;&gt;{&lt;&#x2F;span&gt; client&lt;span class=&quot;z-punctuation z-accessor z-dot z-rust&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-function z-rust&quot;&gt;start&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-rust&quot;&gt;(&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-rust&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-accessor z-dot z-rust&quot;&gt;.&lt;&#x2F;span&gt;await&lt;span class=&quot;z-punctuation z-accessor z-dot z-rust&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-function z-rust&quot;&gt;unwrap&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-rust&quot;&gt;(&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-rust&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-end z-rust&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-rust&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-rust&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-rust&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-rust&quot;&gt;&lt;span class=&quot;z-keyword z-control z-rust&quot;&gt;if&lt;&#x2F;span&gt; data_clone&lt;span class=&quot;z-punctuation z-accessor z-dot z-rust&quot;&gt;.&lt;&#x2F;span&gt;md&lt;span class=&quot;z-punctuation z-accessor z-dot z-rust&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-function z-rust&quot;&gt;is_some&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-rust&quot;&gt;(&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-rust&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-logical z-rust&quot;&gt;&amp;amp;&amp;amp;&lt;&#x2F;span&gt; webhook_url&lt;span class=&quot;z-punctuation z-accessor z-dot z-rust&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-function z-rust&quot;&gt;is_ok&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-rust&quot;&gt;(&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-rust&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-begin z-rust&quot;&gt;{&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;    &lt;span class=&quot;z-meta z-path z-rust&quot;&gt;tracing&lt;span class=&quot;z-punctuation z-accessor z-rust&quot;&gt;::&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;info&lt;span class=&quot;z-keyword z-operator z-logical z-rust&quot;&gt;!&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-rust&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-quoted z-double z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-rust&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;initialized chapter tracker!&lt;span class=&quot;z-punctuation z-definition z-string z-end z-rust&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-rust&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-rust&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;    &lt;span class=&quot;z-meta z-path z-rust&quot;&gt;tokio&lt;span class=&quot;z-punctuation z-accessor z-rust&quot;&gt;::&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;spawn&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-rust&quot;&gt;(&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;        async &lt;span class=&quot;z-storage z-modifier z-rust&quot;&gt;move&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-begin z-rust&quot;&gt;{&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;            &lt;span class=&quot;z-storage z-type z-rust&quot;&gt;let&lt;&#x2F;span&gt; interval &lt;span class=&quot;z-keyword z-operator z-assignment z-rust&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-path z-rust&quot;&gt;tokio&lt;span class=&quot;z-punctuation z-accessor z-rust&quot;&gt;::&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-path z-rust&quot;&gt;time&lt;span class=&quot;z-punctuation z-accessor z-rust&quot;&gt;::&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;interval&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-rust&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-path z-rust&quot;&gt;std&lt;span class=&quot;z-punctuation z-accessor z-rust&quot;&gt;::&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-path z-rust&quot;&gt;time&lt;span class=&quot;z-punctuation z-accessor z-rust&quot;&gt;::&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-path z-rust&quot;&gt;Duration&lt;span class=&quot;z-punctuation z-accessor z-rust&quot;&gt;::&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;from_secs&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-rust&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric z-integer z-decimal z-rust&quot;&gt;7200&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-rust&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-rust&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-rust&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;            &lt;span class=&quot;z-storage z-type z-rust&quot;&gt;let&lt;&#x2F;span&gt; task &lt;span class=&quot;z-keyword z-operator z-assignment z-rust&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-path z-rust&quot;&gt;futures&lt;span class=&quot;z-punctuation z-accessor z-rust&quot;&gt;::&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-path z-rust&quot;&gt;stream&lt;span class=&quot;z-punctuation z-accessor z-rust&quot;&gt;::&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;unfold&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-rust&quot;&gt;(&lt;&#x2F;span&gt;interval&lt;span class=&quot;z-punctuation z-separator z-rust&quot;&gt;,&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function z-closure z-rust&quot;&gt;&lt;span class=&quot;z-meta z-function z-parameters z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-parameters z-begin z-rust&quot;&gt;|&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function z-closure z-rust&quot;&gt;&lt;span class=&quot;z-meta z-function z-parameters z-rust&quot;&gt;&lt;span class=&quot;z-storage z-modifier z-rust&quot;&gt;mut&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-parameter z-rust&quot;&gt;interval&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-parameters z-end z-rust&quot;&gt;|&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function z-closure z-rust&quot;&gt;async &lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-begin z-rust&quot;&gt;{&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-meta z-function z-closure z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;                interval&lt;span class=&quot;z-punctuation z-accessor z-dot z-rust&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-function z-rust&quot;&gt;tick&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-rust&quot;&gt;(&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-rust&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-accessor z-dot z-rust&quot;&gt;.&lt;&#x2F;span&gt;await&lt;span class=&quot;z-punctuation z-terminator z-rust&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-meta z-function z-closure z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;                &lt;span class=&quot;z-storage z-type z-rust&quot;&gt;let&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-rust&quot;&gt;_&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-assignment z-rust&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-path z-rust&quot;&gt;chapter_tracker&lt;span class=&quot;z-punctuation z-accessor z-rust&quot;&gt;::&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;chapter_tracker&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-rust&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-bitwise z-rust&quot;&gt;&amp;amp;&lt;&#x2F;span&gt;http&lt;span class=&quot;z-punctuation z-separator z-rust&quot;&gt;,&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-bitwise z-rust&quot;&gt;&amp;amp;&lt;&#x2F;span&gt;data_clone&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-rust&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-accessor z-dot z-rust&quot;&gt;.&lt;&#x2F;span&gt;await&lt;span class=&quot;z-punctuation z-terminator z-rust&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-meta z-function z-closure z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-meta z-function z-closure z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;                &lt;span class=&quot;z-support z-type z-rust&quot;&gt;Some&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-rust&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-rust&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-rust&quot;&gt;(&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-rust&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-rust&quot;&gt;,&lt;&#x2F;span&gt; interval&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-rust&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-rust&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-meta z-function z-closure z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;            &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-end z-rust&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-rust&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-rust&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;            task&lt;span class=&quot;z-punctuation z-accessor z-dot z-rust&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-function z-rust&quot;&gt;for_each&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-rust&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function z-closure z-rust&quot;&gt;&lt;span class=&quot;z-meta z-function z-parameters z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-parameters z-begin z-rust&quot;&gt;|&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function z-closure z-rust&quot;&gt;&lt;span class=&quot;z-meta z-function z-parameters z-rust&quot;&gt;_&lt;span class=&quot;z-punctuation z-section z-parameters z-end z-rust&quot;&gt;|&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function z-closure z-rust&quot;&gt;async &lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-begin z-rust&quot;&gt;{&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-end z-rust&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-rust&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-accessor z-dot z-rust&quot;&gt;.&lt;&#x2F;span&gt;await&lt;span class=&quot;z-punctuation z-terminator z-rust&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;        &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-end z-rust&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;        &lt;span class=&quot;z-punctuation z-accessor z-dot z-rust&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-support z-function z-rust&quot;&gt;in_current_span&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-begin z-rust&quot;&gt;(&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-rust&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-rust&quot;&gt;,&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;    &lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-group z-end z-rust&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-rust&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-rust&quot;&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-block z-rust&quot;&gt;&lt;span class=&quot;z-punctuation z-section z-block z-end z-rust&quot;&gt;}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and it &lt;em&gt;just fucking works&lt;&#x2F;em&gt;. I don’t even have to worry about it being
+thread-unsafe as it’s all &lt;em&gt;atomically reference-counted&lt;&#x2F;em&gt;, and cloning is free.
+It’s amazing!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;sayounara-slash-commands&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#sayounara-slash-commands&quot; aria-label=&quot;Anchor link for: sayounara-slash-commands&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+さようなら, slash commands!&lt;&#x2F;h2&gt;
+&lt;p&gt;I’ve also decided to &lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;j1nxie&#x2F;mikisayaka&#x2F;commit&#x2F;50c0875c30c7d11127866e9faa40da893ce8ffc7&quot;&gt;pull the plug on slash
+commands&lt;&#x2F;a&gt;.
+Why? I personally don’t use it, and no one really does in the server it’s made
+for anyways. I feel like it would end up being a pain in the ass to maintain if
+I ever added some funky features that required a lot of arguments parsing, as my
+friend beerpsi had suffered writing extra features for his own bot…&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Time for a rant on slash commands and the general state of the Discord API.
+The more I write Discord bots, the more I seem to dislike it, or at least, how
+often it’s slightly changing.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Now that I’m no longer one to be impressed by the shiny, latest™
+technologies, &lt;span style=&quot;font-size: 12px;&quot;&gt;(and this is probably a lukewarm
+take at this point)&lt;&#x2F;span&gt; I’ve come to realize Discord slash commands are one
+of the worst things to ever be created by mankind.&lt;&#x2F;p&gt;
+&lt;p&gt;Personally, I very much dislike slash commands, as it’s lumping &lt;em&gt;all&lt;&#x2F;em&gt; available
+bot commands under the same namespace and… tell me how you’re quickly using a
+commmand at a glance if there are five hundred bots using the same &lt;code&gt;&#x2F;status&lt;&#x2F;code&gt;?&lt;&#x2F;p&gt;
+&lt;p&gt;The API changes very often in very subtle ways, especially surrounding the whole
+permissions &#x2F; privileges thing. Maybe I’m not the one looking out for Discord
+API changes, but I &lt;em&gt;swear&lt;&#x2F;em&gt; that these are &lt;strong&gt;not&lt;&#x2F;strong&gt; clearly stated anywhere when
+they actually do change it.&lt;&#x2F;p&gt;
+&lt;p&gt;Everything feels very inconsistent, from the way the APIs are designed to handle
+slash commands vs. prefix commands, and how to &lt;strong&gt;respond&lt;&#x2F;strong&gt; to those as well, it
+feels horrible and unwieldy to write code for, and that is reflected down to the
+libraries.&lt;&#x2F;p&gt;
+&lt;p&gt;Yes, you can argue that prefix commands are being phased out by Discord and
+that’s why they feel horrible to use, but honestly writing a slash-first bot
+isn’t much easier either - they categorize a lot of stuff in very weird ways
+that would wind you in reading &lt;strong&gt;a lot&lt;&#x2F;strong&gt; of badly-documented documentations. Not
+the best of impressions, after I spent more than 24 hours attempting to write
+something that leveraged those features.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;future&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#future&quot; aria-label=&quot;Anchor link for: future&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Future?&lt;&#x2F;h2&gt;
+&lt;p&gt;I’m not too sure what’s going to be next for Sayaka. Feature-wise, she’s
+generally complete, and I’m not too keen on expanding her &lt;em&gt;far too much&lt;&#x2F;em&gt; beyond
+her original scope.&lt;&#x2F;p&gt;
+&lt;p&gt;A neat thing could be that &lt;code&gt;s&amp;gt;manga sync&lt;&#x2F;code&gt; also manually triggering the chapter
+tracker - but I have yet to figure out a method to lock the entire tracking
+process to only run once at any given time.&lt;&#x2F;p&gt;
+&lt;p&gt;Of course… there’s implementing pagination for the roles list too… I’ll get
+to it I promise… It should just be the same code but changing the content
+strings… I think.&lt;&#x2F;p&gt;
+&lt;p&gt;I think I would also spend some time doing configuration stuff, right now the
+chapter tracker is straight up hardcoded to be two hours, and sometimes I want
+to lower it, but I keep forgetting to do so as well.&lt;&#x2F;p&gt;
+&lt;p&gt;Finally, thanks for reading to the end. Source code for Sayaka is always
+available on my &lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;j1nxie&#x2F;mikisayaka&quot;&gt;GitHub&lt;&#x2F;a&gt;!&lt;&#x2F;p&gt;
+</content>
+        </entry><entry xml:lang="en">
+        <title>Miki Sayaka Devblog 001: Off to A Strong Start!</title>
+        <published>2024-10-13T00:00:00+00:00</published>
+        <updated>2024-10-13T00:00:00+00:00</updated>
+        <author>
+            <name>lumi</name>
+        </author>
+        <link rel="alternate" href="https://rylie.moe/blog/sayaka-dev-01/" type="text/html"/>
+        <id>https://rylie.moe/blog/sayaka-dev-01/</id>
+        
+            <content type="html">&lt;p&gt;I got really bored one day and I decided, hey, let’s get &lt;em&gt;another&lt;&#x2F;em&gt; Discord bot
+rolling. I haven’t been having time to maintain larger-scaled projects,
+including Katsumi (repo private for now, hehe~) and
+&lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;j1nxie&#x2F;tairitsu-rs&quot;&gt;Tairitsu&lt;&#x2F;a&gt;, so I ended up somewhat
+““derusting”“ (for the lack of a better term) by creating another bot for my own
+Discord server! And thus, after a week or two of work, &lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;gitbub.com&#x2F;j1xie&#x2F;mikisayaka&quot;&gt;Miki
+Sayaka&lt;&#x2F;a&gt; was born!&lt;&#x2F;p&gt;
+&lt;p&gt;This is merely me writing my thoughts and process as I developed Sayaka, and
+this is no way a tutorial or “best practices” guide at writing Rust or
+developing a Discord bot! Nonetheless, I hope any readers find this interesting
+and educational!&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;starting-steps&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#starting-steps&quot; aria-label=&quot;Anchor link for: starting-steps&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Starting steps&lt;&#x2F;h1&gt;
+&lt;p&gt;Of course, for every Discord bot I make, I start with deciding my language and
+library of choice. I felt like writing more Rust, so I ended up choosing the
+&lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;serenity-rs&#x2F;poise&quot;&gt;poise&lt;&#x2F;a&gt; framework, built on top of the
+&lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;serenity-rs&#x2F;serenity&quot;&gt;serenity&lt;&#x2F;a&gt; library.&lt;&#x2F;p&gt;
+&lt;p&gt;Why Rust? I feel like I can grasp the language decently well, as well as write
+idiomatic code &lt;em&gt;fast enough&lt;&#x2F;em&gt; in it. Of course, I have my own qualms about it
+regarding async Rust as well as how ugly it gets when you want something like
+global states… but that’s for another time.&lt;&#x2F;p&gt;
+&lt;p&gt;On top of this, I feel like I should learn to write my own command engine and
+everything… but for now, we’ll stick with Poise. Poise is opinionated, yes,
+but it is neat in the sense that for &lt;em&gt;most&lt;&#x2F;em&gt;, if not &lt;em&gt;all&lt;&#x2F;em&gt; of my use cases, it
+works and I don’t have to think too much about the structure of everything,
+similar to how Tairitsu was.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;planning-features&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#planning-features&quot; aria-label=&quot;Anchor link for: planning-features&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Planning features&lt;&#x2F;h1&gt;
+&lt;p&gt;I’ve always wanted to make something that can manage the self-assignable roles
+in my server. I have a few of them set up - colors, gaming pings, free games
+notifications, etc. Setting them up through &lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;tatsu.gg&quot;&gt;Tatsu&lt;&#x2F;a&gt; feels like
+a pain - and guiding people to use them isn’t the easiest either. That’s why I
+felt like making my own to see what’s the best way to get the user experience
+right.&lt;&#x2F;p&gt;
+&lt;p&gt;On top of this, I also want to manage new chapter uploads from
+&lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;mangadex.org&quot;&gt;MangaDex&lt;&#x2F;a&gt;, as well as a recommendation list for manga.
+I’ve had ideas about it for a good while, making a crowd-sourced list of manga
+that we can say “oh yeah our server endorse this, this is pretty nice”,
+something in those lines. Using a Google spreadsheet feels very manual, though
+it definitely shines when you want someone to add their comments for a certain
+title, for example.&lt;&#x2F;p&gt;
+&lt;p&gt;So, in short, we have two things to do.&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Self-assignable roles
+&lt;ul&gt;
+&lt;li&gt;Display a list&lt;&#x2F;li&gt;
+&lt;li&gt;Add and remove roles&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;MangaDex chapter tracking
+&lt;ul&gt;
+&lt;li&gt;Display list of tracked manga&lt;&#x2F;li&gt;
+&lt;li&gt;Add manga to tracked list&lt;&#x2F;li&gt;
+&lt;li&gt;Send notifications whenever a new chapter is out for the titles on the
+list&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h1 id=&quot;getting-to-work&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#getting-to-work&quot; aria-label=&quot;Anchor link for: getting-to-work&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Getting to work&lt;&#x2F;h1&gt;
+&lt;p&gt;Well… Looking at the two above planned features, for starters, the
+self-assignable roles look much more simple to implement, and that’s where I
+started first.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;self-assignable-roles&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#self-assignable-roles&quot; aria-label=&quot;Anchor link for: self-assignable-roles&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Self-assignable roles&lt;&#x2F;h2&gt;
+&lt;p&gt;I prepared a little database table with two columns, &lt;code&gt;role_name&lt;&#x2F;code&gt; and &lt;code&gt;role_id&lt;&#x2F;code&gt;.
+The role’s name is for display purposes through Discord’s &lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;discord.com&#x2F;developers&#x2F;docs&#x2F;interactions&#x2F;message-components&quot;&gt;select
+menu&lt;&#x2F;a&gt;, and
+the &lt;code&gt;role_id&lt;&#x2F;code&gt; is… well, for assigning it to the user through Poise, of course.&lt;&#x2F;p&gt;
+&lt;p&gt;Of course, with hindsight, I could always &lt;em&gt;only&lt;&#x2F;em&gt; store the role ID, and use the
+Discord API to fetch the role name for displaying purposes. This way, I wouldn’t
+need to trust myself (out of all people!) to keep the role names correct and
+updated. But at the same time, we haven’t changed any of our self-assignable
+roles in a good while, maybe a year or two now, so this is the least of my
+concerns.&lt;&#x2F;p&gt;
+&lt;p&gt;Seems simple enough, right? Whatever roles I wanted to setup, I’ll fill in the
+name and the role ID into the database. Then, the &lt;code&gt;role list&lt;&#x2F;code&gt; command would
+fetch everything from the database and display it in a neat little embed.
+Similarly, &lt;code&gt;role add&lt;&#x2F;code&gt; would display that same list and having a dropdown to
+select a role. &lt;code&gt;role remove&lt;&#x2F;code&gt; would display the list of self-assignable roles you
+have, and allowing you to pick one to remove from your own roles.&lt;&#x2F;p&gt;
+&lt;p&gt;Sure enough, implementing this was simple and it didn’t take long to get it
+working. I don’t have to worry about managing multiple servers and everything -
+after all, this was meant to be a personal Discord bot! That’s the reason why a
+lot of supposedly scalable design decisions were skipped - no tracking of what
+server ID the roles are from, no real interface to add roles to the database
+from the bot, and so on.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;manga-tracking&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#manga-tracking&quot; aria-label=&quot;Anchor link for: manga-tracking&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Manga tracking&lt;&#x2F;h2&gt;
+&lt;p&gt;Now &lt;strong&gt;this&lt;&#x2F;strong&gt; is the fun part. Thanks to the
+&lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;crates.io&#x2F;crates&#x2F;mangadex-api&quot;&gt;mangadex-api&lt;&#x2F;a&gt; crate, I have a neat API
+client for MangaDex that I could use to fetch stuff from. But, now what? Where
+do we start?&lt;&#x2F;p&gt;
+&lt;p&gt;Once again, I started with managing the manga list, which also doubles up as our
+crowd-sourced recommendations list. Database-wise, it’s just a simple table with
+two columns: &lt;code&gt;manga_dex_id&lt;&#x2F;code&gt; and &lt;code&gt;last_updated&lt;&#x2F;code&gt;. The MangaDex UUID of the manga
+will be stored alongside the latest date we checked for new updates.&lt;&#x2F;p&gt;
+&lt;p&gt;Of course, of course, “But but “last updated” means the last date the manga was
+updated“, I hear you say. Yes, the naming could be better, but who cares? I
+might change it when I feel like it confuses me enough, but for now, the field
+existing at all is what I really care about.&lt;&#x2F;p&gt;
+&lt;p&gt;A &lt;code&gt;manga list&lt;&#x2F;code&gt; command is available to render the entire list. As of this point,
+I was really lazy so I didn’t bother with pagination or anything. I only have a
+few titles in the list, so it’s not like it’s going to be a problem, right?&lt;&#x2F;p&gt;
+&lt;p&gt;The &lt;code&gt;manga add&lt;&#x2F;code&gt; command is up next - I’ll let users input either a MangaDex URL
+or the UUID of the manga on MD, and we’ll add it to the database. At the same
+time, the bot takes a MDList UUID and for every manga added it will attempt to
+sync the database to the MDList.&lt;&#x2F;p&gt;
+&lt;p&gt;Skipping the remove for now because… truth be told I cannot figure out a good
+UX to remove stuff… I’ll just hook straight into the database and remove
+entries I guess.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;closing-thoughts&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#closing-thoughts&quot; aria-label=&quot;Anchor link for: closing-thoughts&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Closing thoughts&lt;&#x2F;h1&gt;
+&lt;p&gt;As of right now, Miki Sayaka is up and running pretty neatly! Of course, there’s
+still plenty more to do - paginating the lists, actually notifying new chapters,
+and so on. But for now, this is a good starting place for Sayaka! Source code
+for the bot is always available on the &lt;a class=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;j1nxie&#x2F;mikisayaka&quot;&gt;GitHub
+repo&lt;&#x2F;a&gt;, feel free to check it out! Thanks a
+lot for reading!&lt;&#x2F;p&gt;
+</content>
+        </entry>
+</feed>
