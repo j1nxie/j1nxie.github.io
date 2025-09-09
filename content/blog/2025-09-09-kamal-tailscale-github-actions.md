@@ -265,7 +265,7 @@ tag as the Git commit hash!
 
 With this setup, you'll need to add a `service` label to the resulting Docker
 image, as Kamal expects this label to know which container to spin down during
-deployment of new versions. This label should be the same as the `label` key
+deployment of new versions. This label should be the same as the `service` key
 within Kamal's configuration file.
 
 ```diff
