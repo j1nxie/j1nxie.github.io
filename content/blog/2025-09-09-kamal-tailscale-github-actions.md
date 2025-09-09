@@ -47,7 +47,7 @@ public Internet.
 ...really now, you wouldn't need this to be introduced, would you?
 
 Fiiiiiiiine, I'll tell you about it anyways. [GitHub Actions](https://github.com/features/actions)
-is GitHub's own CI/CD [^2] platform, for automating software development
+is GitHub's own CI/CD[^2] platform, for automating software development
 workflows. You can define triggers to automatically run test suites, Docker
 builds, so on. We'll use this to automatically build our Discord bot and deploy
 a build through Kamal.
