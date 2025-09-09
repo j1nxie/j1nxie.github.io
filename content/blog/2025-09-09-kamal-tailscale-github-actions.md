@@ -260,7 +260,8 @@ tag as the Git commit hash!
 
 With this setup, you'll need to add a `service` LABEL to the resulting Docker
 image, as Kamal expects this label to know which container to spin down during
-deployment of new versions.
+deployment of new versions. This label should be the same as the `label` key
+within Kamal's configuration file.
 
 ```diff
 FROM beerpsi/cargo-chef-musl-mimalloc:latest AS chef
