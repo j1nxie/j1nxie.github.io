@@ -232,7 +232,6 @@ I use [`webfactory/ssh-agent`](https://github.com/webfactory/ssh-agent)
 to insert a SSH private key into the GitHub Action worker node, as my server
 has password authentication disabled.
 
-> [!NOTE]
 > This setup doesn't work right out of the box, you'll need to do a bit of
 > bootstrapping! Create a new SSH keypair on your server and add it to the `root`
 > user's authorized keys:
@@ -252,8 +251,6 @@ The `VERSION` environment is very important also, as the workflow will push the
 image on the `main` tag, whereas Kamal by default pushes and expects a version
 tag as the Git commit hash!
 
-> [!NOTE]
->
 > Of course, remember to actually add in the secrets to your GitHub repository!
 > I used the `gh` CLI utility to add them to my repository, through the command:
 >
@@ -261,36 +258,34 @@ tag as the Git commit hash!
 > gh secret set SECRET_NAME
 > ```
 
-> [!NOTE]
->
-> With this setup, you'll need to add a `service` LABEL to the resulting Docker
-> image, as Kamal expects this label to know which container to spin down during
-> deployment of new versions.
->
-> ```diff
-> FROM beerpsi/cargo-chef-musl-mimalloc:latest AS chef
-> WORKDIR /app
->
-> FROM chef AS planner
-> COPY . .
-> RUN cargo chef prepare --recipe-path recipe.json
->
-> FROM chef AS builder
-> COPY --from=planner /app/recipe.json recipe.json
-> RUN cargo chef cook --release --target x86_64-unknown-linux-musl --recipe-path recipe.json
->
-> ARG GIT_SHA=unknown
-> ENV VERGEN_GIT_SHA=$GIT_SHA
->
-> COPY . .
-> RUN cargo build --release --target x86_64-unknown-linux-musl
->
-> FROM gcr.io/distroless/static AS runtime
-> +LABEL service="jane-doe"
-> WORKDIR /app
-> COPY --from=builder /app/target/x86_64-unknown-linux-musl/release/jane-doe /app/
-> CMD ["/app/jane-doe", "start"]
-> ```
+With this setup, you'll need to add a `service` LABEL to the resulting Docker
+image, as Kamal expects this label to know which container to spin down during
+deployment of new versions.
+
+```diff
+FROM beerpsi/cargo-chef-musl-mimalloc:latest AS chef
+WORKDIR /app
+
+FROM chef AS planner
+COPY . .
+RUN cargo chef prepare --recipe-path recipe.json
+
+FROM chef AS builder
+COPY --from=planner /app/recipe.json recipe.json
+RUN cargo chef cook --release --target x86_64-unknown-linux-musl --recipe-path recipe.json
+
+ARG GIT_SHA=unknown
+ENV VERGEN_GIT_SHA=$GIT_SHA
+
+COPY . .
+RUN cargo build --release --target x86_64-unknown-linux-musl
+
+FROM gcr.io/distroless/static AS runtime
++LABEL service="jane-doe"
+WORKDIR /app
+COPY --from=builder /app/target/x86_64-unknown-linux-musl/release/jane-doe /app/
+CMD ["/app/jane-doe", "start"]
+```
 
 # Conclusion
 
