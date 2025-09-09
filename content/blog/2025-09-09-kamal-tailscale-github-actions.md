@@ -242,6 +242,11 @@ has password authentication disabled.
 >
 > This will make sure that Kamal is able to SSH into the server and deploy the
 > Discord bot!
+>
+> Why `root`? Uh... I run [fish](https://fishshell.com/) on my servers and they
+> aren't compatible with the commands that Kamal runs to deploy the services...
+> Please create a user for deployment on your server and add the public key to
+> that user's `authorized_keys` file instead. Do as I say, not as I do.
 
 Then, at the final step, we'll pull in all the environment variables to load
 into Kamal as secrets, and run Kamal with the `--skip-push` argument, as we've
