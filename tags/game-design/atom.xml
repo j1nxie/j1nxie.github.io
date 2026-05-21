@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://rylie.moe/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:base_url>https:&#x2F;&#x2F;rylie.moe</tabi:base_url>
+        <tabi:separator>
+            |
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>game design</tabi:current_section>
+    </tabi:metadata><link rel="extra-stylesheet" href="https://rylie.moe/skins/sakura.css?h=2d9c69af51135683e3bd" /><title>lumi's trashcan - game design</title>
+        <subtitle>my thoughts and rants.</subtitle>
+    <link href="https://rylie.moe/tags/game-design/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://rylie.moe/tags/game-design/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-11-05T00:00:00+00:00</updated>
+    <id>https://rylie.moe/tags/game-design/atom.xml</id><entry xml:lang="en">
+        <title>Bad Game Design: Kaneshiro and Okumura&#x27;s Palaces in Persona 5 Royal</title>
+        <published>2024-11-05T00:00:00+00:00</published>
+        <updated>2024-11-05T00:00:00+00:00</updated>
+        <author>
+            <name>lumi</name>
+        </author>
+        <link rel="alternate" href="https://rylie.moe/blog/bad-game-design-persona-5-royal/" type="text/html"/>
+        <id>https://rylie.moe/blog/bad-game-design-persona-5-royal/</id>
+        
+            <content type="html">&lt;blockquote&gt;
+&lt;p&gt;This post contains spoilers for Persona 5 Royal! If you haven’t played the
+game yet, I suggest you stop reading to avoid spoilers, else, proceed at your
+own caution.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Recently, I decided to pick up Persona 5 Royal, as I broke my controller and…
+Persona 4 Golden on a keyboard felt horrible (this probably needs its own blog
+post…) so I put it on pause for now. Fast-forward a few weeks later and I’m 60
+hours into it. I’ve been enjoying the game &lt;strong&gt;a whole lot&lt;&#x2F;strong&gt;, but there are points
+where I feel like the game is out to annoy me. I’ve still got half the game left
+to go - but these will be my thoughts up to this point, for Kaneshiro’s bank and
+Okumura’s spaceport.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;kaneshiro-s-palace&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#kaneshiro-s-palace&quot; aria-label=&quot;Anchor link for: kaneshiro-s-palace&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Kaneshiro’s Palace&lt;&#x2F;h1&gt;
+&lt;p&gt;The third palace in the game. This is probably the first instance that I felt
+like the game was a bit annoying. The palace itself is fine thematically, and
+the OST was really nice too. But, despite all that, the mechanics in this palace
+felt &lt;em&gt;so wrong&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The main puzzle within the palace involves the security system, where you have
+to decode a 4-letter word into numbers to progress. Each letter corresponds to a
+number, and you have to go around the palace collecting torn pages from
+Kaneshiro’s journal to form the cipher.&lt;&#x2F;p&gt;
+&lt;p&gt;The page-collection part itself is fine, running around the palace to find the
+pages is pretty simple. Each page is in a &lt;em&gt;very visible&lt;&#x2F;em&gt; piggy-bank-shaped
+container. I was stuck for like… 20 minutes finding myself missing a page, but
+that was mostly my fault for overlooking a container right next to a room
+entrance.&lt;&#x2F;p&gt;
+&lt;p&gt;One of the annoying part about this is how the hints are basic arithmetics, but
+there are so many of them you are basically &lt;em&gt;required&lt;&#x2F;em&gt; to have a notepad of some
+sort to solve for all the letters involved. But, alas, it’s fine, I’ll let this
+one slide.&lt;&#x2F;p&gt;
+&lt;p&gt;The worst part about this palace has to be how you have to do this a total of
+&lt;strong&gt;three times&lt;&#x2F;strong&gt;. And for &lt;em&gt;every corridor&lt;&#x2F;em&gt; you clear while finding each keypad,
+there are no safe rooms - there’s only one at the start of the vault. If you end
+up failing a single encounter randomly (god bless this game’s RNG!), that means
+you’re restarting from the start of that corridor.&lt;&#x2F;p&gt;
+&lt;p&gt;Of course, I can see how this is just the game being “difficult” and punishing
+failure, but it’s just slightly annoying how you have to reclear each vault
+floor if you accidentally fail a fight. The fights aren’t hard, but it’s &lt;em&gt;very&lt;&#x2F;em&gt;
+easy to randomly die if you get a stupid effect proc.&lt;&#x2F;p&gt;
+&lt;p&gt;Nonetheless, I feel like the mechanics of Kaneshiro’s Palace are just slightly
+annoying, in the lines of being tedious, but it’s not totally bad. It’s a nice
+end to Makoto’s story arc, and I didn’t lose too much time pulling my hair to
+finish it.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;okumura-s-palace&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#okumura-s-palace&quot; aria-label=&quot;Anchor link for: okumura-s-palace&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Okumura’s Palace&lt;&#x2F;h1&gt;
+&lt;p&gt;Kaneshiro’s Palace is definitely, definitely, &lt;strong&gt;definitely&lt;&#x2F;strong&gt; no match for this.
+The fifth palace in the game has to be one of the &lt;em&gt;worst&lt;&#x2F;em&gt; designed palaces I’ve
+ever seen. It’s so bad we even got subsections for it!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;timed-mechanics&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#timed-mechanics&quot; aria-label=&quot;Anchor link for: timed-mechanics&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Timed mechanics&lt;&#x2F;h2&gt;
+&lt;p&gt;A &lt;em&gt;ton&lt;&#x2F;em&gt; of the mechanics are timed, which technically fits the theme of
+“capitalism draining everyone dry”, but it’s just so, so, so annoying. Pathing
+through the map involves a bunch of 30-second timed platforms, and you need to
+backtrack and re-activate the platforms to progress if you don’t make it in
+time. This time passes during fights too, so if you accidentally get an
+encounter, have fun backtracking!&lt;&#x2F;p&gt;
+&lt;p&gt;Yippee, you’ve made it to the end of the palace, and you sent the calling card.
+You enter the palace again, fast travel to the last section before the boss
+encounter, and you feel like you’re &lt;em&gt;so&lt;&#x2F;em&gt; prepared to do this boss fight. You’re
+wrong. You are &lt;strong&gt;not&lt;&#x2F;strong&gt; ready to do this boss fight.&lt;&#x2F;p&gt;
+&lt;p&gt;After a little bit of a cutscene, a 10-minute timer starts, and you’re supposed
+to chase after Okumura. You are supposed to run through a Shadow-infested
+corridor to catch up to him, and you have to do this in 10 minutes. If you don’t
+make it in time, you have to restart from the start of the corridor. This is the
+most annoying part of the palace, and it’s just so, so, so frustrating.
+Thankfully, the kind developers at Atlus has added the grappling hook to Royal,
+and you have a shortcut to skip yourself straight to the boss encounter,
+rendering the annoyance of this 10-minute timer to essentially null.&lt;&#x2F;p&gt;
+&lt;p&gt;That should be it right? Oh dear sweet summer child, you’re getting even &lt;em&gt;more&lt;&#x2F;em&gt;
+wrong. The boss fight has a &lt;strong&gt;thirty-minute&lt;&#x2F;strong&gt; time limit. “It’s a whopping
+thirty minutes!”, I hear you say. Well, let me tell you about the mechanics.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;boss-fight-mechanics&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#boss-fight-mechanics&quot; aria-label=&quot;Anchor link for: boss-fight-mechanics&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Boss fight mechanics&lt;&#x2F;h2&gt;
+&lt;p&gt;Okumura sends waves of &lt;strong&gt;four&lt;&#x2F;strong&gt; robots of increasing strength to face you, while
+he sits in the back and either buffs them or debuffs your party. The robots are
+weak to certain elements, and resists everything else. You have met all of these
+robots as part of the introductory sequence of the palace, and good luck
+preparing for &lt;strong&gt;all&lt;&#x2F;strong&gt; of them.&lt;&#x2F;p&gt;
+&lt;p&gt;For you, you have three turns to attack and kill these robots to clear the
+“wave”. If you don’t kill them in time, if you dealt even just &lt;strong&gt;a single
+point&lt;&#x2F;strong&gt; of damage to any of them, they would flee and you would fail the wave.
+This is probably the part where the game expects you to abuse the hell out of
+Baton Passes to maximize damage dealt, but I’m telling you, even on Normal
+difficulty, maximum Baton Passes on Haru struggles to take down the last wave of
+robots.&lt;&#x2F;p&gt;
+&lt;p&gt;This straight up makes it extremely annoying as these robots are super tanky
+&lt;em&gt;and&lt;&#x2F;em&gt; they deal a ton of damage to your party as well. With all of this, you can
+probably start to see how thirty minutes straight up isn’t enough to clear the
+fight.&lt;&#x2F;p&gt;
+&lt;p&gt;I’ve sat and pulled my hair for at least &lt;strong&gt;three hours&lt;&#x2F;strong&gt; doing Okumura’s boss
+fight and &lt;em&gt;I still haven’t cleared it&lt;&#x2F;em&gt;, and I’ve got close to clearing the fight
+only &lt;em&gt;once&lt;&#x2F;em&gt;… If this isn’t one of the worst designed boss fights in the game,
+I don’t know what is. It frustrates me genuinely because Haru’s arc was getting
+really, really good and this horrible boss fight makes it so tedious to go
+through, and simply ruins the narration for me purely because how long it takes
+to finish it. I’ve also spent at least two hours looking at Reddit posts asking
+on how to fight it and a &lt;em&gt;whole lot&lt;&#x2F;em&gt; of them is pointing towards abusing
+Merciless’ 3x weakness multiplier and a DLC Persona to clear the fight. I’m
+&lt;em&gt;very close&lt;&#x2F;em&gt; to just doing that, but I’m still holding out hope that I can clear
+it without resorting to that. The sheer difficulty of the fight just makes me
+reconsider doing NG+ runs as well, but I will see how that goes…&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-damn-airlock-puzzles&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#the-damn-airlock-puzzles&quot; aria-label=&quot;Anchor link for: the-damn-airlock-puzzles&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+The damn airlock puzzles&lt;&#x2F;h2&gt;
+&lt;p&gt;A bit before the boss fight, you have to go through a series of airlock puzzles
+to progress. It’s &lt;strong&gt;not&lt;&#x2F;strong&gt; very clear what you really need to do, other than
+toggling the various switches to progress. It’s so annoying that you constantly
+need to constantly toggle the map to find out the path you need to take &lt;em&gt;while&lt;&#x2F;em&gt;
+attempting to grab the third Will Seed. The pathing took me forever since you’re
+meant to go in one specific direction. This puts the icing on the cake for how
+bad Okumura’s Palace is designed. Thank &lt;strong&gt;god&lt;&#x2F;strong&gt; you’re not timed on this
+section, or else I would genuinely flip doing this palace.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;closing-thoughts&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#closing-thoughts&quot; aria-label=&quot;Anchor link for: closing-thoughts&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Closing thoughts&lt;&#x2F;h1&gt;
+&lt;p&gt;While I’ve learnt to accept Kaneshiro’s bank, Okumura’s spaceport is still
+something I genuinely am frustrated about. This really ruined the experience for
+this part of the game for me, and it made me feel stuck similar to Yakuza Kiwami
+2’s Man in Black fight. But alas, after writing this, I’ll probably spend the
+next few hours trying to clear this fight, but this will definitely go down as
+one of the worst designed fights I’ve ever witnessed in a JRPG.&lt;&#x2F;p&gt;
+&lt;p&gt;I still want to make clear that this doesn’t make Persona 5 (Royal) a bad game
+by any means! It’s still a truly enjoyable experience overall, and I still don’t
+regret the hours I’ve sunken into this game. I really recommend it if you are
+interested in turn-based RPGs, or you wanted a good entry point into the Persona
+series.&lt;&#x2F;p&gt;
+</content>
+        </entry>
+</feed>

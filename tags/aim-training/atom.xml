@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://rylie.moe/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:base_url>https:&#x2F;&#x2F;rylie.moe</tabi:base_url>
+        <tabi:separator>
+            |
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>aim training</tabi:current_section>
+    </tabi:metadata><link rel="extra-stylesheet" href="https://rylie.moe/skins/sakura.css?h=2d9c69af51135683e3bd" /><title>lumi's trashcan - aim training</title>
+        <subtitle>my thoughts and rants.</subtitle>
+    <link href="https://rylie.moe/tags/aim-training/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://rylie.moe/tags/aim-training/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-05-21T00:00:00+00:00</updated>
+    <id>https://rylie.moe/tags/aim-training/atom.xml</id><entry xml:lang="en">
+        <title>aimlog 002: viscose benchmarks day 2, tracking hell</title>
+        <published>2026-05-21T00:00:00+00:00</published>
+        <updated>2026-05-21T00:00:00+00:00</updated>
+        <author>
+            <name>lumi</name>
+        </author>
+        <link rel="alternate" href="https://rylie.moe/blog/aimlog-002/" type="text/html"/>
+        <id>https://rylie.moe/blog/aimlog-002/</id>
+        
+            <content type="html">&lt;p&gt;i did more stuff on the viscose benchmarks today, mainly focusing on filling out
+the benchmark itself, as well as the tracking scens, both control and reactive.
+i’ve been playing overwatch a little bit again, so raising my tracking skills
+seem like the most natural thing – i’ve always wanted to be better at tracking
+anyways.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;image&#x2F;aimlog-002&#x2F;results.png&quot; alt=&quot;&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;control wise, or just a bit in general, i feel like i have a lot of tension on
+my wrist, and my macro movements with my arm is really sloppy. i can feel my
+wrist tensing up when adjusting on wrist-heavy scens, and my arm rather lacks
+control thus leading to a lot of unnecessary movements.&lt;&#x2F;p&gt;
+&lt;p&gt;reactive tracking is probably my &lt;em&gt;slightly&lt;&#x2F;em&gt; better tracking skill, i would
+say…? since it feels a lot more flickery compared to control. i filled out the
+tracker finally and it definitely has much better scores than my control
+tracking.&lt;&#x2F;p&gt;
+&lt;p&gt;stuff like Flicker Plaza felt really natural for me it feels like, very tracer-y
+movements – linear movements into blinks. i might be inclined to do the
+intermediate version of it some time later to see how i fare on it, since it
+could also just be an easier scen that my fundamentals are enough to do.&lt;&#x2F;p&gt;
+&lt;p&gt;i’ve noticed a bad habit that probably comes from reading dynamic clicking for
+these scens though – i tend to predict the bot’s movement instead of trying to
+follow and, well, “react” to it, like the name suggests. add that with my
+tension issues and i end up overcorrecting &#x2F; mispredicting all over the place.&lt;&#x2F;p&gt;
+&lt;p&gt;though i think, with this in mind though, i’ve definitely seen myself predict
+the bot much less compared to before – i think this is actually credited to me
+playing a lot of overwatch and just aiming on tracers &#x2F; pharahs and trying to
+react to their movement with only a hint of predicting, instead of entirely
+relying on predicting and flicking on them as correction.&lt;&#x2F;p&gt;
+&lt;p&gt;it’s been feeling good to build up tracking skill these days in comparison to
+before, to be honest. definitely one of my weakest skills finally getting
+raised.&lt;&#x2F;p&gt;
+&lt;p&gt;maybe rest day tomorrow? we shall see.&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">tracking is hard!!</summary>
+        </entry><entry xml:lang="en">
+        <title>aimlog 001: viscose benchmarks day 1</title>
+        <published>2026-05-20T00:00:00+00:00</published>
+        <updated>2026-05-20T00:00:00+00:00</updated>
+        <author>
+            <name>lumi</name>
+        </author>
+        <link rel="alternate" href="https://rylie.moe/blog/aimlog-001/" type="text/html"/>
+        <id>https://rylie.moe/blog/aimlog-001/</id>
+        
+            <content type="html">&lt;blockquote&gt;
+&lt;p&gt;i wanted to write something a little more casual so i can get this blog active
+more often, and in more of a journal form than a formal blogpost compared to
+before, so here is a snippet from my own daily journal with my thoughts on aim
+training, with a bit of touch-ups &#x2F; additional thoughts edited in!&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;started doing aiming stuff again out of my own interest, and i stumbled upon
+&lt;a class=&quot;external&quot; rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;docs.google.com&#x2F;spreadsheets&#x2F;d&#x2F;1bFAlt6g_Gm8P9RBkcAoObpbIGFwVS5gXIdIK9B_YyZE&#x2F;edit?gid=671567857#gid=671567857&quot;&gt;viscose’s benchmarks&lt;&#x2F;a&gt;
+and i gotta say, these feel good to do.&lt;&#x2F;p&gt;
+&lt;p&gt;i noticed some of my main weaknesses when it comes to aiming:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;i’m absolutely flopsided when it comes to tracking.&lt;&#x2F;p&gt;
+&lt;p&gt;i have the fundamentals down (i think?), but some of the main issues i have
+with tracking are:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;too much tension&lt;&#x2F;li&gt;
+&lt;li&gt;overcorrecting&lt;&#x2F;li&gt;
+&lt;li&gt;unable to match target pace&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;these are severely hindering my capability to actually, well, track
+efficiently. i would have a lot of overcorrection &#x2F; zigzag flicky movements
+to try and be on target again instead of smoothly accelerating to catch up
+with it if i’m behind.&lt;&#x2F;p&gt;
+&lt;p&gt;tension just comes both during aim training and in actual matches where it
+leads to more flicky movements (so much for having a flick&#x2F;click heavy
+background…)&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;my vertical movements for flicks are bad.&lt;&#x2F;p&gt;
+&lt;p&gt;feels a little weird to say this but i swear having a counter-strike
+background makes your vertical flicks &lt;em&gt;really bad&lt;&#x2F;em&gt;. my horizontal flicks are
+pretty decent i could say, and shorter, diagonal flicks are also alright
+too. micro-wise, i’m okay with vertical movements but for larger flicks, god
+am i awful.&lt;&#x2F;p&gt;
+&lt;p&gt;if i had to do vertical movements i would tense up a lot a lot and it would
+take me a lot of time to actually correct my flicks. i wonder if there’s any
+scenarios that help with macro vertical flicks…&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;one thing that’s mentioned within the introduction to the benchmarks is, a lot
+of the benchmarks have a problem where the gap between intermediate and advanced
+is &lt;em&gt;really large&lt;&#x2F;em&gt; (and i think, in turn, as a 50th percentile aimer, the gap
+between easy and intermediate has the same problem as well), so she designed it
+with more ranks that will overlap between the sets of difficulties so players
+can play both and have an easier time transitioning between them.&lt;&#x2F;p&gt;
+&lt;p&gt;i can definitely agree to this, even though i’m not a good aimer by any means,
+so my opinions probably doesn’t matter, but i can easily murder a lot of the
+easier scenarios while struggling to hit a single target on the intermediate
+ones. it’s definitely that “i have the fundamentals for said skill down, but i
+lack the speed &#x2F; accuracy requirements for the higher difficulty scens”, but it
+still feels really weird and honestly, demotivating in a way that i can barely
+read what’s going on to really “progress” on the more difficult scens.&lt;&#x2F;p&gt;
+&lt;p&gt;one other very interesting thing is, definitely owing to the fact that viscose’s
+benchmarks are more of a practice playlist, she has a handful of tips for
+specific scens, and separate the scenarios to the “fundamental” movement that
+the scenario is trying to test you on, and it’s definitely telling me which part
+of my aim i should focus on for said scen.&lt;&#x2F;p&gt;
+&lt;p&gt;all in all? this really made me feel like doing aim training again as a hobby
+and try to get better at it! :3 i don’t think i’ll be &lt;em&gt;too serious&lt;&#x2F;em&gt; like having
+serious aim regimes or whatever, my life isn’t on the line, but i definitely
+think writing things out like this and seeing what i did for a certain day
+really helps visualizing things and my own progress too!&lt;&#x2F;p&gt;
+&lt;p&gt;p&#x2F;s: i probably want a handcam at some point just to have vods and stuff, i
+think it’ll be pretty nice to see how i improved and all.&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">aimer girl wannabe talks about aim again.</summary>
+        </entry>
+</feed>
